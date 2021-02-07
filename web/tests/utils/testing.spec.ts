@@ -1,9 +1,9 @@
-import { asdf } from '../../utils/testing';
+import { example } from '../../utils/example';
 
 describe('testing', () => {
-  describe('asdf', () => {
+  describe('example', () => {
     test('should be true', () => {
-      expect(asdf()).toBe(true);
+      expect(example()).toBe(true);
     });
   });
 });
