@@ -1,8 +1,17 @@
-import '../styles/globals.css';
+import React from 'react';
+import withApollo from 'next-with-apollo';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
-/* eslint-disable-next-line */
-const App = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
-};
+// eslint-disable-next-line react/prop-types
+const App = ({ Component, pageProps, apollo }) => (
+  <ApolloProvider client={apollo}>
+    <Component {...pageProps} />
+  </ApolloProvider>
+);
 
-export default App;
+export default withApollo(({ initialState }) => {
+  return new ApolloClient({
+    uri: 'http://localhost:4000/graphql',
+    cache: new InMemoryCache().restore(initialState || {}),
+  });
+})(App);
