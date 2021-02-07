@@ -1,4 +1,9 @@
 {
+  "globals": {
+    "ts-jest": {
+      "babelConfig": true
+    }
+  },
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
   "moduleNameMapper": {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy"
@@ -11,10 +16,5 @@
     "^.+\\.ts?$": "ts-jest",
     "^.+\\.tsx?$": "ts-jest"
   },
-  "verbose": true,
-  "globals": {
-    "ts-jest": {
-      "babelConfig": true
-    }
-  }
+  "verbose": true
 }
