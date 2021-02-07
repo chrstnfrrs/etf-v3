@@ -1,12 +1,16 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { ABtn } from 'aspire-components-react';
+import { ReactElement } from 'react';
 
-import {ABtn} from 'aspire-components-react'
+import styles from '../styles/Home.module.css';
 
-export default function Home() {
+const Home = (): ReactElement => {
   return (
     <div className={styles.container}>
-      <ABtn align={'center'} justify={'center'}>{'Hello World'}</ABtn>
+      <ABtn align={'center'} justify={'center'}>
+        {'Hello World'}
+      </ABtn>
     </div>
-  )
-}
+  );
+};
+
+export default Home;
