@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "aspire-components-react": "^1.0.8",
     "next": "10.0.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
