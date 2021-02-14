@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --ANav-background: #f5f5f5 !important;
+  --ANav-color: #101010 !important;
+}
+
+.asdf {
+  background: #101010;
+}
