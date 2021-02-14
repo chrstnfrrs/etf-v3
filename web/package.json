@@ -10,10 +10,12 @@
     "test": "jest",
     "coverage": "jest --collectCoverage",
     "lint": "eslint '*/**/*.{js,jsx,ts,tsx}' --quiet --ignore-pattern '/node_modules/' --ignore-pattern '/.next/' --ignore-pattern '/out/'",
-    "preStage": "yarn lint && yarn coverage"
+    "preStage": "yarn lint && yarn coverage",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.3.8",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.16",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "aspire-components-react": "^1.0.8",
@@ -28,6 +30,11 @@
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.12.13",
+    "@graphql-codegen/cli": "1.20.1",
+    "@graphql-codegen/introspection": "1.18.1",
+    "@graphql-codegen/typescript": "^1.21.0",
+    "@graphql-codegen/typescript-operations": "1.17.14",
+    "@graphql-codegen/typescript-react-apollo": "2.2.1",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
     "@types/jest": "^26.0.20",
