@@ -1,0 +1,9 @@
+query AllMenu{
+  allMenu {
+    link {
+      text
+      route
+      _key
+    }
+  }
+}
