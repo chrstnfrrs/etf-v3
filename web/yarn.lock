@@ -6463,14 +6463,14 @@
     "remedial" "^1.0.7"
     "remove-trailing-spaces" "^1.0.6"
 
-"json5@^1.0.1", "json5@^2.1.2":
+"json5@^1.0.1":
   "integrity" "sha512-aKS4WQjPenRxiQsC93MNfjx+nbF4PAdYzmd/1JIj8HYzqfbu86beTuNgXDzPknWk0n0uARlyewZo4s++ES36Ow=="
   "resolved" "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz"
   "version" "1.0.1"
   dependencies:
     "minimist" "^1.2.0"
 
-"json5@2.x":
+"json5@^2.1.2", "json5@2.x":
   "integrity" "sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA=="
   "resolved" "https://registry.yarnpkg.com/json5/-/json5-2.2.0.tgz"
   "version" "2.2.0"

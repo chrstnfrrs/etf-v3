@@ -15,17 +15,19 @@ const Home = (): ReactElement => {
     },
   });
 
+  console.log('data', data);
+  console.log('error', error);
+  console.log('loading', loading);
+
   if (error) router.push('error');
 
-  if (data && data.allPages && data.allPages[0] && data.allPages[0].sections) {
+  if (data?.allPages[0].sections) {
     return (
       <div>
         {data.allPages[0].sections.map((section) => {
-          if (section.__typename === 'Hero') {
-            console.log(section.heroImage.asset.url)
-
+          if (section?.__typename === 'Hero') {
             return (
-              <AHero key={section._key} backgroundImage={section.heroImage.asset.url}>
+              <AHero key={section._key} backgroundImage={section?.heroImage?.asset?.url}>
                 <AHeading as={'h1'}>{section.heading}</AHeading>
               </AHero>
             );
