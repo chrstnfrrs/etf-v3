@@ -18,6 +18,9 @@ a {
 :root {
   --A-background: #ffffff !important;
   --AContainer-padding: 64px 128px !important;
+}
+
+.a-nav {
   --ANav-background: #f5f5f5 !important;
   --ANav-color: #101010 !important;
 }
