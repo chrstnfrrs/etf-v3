@@ -9,15 +9,11 @@ import { useAllPagesQuery } from '../graphql/generated';
 const Home = (): ReactElement => {
   const router = useRouter();
 
-  const { data, loading, error } = useAllPagesQuery({
+  const { data, error } = useAllPagesQuery({
     variables: {
       route: router.pathname,
     },
   });
-
-  console.log('data', data);
-  console.log('error', error);
-  console.log('loading', loading);
 
   if (error) router.push('error');
 
@@ -28,7 +24,7 @@ const Home = (): ReactElement => {
           if (section?.__typename === 'Hero') {
             return (
               <AHero key={section._key} backgroundImage={section?.heroImage?.asset?.url}>
-                <AHeading as={'h1'}>{section.heading}</AHeading>
+                <AHeading>{section.heading}</AHeading>
               </AHero>
             );
           }
