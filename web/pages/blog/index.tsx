@@ -17,7 +17,7 @@ const BlogPage = (): ReactElement => {
               Blog Title
             </AHeading>
             <AHeading type={'subtitle-2'}>Erin Tallard Fitness</AHeading>
-            <AText>{bodySample}</AText>
+            <AText as={'overline'}>{bodySample}</AText>
           </ASection>
         ))}
     </AContainer>
