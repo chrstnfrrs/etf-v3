@@ -22,16 +22,16 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
+      name: 'preview',
+      title: 'Preview',
+      type: 'contentPreview',
+      rows: '4',
       validation: Rule => Rule.required()
     },
     {
-      name: 'preview',
-      title: 'Preview',
-      type: 'text',
-      rows: '4',
+      name: 'body',
+      title: 'Body',
+      type: 'contentMain',
       validation: Rule => Rule.required()
     },
     {
