@@ -1,28 +1,19 @@
 import React, { ReactElement } from 'react';
 import { useRouter } from 'next/router';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 import { AHero, AHeading } from 'aspire-components-react';
 
 import ALoader from '../components/ALoader';
 import { useAllPagesQuery } from '../graphql/generated';
 
-const Home = (): ReactElement => {
-  const router = useRouter();
+const Home = ({ sections }): ReactElement => {
+  console.log('sections', sections);
 
-  const { data, error } = useAllPagesQuery({
-    variables: {
-      route: router.pathname,
-    },
-  });
-
-  console.log('data', data);
-
-  if (error) router.push('error');
-
-  if (data?.allPages[0].sections) {
+  if (sections) {
     return (
       <div>
-        {data.allPages[0].sections.map((section) => {
+        {sections.map((section) => {
           if (section?.__typename === 'Hero') {
             return (
               <AHero key={section._key} backgroundImage={section?.heroImage?.asset?.url}>
@@ -39,5 +30,43 @@ const Home = (): ReactElement => {
 
   return <ALoader />;
 };
+
+export async function getStaticProps(context) {
+  const client = new ApolloClient({
+    uri: process.env.SANITY_URL,
+    cache: new InMemoryCache(),
+  });
+
+  const { data } = await client.query({
+    query: gql`
+      query AllPages($route: String) {
+        allPages(where: { route: { eq: $route } }) {
+          sections {
+            ... on Hero {
+              _key
+              _type
+              heading
+              heroImage {
+                alt
+                asset {
+                  url
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: {
+      route: '/',
+    },
+  });
+  console.log('data', data.allPages[0]);
+  return {
+    props: {
+      sections: data.allPages[0].sections,
+    }, // will be passed to the page component as props
+  };
+}
 
 export default Home;
