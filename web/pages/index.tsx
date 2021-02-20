@@ -15,6 +15,8 @@ const Home = (): ReactElement => {
     },
   });
 
+  console.log('data', data);
+
   if (error) router.push('error');
 
   if (data?.allPages[0].sections) {
