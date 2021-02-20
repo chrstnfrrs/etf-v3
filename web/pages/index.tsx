@@ -37,7 +37,7 @@ export async function getStaticProps(context) {
     cache: new InMemoryCache(),
   });
 
-  const { data } = await client.query({
+  const data = await client.query({
     query: gql`
       query AllPages($route: String) {
         allPages(where: { route: { eq: $route } }) {
@@ -61,10 +61,10 @@ export async function getStaticProps(context) {
       route: '/',
     },
   });
-  console.log('data', data.allPages[0]);
+  console.log('data', data);
   return {
     props: {
-      sections: data.allPages[0].sections,
+      sections: data.data.allPages[0].sections,
     }, // will be passed to the page component as props
   };
 }
