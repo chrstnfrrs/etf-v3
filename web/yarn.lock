@@ -2623,10 +2623,10 @@ asn1@~0.2.3:
   dependencies:
     safer-buffer "~2.1.0"
 
-aspire-components-react@1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/aspire-components-react/-/aspire-components-react-1.0.10.tgz#9c04bf1cd1f7bcafd3d5f1d8535c985466567f84"
-  integrity sha512-4pioxGzATYRvohk/xWb4UL9Qkgy9PcHRSm8jHXW424MqcduR4Au9ffjEHBudSllBaMMWMv6Vze8OlNjfOJIkjg==
+aspire-components-react@1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/aspire-components-react/-/aspire-components-react-1.0.12.tgz#7bb62cabf743a0b0eab080a3c0dfe6bfc8d4559b"
+  integrity sha512-o0Hv53kA/AamXy/TJtaSRduRN/3UL/agFUHXi0Qps8jxfsQjRjFafTkCecNA7XHR/SxKcRaez4zTCA+ahp8PBg==
   dependencies:
     clsx "^1.1.1"
 
