@@ -2616,17 +2616,17 @@ asn1@~0.2.3:
   dependencies:
     safer-buffer "~2.1.0"
 
-aspire-components-helpers@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/aspire-components-helpers/-/aspire-components-helpers-1.0.8.tgz#9e54304a0673f65fcb3c66d0a3a32e440b968b9b"
-  integrity sha512-oygkkE8mWpMvxfH1v2fx+LEHvNB0/WyuQKjIb7v+7ZSj8aAX/dSaOGpOsOCBwu/xoW+zW9aTWrzkCDIsBS+fzA==
+aspire-components-helpers@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/aspire-components-helpers/-/aspire-components-helpers-1.0.10.tgz#f60e2c2317c9065f4d29fb383db971550007ed62"
+  integrity sha512-YVWTWd5HdT1OrwhHsdpT5fzrfYbUujPvrbm2mhAn1KyInKiVgefMAMMJJ+R70bwPumQbEKZNh07eJuTNdJKwvA==
 
-aspire-components-react@1.0.14:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/aspire-components-react/-/aspire-components-react-1.0.14.tgz#58c2b456f461d06467e256854e8e80f6314bf8e3"
-  integrity sha512-AYI6HV75eKzuq9UconeomWem2DIQindQ9go2hpsOqBbewROGcNTSHreH6buhQQ7yUXLapqvWziJBRUUNC6CqYQ==
+aspire-components-react@1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/aspire-components-react/-/aspire-components-react-1.0.15.tgz#ea997be071afd3ab1604bf49a0162f179a6e4c64"
+  integrity sha512-Nvh07JcxwTqT9D+4TAL7qB5oRT/0DKu86BvMt+wCoL7PHp6vjPci1mA03CN0JxWR5sP4RMUZXObSFOuksBuU0g==
   dependencies:
-    aspire-components-helpers "^1.0.8"
+    aspire-components-helpers "^1.0.10"
     aspire-components-scss "^1.0.0"
     clsx "^1.1.1"
 
