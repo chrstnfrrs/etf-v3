@@ -40,7 +40,6 @@ exports.handler = async function (event, context) {
       }
     });
 
-    res.setHeader('Content-Type', 'application/json');
     return {
       data: { success: true },
       statusCode: 200,
