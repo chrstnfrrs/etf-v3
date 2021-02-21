@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { AppMenu } from '../../components/App/AppMenu';
+import AppMenu from '../../components/App/AppMenu';
 
 describe('<AppMenu />', () => {
   test('should do a thing', () => {
