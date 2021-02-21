@@ -16,12 +16,12 @@ export default {
       validation: Rule => Rule.required(),
     },
     {
-      name: 'decorators',
-      title: 'Decorators',
+      name: 'decorator',
+      title: 'Decorator',
       type: 'string',
       options: {
         list: [
-          { title: 'Underlined', value: 'underlined' },
+          { title: 'Underline', value: 'underline' },
         ]
       },
     },
