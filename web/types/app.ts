@@ -6,8 +6,10 @@ export interface Link {
   _key: string;
   route?: string;
   text?: string;
+  decorator?: string;
 }
 
 export interface MenuLinks {
-  links?: [Link];
+  leftLinks?: [Link];
+  rightLinks?: [Link];
 }
