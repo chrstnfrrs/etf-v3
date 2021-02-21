@@ -954,30 +954,6 @@ export type FileSorting = {
   _type?: Maybe<SortOrder>;
 };
 
-export type AllPagesQueryVariables = Exact<{
-  route?: Maybe<Scalars['String']>;
-}>;
-
-
-export type AllPagesQuery = (
-  { __typename?: 'RootQuery' }
-  & { allPages: Array<(
-    { __typename?: 'Pages' }
-    & { sections?: Maybe<Array<Maybe<(
-      { __typename?: 'Hero' }
-      & Pick<Hero, '_key' | '_type' | 'heading'>
-      & { heroImage?: Maybe<(
-        { __typename?: 'MainImage' }
-        & Pick<MainImage, 'alt'>
-        & { asset?: Maybe<(
-          { __typename?: 'SanityImageAsset' }
-          & Pick<SanityImageAsset, 'url'>
-        )> }
-      )> }
-    )>>> }
-  )> }
-);
-
 export type AllMenuQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -992,9 +968,82 @@ export type AllMenuQuery = (
   )> }
 );
 
+export type AllPagesQueryVariables = Exact<{
+  route?: Maybe<Scalars['String']>;
+}>;
 
+
+export type AllPagesQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPages: Array<(
+    { __typename?: 'Pages' }
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename?: 'Hero' }
+      & Pick<Hero, '_key' | '_type' | 'heading'>
+      & { heroImage?: Maybe<(
+        { __typename?: 'MainImage' }
+        & { asset?: Maybe<(
+          { __typename?: 'SanityImageAsset' }
+          & Pick<SanityImageAsset, 'url'>
+        )> }
+      )> }
+    )>>> }
+  )> }
+);
+
+export type AllSlugsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllSlugsQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPost: Array<(
+    { __typename?: 'Post' }
+    & { slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
+);
+
+
+export const AllMenuDocument = gql`
+    query allMenu {
+  allMenu {
+    link {
+      text
+      route
+      _key
+    }
+  }
+}
+    `;
+
+/**
+ * __useAllMenuQuery__
+ *
+ * To run a query within a React component, call `useAllMenuQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllMenuQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllMenuQuery(baseOptions?: Apollo.QueryHookOptions<AllMenuQuery, AllMenuQueryVariables>) {
+        return Apollo.useQuery<AllMenuQuery, AllMenuQueryVariables>(AllMenuDocument, baseOptions);
+      }
+export function useAllMenuLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllMenuQuery, AllMenuQueryVariables>) {
+          return Apollo.useLazyQuery<AllMenuQuery, AllMenuQueryVariables>(AllMenuDocument, baseOptions);
+        }
+export type AllMenuQueryHookResult = ReturnType<typeof useAllMenuQuery>;
+export type AllMenuLazyQueryHookResult = ReturnType<typeof useAllMenuLazyQuery>;
+export type AllMenuQueryResult = Apollo.QueryResult<AllMenuQuery, AllMenuQueryVariables>;
 export const AllPagesDocument = gql`
-    query AllPages($route: String) {
+    query allPages($route: String) {
   allPages(where: {route: {eq: $route}}) {
     sections {
       ... on Hero {
@@ -1002,7 +1051,6 @@ export const AllPagesDocument = gql`
         _type
         heading
         heroImage {
-          alt
           asset {
             url
           }
@@ -1038,39 +1086,37 @@ export function useAllPagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllPagesQueryHookResult = ReturnType<typeof useAllPagesQuery>;
 export type AllPagesLazyQueryHookResult = ReturnType<typeof useAllPagesLazyQuery>;
 export type AllPagesQueryResult = Apollo.QueryResult<AllPagesQuery, AllPagesQueryVariables>;
-export const AllMenuDocument = gql`
-    query AllMenu {
-  allMenu {
-    link {
-      text
-      route
-      _key
+export const AllSlugsDocument = gql`
+    query allSlugs {
+  allPost {
+    slug {
+      current
     }
   }
 }
     `;
 
 /**
- * __useAllMenuQuery__
+ * __useAllSlugsQuery__
  *
- * To run a query within a React component, call `useAllMenuQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useAllSlugsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllSlugsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useAllMenuQuery({
+ * const { data, loading, error } = useAllSlugsQuery({
  *   variables: {
  *   },
  * });
  */
-export function useAllMenuQuery(baseOptions?: Apollo.QueryHookOptions<AllMenuQuery, AllMenuQueryVariables>) {
-        return Apollo.useQuery<AllMenuQuery, AllMenuQueryVariables>(AllMenuDocument, baseOptions);
+export function useAllSlugsQuery(baseOptions?: Apollo.QueryHookOptions<AllSlugsQuery, AllSlugsQueryVariables>) {
+        return Apollo.useQuery<AllSlugsQuery, AllSlugsQueryVariables>(AllSlugsDocument, baseOptions);
       }
-export function useAllMenuLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllMenuQuery, AllMenuQueryVariables>) {
-          return Apollo.useLazyQuery<AllMenuQuery, AllMenuQueryVariables>(AllMenuDocument, baseOptions);
+export function useAllSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllSlugsQuery, AllSlugsQueryVariables>) {
+          return Apollo.useLazyQuery<AllSlugsQuery, AllSlugsQueryVariables>(AllSlugsDocument, baseOptions);
         }
-export type AllMenuQueryHookResult = ReturnType<typeof useAllMenuQuery>;
-export type AllMenuLazyQueryHookResult = ReturnType<typeof useAllMenuLazyQuery>;
-export type AllMenuQueryResult = Apollo.QueryResult<AllMenuQuery, AllMenuQueryVariables>;
+export type AllSlugsQueryHookResult = ReturnType<typeof useAllSlugsQuery>;
+export type AllSlugsLazyQueryHookResult = ReturnType<typeof useAllSlugsLazyQuery>;
+export type AllSlugsQueryResult = Apollo.QueryResult<AllSlugsQuery, AllSlugsQueryVariables>;
