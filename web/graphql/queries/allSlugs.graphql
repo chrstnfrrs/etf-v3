@@ -1,0 +1,7 @@
+query allSlugs {
+  allPost {
+    slug {
+      current
+    }
+  }
+}
