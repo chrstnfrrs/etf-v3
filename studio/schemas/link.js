@@ -15,6 +15,17 @@ export default {
       type: 'string',
       validation: Rule => Rule.required(),
     },
+    {
+      name: 'decorators',
+      title: 'Decorators',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Underlined', value: 'underlined' },
+        ]
+      },
+      validation: Rule => Rule.required(),
+    },
   ],
   preview: {
     select: {
