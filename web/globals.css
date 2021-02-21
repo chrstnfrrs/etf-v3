@@ -28,3 +28,7 @@ a {
 .asdf {
   background: #101010;
 }
+
+.menu-link {
+  padding: 2px 8px;
+}
