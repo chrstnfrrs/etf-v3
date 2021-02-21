@@ -1,0 +1,16 @@
+query allPages($route: String){
+  allPages(where:{route:{eq:$route}}) {
+    sections{
+      ... on Hero{
+        _key
+        _type
+        heading
+        heroImage{
+          asset{
+            url
+          }
+        }
+      }
+    }
+  }
+}
