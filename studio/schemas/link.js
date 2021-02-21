@@ -24,7 +24,6 @@ export default {
           { title: 'Underlined', value: 'underlined' },
         ]
       },
-      validation: Rule => Rule.required(),
     },
   ],
   preview: {
