@@ -1,72 +1,42 @@
-import React, { ReactElement } from 'react';
-import { useRouter } from 'next/router';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import React from 'react';
+import { GetStaticProps } from 'next';
 
-import { AHero, AHeading } from 'aspire-components-react';
+import withLayout from '../components/App/withLayout';
+import HomeHero from '../components/Home/HomeHero';
+import { AllPagesDocument } from '../graphql/generated';
+import { getGraphqlClient } from '../graphql/utils';
+import { HomeProps } from '../types/home';
+import { getLinks } from '../utils/menu';
 
-import ALoader from '../components/ALoader';
-import { useAllPagesQuery } from '../graphql/generated';
-
-const Home = ({ sections }): ReactElement => {
-  console.log('sections', sections);
-
-  if (sections) {
-    return (
-      <div>
-        {sections.map((section) => {
-          if (section?.__typename === 'Hero') {
-            return (
-              <AHero key={section._key} backgroundImage={section?.heroImage?.asset?.url}>
-                <AHeading>{section.heading}</AHeading>
-              </AHero>
-            );
-          }
-          return null;
-        })}
-        <AHeading type={'h6'}>Heading things</AHeading>
-      </div>
-    );
-  }
-
-  return <ALoader />;
+const sectionMap = {
+  Hero: HomeHero,
 };
 
-export async function getStaticProps(context) {
-  const client = new ApolloClient({
-    uri: process.env.SANITY_URL,
-    cache: new InMemoryCache(),
-  });
+const Home: React.FC<HomeProps> = (props: HomeProps) =>
+  props?.sections ? (
+    <>
+      {props.sections.map((section) =>
+        sectionMap[section?.__typename] ? sectionMap[section.__typename](section) : null,
+      )}
+    </>
+  ) : null;
 
-  const data = await client.query({
-    query: gql`
-      query AllPages($route: String) {
-        allPages(where: { route: { eq: $route } }) {
-          sections {
-            ... on Hero {
-              _key
-              _type
-              heading
-              heroImage {
-                alt
-                asset {
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    `,
+export const getStaticProps: GetStaticProps = async () => {
+  const client = getGraphqlClient();
+
+  const { data } = await client.query({
+    query: AllPagesDocument,
     variables: {
       route: '/',
     },
   });
-  console.log('data', data);
+
   return {
     props: {
-      sections: data.data.allPages[0].sections,
-    }, // will be passed to the page component as props
+      sections: data?.allPages?.[0]?.sections,
+      ...(await getLinks(client)),
+    },
   };
-}
+};
 
-export default Home;
+export default withLayout(Home);
