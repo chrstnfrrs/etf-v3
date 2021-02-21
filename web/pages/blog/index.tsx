@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 
 import { AContainer, AHeading, ASection, AText } from 'aspire-components-react';
 
+import { getGraphqlClient } from '../../graphql/utils';
+
 const BlogPage = (): ReactElement => {
   const arr = ['asdf', 'asdf', 'asdf', 'asdf', 'asdf'];
 
@@ -22,6 +24,14 @@ const BlogPage = (): ReactElement => {
         ))}
     </AContainer>
   );
+};
+
+export const getStaticProps = async (context): Promise<any> => {
+  const client = getGraphqlClient();
+
+  return {
+    props: {},
+  };
 };
 
 export default BlogPage;
