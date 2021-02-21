@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     'node/no-unpublished-import': 'off',
+    'react/display-name': 'off',
     'react/react-in-jsx-scope': 'off',
     'unicorn/no-abusive-eslint-disable': 'off',
   },
