@@ -1,8 +1,14 @@
 query allMenu{
   allMenu {
-    link {
+    leftLinks {
       text
       route
+      _key
+    }
+    rightLinks {
+      text
+      route
+    	decorator
       _key
     }
   }
