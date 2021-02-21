@@ -19,12 +19,14 @@ export interface SplitSection {
 
 export interface HomeProps {
   sections?: [HeroSection?, SplitSection?];
-  links?: [Link];
+  leftLinks?: [Link];
+  rightLinks?: [Link];
 }
 
 export interface HomeStaticProps {
   props: {
     sections?: [heroSection?: HeroSection];
-    links?: [Link];
+    leftLinks?: [Link];
+    rightLinks?: [Link];
   };
 }
