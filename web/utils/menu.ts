@@ -8,6 +8,7 @@ export const getLinks = async (client: ApolloClient<NormalizedCacheObject>): Pro
   });
 
   return {
-    links: data?.allMenu?.[1]?.link,
+    leftLinks: data?.allMenu?.[1]?.leftLinks,
+    rightLinks: data?.allMenu?.[1]?.rightLinks,
   };
 };
