@@ -32,13 +32,9 @@ exports.handler = async function (event, context) {
       html: createEmailTemplate(body.email, body.name, body.message),
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
+    const sent = await transporter.sendMail(mailOptions);
+
+    console.log('sent', sent);
 
     return {
       data: { success: true },
