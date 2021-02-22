@@ -1,0 +1,15 @@
+query allPostPreview {
+  allPost {
+    title
+    mainImage {
+      asset {
+        url
+			}
+    }
+    publishedAt
+    previewRaw
+    slug {
+      current
+    }
+  }
+}
