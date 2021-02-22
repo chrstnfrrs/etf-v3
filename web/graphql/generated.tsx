@@ -1051,6 +1051,50 @@ export type AllPagesQuery = (
   )> }
 );
 
+export type AllPostPostQueryVariables = Exact<{
+  slug?: Maybe<Scalars['String']>;
+}>;
+
+
+export type AllPostPostQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPost: Array<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'title' | 'publishedAt' | 'bodyRaw'>
+    & { mainImage?: Maybe<(
+      { __typename?: 'MainImage' }
+      & { asset?: Maybe<(
+        { __typename?: 'SanityImageAsset' }
+        & Pick<SanityImageAsset, 'url'>
+      )> }
+    )>, slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
+);
+
+export type AllPostPreviewQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllPostPreviewQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPost: Array<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'title' | 'publishedAt' | 'previewRaw'>
+    & { mainImage?: Maybe<(
+      { __typename?: 'MainImage' }
+      & { asset?: Maybe<(
+        { __typename?: 'SanityImageAsset' }
+        & Pick<SanityImageAsset, 'url'>
+      )> }
+    )>, slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
+);
+
 export type AllSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1152,6 +1196,91 @@ export function useAllPagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllPagesQueryHookResult = ReturnType<typeof useAllPagesQuery>;
 export type AllPagesLazyQueryHookResult = ReturnType<typeof useAllPagesLazyQuery>;
 export type AllPagesQueryResult = Apollo.QueryResult<AllPagesQuery, AllPagesQueryVariables>;
+export const AllPostPostDocument = gql`
+    query allPostPost($slug: String) {
+  allPost(where: {slug: {current: {eq: $slug}}}) {
+    title
+    mainImage {
+      asset {
+        url
+      }
+    }
+    publishedAt
+    bodyRaw
+    slug {
+      current
+    }
+  }
+}
+    `;
+
+/**
+ * __useAllPostPostQuery__
+ *
+ * To run a query within a React component, call `useAllPostPostQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllPostPostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllPostPostQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useAllPostPostQuery(baseOptions?: Apollo.QueryHookOptions<AllPostPostQuery, AllPostPostQueryVariables>) {
+        return Apollo.useQuery<AllPostPostQuery, AllPostPostQueryVariables>(AllPostPostDocument, baseOptions);
+      }
+export function useAllPostPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllPostPostQuery, AllPostPostQueryVariables>) {
+          return Apollo.useLazyQuery<AllPostPostQuery, AllPostPostQueryVariables>(AllPostPostDocument, baseOptions);
+        }
+export type AllPostPostQueryHookResult = ReturnType<typeof useAllPostPostQuery>;
+export type AllPostPostLazyQueryHookResult = ReturnType<typeof useAllPostPostLazyQuery>;
+export type AllPostPostQueryResult = Apollo.QueryResult<AllPostPostQuery, AllPostPostQueryVariables>;
+export const AllPostPreviewDocument = gql`
+    query allPostPreview {
+  allPost {
+    title
+    mainImage {
+      asset {
+        url
+      }
+    }
+    publishedAt
+    previewRaw
+    slug {
+      current
+    }
+  }
+}
+    `;
+
+/**
+ * __useAllPostPreviewQuery__
+ *
+ * To run a query within a React component, call `useAllPostPreviewQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllPostPreviewQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllPostPreviewQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllPostPreviewQuery(baseOptions?: Apollo.QueryHookOptions<AllPostPreviewQuery, AllPostPreviewQueryVariables>) {
+        return Apollo.useQuery<AllPostPreviewQuery, AllPostPreviewQueryVariables>(AllPostPreviewDocument, baseOptions);
+      }
+export function useAllPostPreviewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllPostPreviewQuery, AllPostPreviewQueryVariables>) {
+          return Apollo.useLazyQuery<AllPostPreviewQuery, AllPostPreviewQueryVariables>(AllPostPreviewDocument, baseOptions);
+        }
+export type AllPostPreviewQueryHookResult = ReturnType<typeof useAllPostPreviewQuery>;
+export type AllPostPreviewLazyQueryHookResult = ReturnType<typeof useAllPostPreviewLazyQuery>;
+export type AllPostPreviewQueryResult = Apollo.QueryResult<AllPostPreviewQuery, AllPostPreviewQueryVariables>;
 export const AllSlugsDocument = gql`
     query allSlugs {
   allPost {
