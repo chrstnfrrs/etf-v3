@@ -5,11 +5,17 @@ import { MenuLinks } from '../../types/app';
 const AppMenu = (props: MenuLinks): ReactElement => (
   <ANav justify={'between'}>
     <div>
-      {props.leftLinks?.map((link) => (
-        <ALink key={link._key} href={link.route} className={'menu-link'}>
-          {link.text}
-        </ALink>
-      ))}
+      {props.leftLinks?.map((link) =>
+        link.route === '/' ? (
+          <ALink key={link._key} href={link.route} className={'menu-link'} weight={'Bold'} size={'20'}>
+            E. T. Fitness
+          </ALink>
+        ) : (
+          <ALink key={link._key} href={link.route} className={'menu-link'}>
+            {link.text}
+          </ALink>
+        ),
+      )}
     </div>
     <div>
       {props.rightLinks?.map((link) => (
