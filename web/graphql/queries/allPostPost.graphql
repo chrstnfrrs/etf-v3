@@ -1,0 +1,15 @@
+query allPostPost($slug: String){
+  allPost(where: {slug: { current: {eq: $slug}}}) {
+    title
+    mainImage {
+      asset {
+        url
+			}
+    }
+    publishedAt
+    bodyRaw
+    slug {
+      current
+    }
+  }
+}
