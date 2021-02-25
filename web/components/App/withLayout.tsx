@@ -5,7 +5,7 @@ import AppMenu from './AppMenu';
 
 const withLayout = (Page: React.FC<UnknownObject>) => (props: HomeProps): ReactElement => (
   <>
-    <AppMenu leftLinks={props.leftLinks} rightLinks={props.rightLinks} />
+    <AppMenu navigationLinks={props.navigationLinks} navigationOptions={props.navigationOptions} />
     <Page {...props} />
   </>
 );
