@@ -7,9 +7,10 @@ import button from './button'
 import hero from './hero'
 import link from './link'
 import mainImage from './mainImage'
-import menu from './menu'
+import links from './links'
 import pages from './pages'
 import post from './post'
+import settings from './settingsApp'
 
 export default createSchema({
   name: 'default',
@@ -19,9 +20,10 @@ export default createSchema({
     button,
     hero,
     link,
+    links,
     mainImage,
-    menu,
     pages,
     post,
+    settings,
   ]),
 })
