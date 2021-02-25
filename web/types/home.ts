@@ -1,3 +1,4 @@
+import { NavigationOptions } from '../graphql/generated';
 import { Link } from './app';
 
 export interface HeroSection {
@@ -19,14 +20,14 @@ export interface SplitSection {
 
 export interface HomeProps {
   sections?: [HeroSection?, SplitSection?];
-  leftLinks?: [Link];
-  rightLinks?: [Link];
+  navigationLinks?: [Link];
+  navigationOptions?: NavigationOptions;
 }
 
 export interface HomeStaticProps {
   props: {
     sections?: [heroSection?: HeroSection];
-    leftLinks?: [Link];
-    rightLinks?: [Link];
+    navigationLinks?: [Link];
+    navigationOptions?: NavigationOptions;
   };
 }
