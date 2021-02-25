@@ -6,8 +6,11 @@ import contentPreview from './contentPreview'
 import button from './button'
 import hero from './hero'
 import link from './link'
-import mainImage from './mainImage'
 import links from './links'
+import linkOptions from './linkOptions'
+import mainImage from './mainImage'
+import navigation from './navigation'
+import navigationOptions from './navigationOptions'
 import pages from './pages'
 import post from './post'
 import settings from './settingsApp'
@@ -21,7 +24,10 @@ export default createSchema({
     hero,
     link,
     links,
+    linkOptions,
     mainImage,
+    navigation,
+    navigationOptions,
     pages,
     post,
     settings,
