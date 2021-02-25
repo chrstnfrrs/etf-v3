@@ -1,0 +1,21 @@
+query settings {
+  allSettings {
+    navigation {
+      navigationLinks {
+        links {
+          _key
+          text
+          route
+          linkOptions {
+            size
+            weight
+            decorator
+          }
+        }
+      }
+      navigationOptions {
+        alignItems
+      }
+    }
+  }
+}
