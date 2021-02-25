@@ -7,33 +7,7 @@ export default {
     {
       name: 'navigation',
       title: 'Navigation',
-      type: 'array',
-      of: [{type:'links'}],
-      options: {
-        collapsed: false,
-      },
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'navigationOptions',
-      title: 'Navigation Options',
-      type: 'object',
-      options: {
-        collapsible: true
-      },
-      fields: [
-        {
-          name: 'alignItems',
-          title: 'Align Items',
-          type: 'string',
-          options: {
-            list: [
-              { title: 'Left', value: 'left' },
-            ],
-            collapsed: true,
-          },
-        },
-      ]
+      type: 'navigation',
     },
   ],
   preview: {
