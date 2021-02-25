@@ -23,28 +23,32 @@ export type Scalars = {
 
 export type RootQuery = {
   __typename?: 'RootQuery';
-  Document?: Maybe<Document>;
   Button?: Maybe<Button>;
   Hero?: Maybe<Hero>;
   Link?: Maybe<Link>;
-  Menu?: Maybe<Menu>;
+  Links?: Maybe<Links>;
+  LinkOptions?: Maybe<LinkOptions>;
+  Navigation?: Maybe<Navigation>;
+  NavigationOptions?: Maybe<NavigationOptions>;
   Pages?: Maybe<Pages>;
   Post?: Maybe<Post>;
+  Settings?: Maybe<Settings>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
+  Document?: Maybe<Document>;
   allButton: Array<Button>;
   allHero: Array<Hero>;
   allLink: Array<Link>;
-  allMenu: Array<Menu>;
+  allLinks: Array<Links>;
+  allLinkOptions: Array<LinkOptions>;
+  allNavigation: Array<Navigation>;
+  allNavigationOptions: Array<NavigationOptions>;
   allPages: Array<Pages>;
   allPost: Array<Post>;
+  allSettings: Array<Settings>;
   allSanityImageAsset: Array<SanityImageAsset>;
   allSanityFileAsset: Array<SanityFileAsset>;
-};
-
-
-export type RootQueryDocumentArgs = {
-  id: Scalars['ID'];
+  allDocument: Array<Document>;
 };
 
 
@@ -63,7 +67,22 @@ export type RootQueryLinkArgs = {
 };
 
 
-export type RootQueryMenuArgs = {
+export type RootQueryLinksArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryLinkOptionsArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryNavigationArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryNavigationOptionsArgs = {
   id: Scalars['ID'];
 };
 
@@ -78,12 +97,22 @@ export type RootQueryPostArgs = {
 };
 
 
+export type RootQuerySettingsArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type RootQuerySanityImageAssetArgs = {
   id: Scalars['ID'];
 };
 
 
 export type RootQuerySanityFileAssetArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryDocumentArgs = {
   id: Scalars['ID'];
 };
 
@@ -112,9 +141,33 @@ export type RootQueryAllLinkArgs = {
 };
 
 
-export type RootQueryAllMenuArgs = {
-  where?: Maybe<MenuFilter>;
-  sort?: Maybe<Array<MenuSorting>>;
+export type RootQueryAllLinksArgs = {
+  where?: Maybe<LinksFilter>;
+  sort?: Maybe<Array<LinksSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllLinkOptionsArgs = {
+  where?: Maybe<LinkOptionsFilter>;
+  sort?: Maybe<Array<LinkOptionsSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllNavigationArgs = {
+  where?: Maybe<NavigationFilter>;
+  sort?: Maybe<Array<NavigationSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllNavigationOptionsArgs = {
+  where?: Maybe<NavigationOptionsFilter>;
+  sort?: Maybe<Array<NavigationOptionsSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
@@ -136,6 +189,14 @@ export type RootQueryAllPostArgs = {
 };
 
 
+export type RootQueryAllSettingsArgs = {
+  where?: Maybe<SettingsFilter>;
+  sort?: Maybe<Array<SettingsSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type RootQueryAllSanityImageAssetArgs = {
   where?: Maybe<SanityImageAssetFilter>;
   sort?: Maybe<Array<SanityImageAssetSorting>>;
@@ -151,20 +212,13 @@ export type RootQueryAllSanityFileAssetArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
-/** A Sanity document */
-export type Document = {
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>;
-};
 
+export type RootQueryAllDocumentArgs = {
+  where?: Maybe<DocumentFilter>;
+  sort?: Maybe<Array<DocumentSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
 
 export type Button = Document & {
   __typename?: 'Button';
@@ -182,6 +236,21 @@ export type Button = Document & {
   link?: Maybe<Link>;
 };
 
+/** A Sanity document */
+export type Document = {
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+};
+
+
 export type Link = Document & {
   __typename?: 'Link';
   /** Document ID */
@@ -197,6 +266,24 @@ export type Link = Document & {
   _key?: Maybe<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
   route?: Maybe<Scalars['String']>;
+  linkOptions?: Maybe<LinkOptions>;
+};
+
+export type LinkOptions = Document & {
+  __typename?: 'LinkOptions';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  size?: Maybe<Scalars['String']>;
+  weight?: Maybe<Scalars['String']>;
   decorator?: Maybe<Scalars['String']>;
 };
 
@@ -341,8 +428,8 @@ export type SanityImageCrop = {
   right?: Maybe<Scalars['Float']>;
 };
 
-export type Menu = Document & {
-  __typename?: 'Menu';
+export type Links = Document & {
+  __typename?: 'Links';
   /** Document ID */
   _id?: Maybe<Scalars['ID']>;
   /** Document type */
@@ -354,9 +441,40 @@ export type Menu = Document & {
   /** Current document revision */
   _rev?: Maybe<Scalars['String']>;
   _key?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  leftLinks?: Maybe<Array<Maybe<Link>>>;
-  rightLinks?: Maybe<Array<Maybe<Link>>>;
+  links?: Maybe<Array<Maybe<Link>>>;
+};
+
+export type Navigation = Document & {
+  __typename?: 'Navigation';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  navigationLinks?: Maybe<Array<Maybe<Links>>>;
+  navigationOptions?: Maybe<NavigationOptions>;
+};
+
+export type NavigationOptions = Document & {
+  __typename?: 'NavigationOptions';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  alignItems?: Maybe<Scalars['String']>;
 };
 
 export type Pages = Document & {
@@ -406,6 +524,22 @@ export type Slug = {
   current?: Maybe<Scalars['String']>;
 };
 
+export type Settings = Document & {
+  __typename?: 'Settings';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  navigation?: Maybe<Navigation>;
+};
+
 export type SanityFileAsset = Document & {
   __typename?: 'SanityFileAsset';
   /** Document ID */
@@ -435,7 +569,7 @@ export type SanityFileAsset = Document & {
 
 export type ButtonFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
@@ -445,7 +579,7 @@ export type ButtonFilter = {
   link?: Maybe<LinkFilter>;
 };
 
-export type DocumentFilter = {
+export type Sanity_DocumentFilter = {
   /** All documents referencing the given document ID. */
   references?: Maybe<Scalars['ID']>;
   /** All documents that are drafts. */
@@ -491,7 +625,7 @@ export type DatetimeFilter = {
 
 export type LinkFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
@@ -500,6 +634,20 @@ export type LinkFilter = {
   _key?: Maybe<StringFilter>;
   text?: Maybe<StringFilter>;
   route?: Maybe<StringFilter>;
+  linkOptions?: Maybe<LinkOptionsFilter>;
+};
+
+export type LinkOptionsFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  size?: Maybe<StringFilter>;
+  weight?: Maybe<StringFilter>;
   decorator?: Maybe<StringFilter>;
 };
 
@@ -529,12 +677,24 @@ export type LinkSorting = {
   _key?: Maybe<SortOrder>;
   text?: Maybe<SortOrder>;
   route?: Maybe<SortOrder>;
+  linkOptions?: Maybe<LinkOptionsSorting>;
+};
+
+export type LinkOptionsSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  size?: Maybe<SortOrder>;
+  weight?: Maybe<SortOrder>;
   decorator?: Maybe<SortOrder>;
 };
 
 export type HeroFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
@@ -556,7 +716,7 @@ export type MainImageFilter = {
 
 export type SanityImageAssetFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
@@ -711,31 +871,73 @@ export type SanityImageCropSorting = {
   right?: Maybe<SortOrder>;
 };
 
-export type MenuFilter = {
+export type LinksFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
   _updatedAt?: Maybe<DatetimeFilter>;
   _rev?: Maybe<StringFilter>;
   _key?: Maybe<StringFilter>;
-  title?: Maybe<StringFilter>;
 };
 
-export type MenuSorting = {
+export type LinksSorting = {
   _id?: Maybe<SortOrder>;
   _type?: Maybe<SortOrder>;
   _createdAt?: Maybe<SortOrder>;
   _updatedAt?: Maybe<SortOrder>;
   _rev?: Maybe<SortOrder>;
   _key?: Maybe<SortOrder>;
-  title?: Maybe<SortOrder>;
+};
+
+export type NavigationFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  navigationOptions?: Maybe<NavigationOptionsFilter>;
+};
+
+export type NavigationOptionsFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  alignItems?: Maybe<StringFilter>;
+};
+
+export type NavigationSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  navigationOptions?: Maybe<NavigationOptionsSorting>;
+};
+
+export type NavigationOptionsSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  alignItems?: Maybe<SortOrder>;
 };
 
 export type PagesFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
@@ -759,7 +961,7 @@ export type PagesSorting = {
 
 export type PostFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
@@ -795,6 +997,28 @@ export type SlugSorting = {
   _key?: Maybe<SortOrder>;
   _type?: Maybe<SortOrder>;
   current?: Maybe<SortOrder>;
+};
+
+export type SettingsFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  navigation?: Maybe<NavigationFilter>;
+};
+
+export type SettingsSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  navigation?: Maybe<NavigationSorting>;
 };
 
 export type SanityImageAssetSorting = {
@@ -877,7 +1101,7 @@ export type SanityAssetSourceDataSorting = {
 
 export type SanityFileAssetFilter = {
   /** Apply filters on document level */
-  _?: Maybe<DocumentFilter>;
+  _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
   _type?: Maybe<StringFilter>;
   _createdAt?: Maybe<DatetimeFilter>;
@@ -917,6 +1141,24 @@ export type SanityFileAssetSorting = {
   path?: Maybe<SortOrder>;
   url?: Maybe<SortOrder>;
   source?: Maybe<SanityAssetSourceDataSorting>;
+};
+
+export type DocumentFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+};
+
+export type DocumentSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
 };
 
 export type BlockOrButtonOrMainImage = Block | Button | MainImage;
@@ -1011,23 +1253,6 @@ export type FileSorting = {
   _type?: Maybe<SortOrder>;
 };
 
-export type AllMenuQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllMenuQuery = (
-  { __typename?: 'RootQuery' }
-  & { allMenu: Array<(
-    { __typename?: 'Menu' }
-    & { leftLinks?: Maybe<Array<Maybe<(
-      { __typename?: 'Link' }
-      & Pick<Link, 'text' | 'route' | '_key'>
-    )>>>, rightLinks?: Maybe<Array<Maybe<(
-      { __typename?: 'Link' }
-      & Pick<Link, 'text' | 'route' | 'decorator' | '_key'>
-    )>>> }
-  )> }
-);
-
 export type AllPagesQueryVariables = Exact<{
   route?: Maybe<Scalars['String']>;
 }>;
@@ -1109,49 +1334,34 @@ export type AllSlugsQuery = (
   )> }
 );
 
+export type SettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const AllMenuDocument = gql`
-    query allMenu {
-  allMenu {
-    leftLinks {
-      text
-      route
-      _key
-    }
-    rightLinks {
-      text
-      route
-      decorator
-      _key
-    }
-  }
-}
-    `;
 
-/**
- * __useAllMenuQuery__
- *
- * To run a query within a React component, call `useAllMenuQuery` and pass it any options that fit your needs.
- * When your component renders, `useAllMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAllMenuQuery({
- *   variables: {
- *   },
- * });
- */
-export function useAllMenuQuery(baseOptions?: Apollo.QueryHookOptions<AllMenuQuery, AllMenuQueryVariables>) {
-        return Apollo.useQuery<AllMenuQuery, AllMenuQueryVariables>(AllMenuDocument, baseOptions);
-      }
-export function useAllMenuLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllMenuQuery, AllMenuQueryVariables>) {
-          return Apollo.useLazyQuery<AllMenuQuery, AllMenuQueryVariables>(AllMenuDocument, baseOptions);
-        }
-export type AllMenuQueryHookResult = ReturnType<typeof useAllMenuQuery>;
-export type AllMenuLazyQueryHookResult = ReturnType<typeof useAllMenuLazyQuery>;
-export type AllMenuQueryResult = Apollo.QueryResult<AllMenuQuery, AllMenuQueryVariables>;
+export type SettingsQuery = (
+  { __typename?: 'RootQuery' }
+  & { allSettings: Array<(
+    { __typename?: 'Settings' }
+    & { navigation?: Maybe<(
+      { __typename?: 'Navigation' }
+      & { navigationLinks?: Maybe<Array<Maybe<(
+        { __typename?: 'Links' }
+        & { links?: Maybe<Array<Maybe<(
+          { __typename?: 'Link' }
+          & Pick<Link, '_key' | 'text' | 'route'>
+          & { linkOptions?: Maybe<(
+            { __typename?: 'LinkOptions' }
+            & Pick<LinkOptions, 'size' | 'weight' | 'decorator'>
+          )> }
+        )>>> }
+      )>>>, navigationOptions?: Maybe<(
+        { __typename?: 'NavigationOptions' }
+        & Pick<NavigationOptions, 'alignItems'>
+      )> }
+    )> }
+  )> }
+);
+
+
 export const AllPagesDocument = gql`
     query allPages($route: String) {
   allPages(where: {route: {eq: $route}}) {
@@ -1315,3 +1525,51 @@ export function useAllSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllSlugsQueryHookResult = ReturnType<typeof useAllSlugsQuery>;
 export type AllSlugsLazyQueryHookResult = ReturnType<typeof useAllSlugsLazyQuery>;
 export type AllSlugsQueryResult = Apollo.QueryResult<AllSlugsQuery, AllSlugsQueryVariables>;
+export const SettingsDocument = gql`
+    query settings {
+  allSettings {
+    navigation {
+      navigationLinks {
+        links {
+          _key
+          text
+          route
+          linkOptions {
+            size
+            weight
+            decorator
+          }
+        }
+      }
+      navigationOptions {
+        alignItems
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useSettingsQuery__
+ *
+ * To run a query within a React component, call `useSettingsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSettingsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSettingsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSettingsQuery(baseOptions?: Apollo.QueryHookOptions<SettingsQuery, SettingsQueryVariables>) {
+        return Apollo.useQuery<SettingsQuery, SettingsQueryVariables>(SettingsDocument, baseOptions);
+      }
+export function useSettingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SettingsQuery, SettingsQueryVariables>) {
+          return Apollo.useLazyQuery<SettingsQuery, SettingsQueryVariables>(SettingsDocument, baseOptions);
+        }
+export type SettingsQueryHookResult = ReturnType<typeof useSettingsQuery>;
+export type SettingsLazyQueryHookResult = ReturnType<typeof useSettingsLazyQuery>;
+export type SettingsQueryResult = Apollo.QueryResult<SettingsQuery, SettingsQueryVariables>;
