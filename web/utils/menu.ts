@@ -1,14 +1,14 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
-import { AllMenuDocument } from '../graphql/generated';
+import { SettingsDocument } from '../graphql/generated';
 import { MenuLinks } from '../types/app';
 
 export const getLinks = async (client: ApolloClient<NormalizedCacheObject>): Promise<MenuLinks> => {
   const { data } = await client.query({
-    query: AllMenuDocument,
+    query: SettingsDocument,
   });
 
   return {
-    leftLinks: data?.allMenu?.[1]?.leftLinks,
-    rightLinks: data?.allMenu?.[1]?.rightLinks,
+    navigationLinks: data?.allSettings[0].navigation.navigationLinks,
+    navigationOptions: data?.allSettings[0].navigation.navigationOptions,
   };
 };
