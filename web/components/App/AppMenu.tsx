@@ -2,29 +2,30 @@ import React, { ReactElement } from 'react';
 import { ALink, ANav } from 'aspire-components-react';
 import { MenuLinks } from '../../types/app';
 
-const AppMenu = (props: MenuLinks): ReactElement => (
-  <ANav justify={'between'}>
-    <div>
-      {props.leftLinks?.map((link) =>
-        link.route === '/' ? (
-          <ALink key={link._key} href={link.route} className={'menu-link'} weight={'Bold'} size={'20'}>
-            E. T. Fitness
-          </ALink>
-        ) : (
-          <ALink key={link._key} href={link.route} className={'menu-link'}>
-            {link.text}
-          </ALink>
-        ),
-      )}
-    </div>
-    <div>
-      {props.rightLinks?.map((link) => (
-        <ALink key={link._key} href={link.route} className={'menu-link'} decorators={link?.decorator}>
-          {link.text}
-        </ALink>
+const AppMenu = (props: MenuLinks): ReactElement => {
+  const justify = props.navigationOptions?.alignItems;
+  const linkSections = props.navigationLinks;
+
+  return (
+    <ANav justify={justify}>
+      {linkSections.map((linkSection, index) => (
+        <div key={index}>
+          {linkSection.links.map((link, index) => (
+            <ALink
+              key={index}
+              href={link.route}
+              size={link.linkOptions?.size}
+              decorators={link.linkOptions?.decorator}
+              weight={link.linkOptions?.weight}
+              className={'menu-link'}
+            >
+              {link.text}
+            </ALink>
+          ))}
+        </div>
       ))}
-    </div>
-  </ANav>
-);
+    </ANav>
+  );
+};
 
 export default AppMenu;
