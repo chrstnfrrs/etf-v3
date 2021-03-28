@@ -1,4 +1,5 @@
 {
+  "coveragePathIgnorePatterns": ["<rootDir>/graphql/generated"],
   "globals": {
     "ts-jest": {
       "babelConfig": true
