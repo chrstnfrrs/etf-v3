@@ -1,30 +1,41 @@
 module.exports = {
   extends: [
-    'plugin:react/recommended',
+    'get-off-my-lawn',
     'plugin:@typescript-eslint/recommended', // Use recommended rules from @typescript-eslint/eslint-plugin
-    'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable conficting rules
     'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. MUST ALWAYS BE LAST.
+  ],
+  ignorePatterns: [
+    '/node_modules/',
+    '/.next/',
+    '/out/',
+    '/graphql/generated.ts',
   ],
   parser: '@typescript-eslint/parser', // Use TS Parser
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true, // Allows for the parsing of JSX
-    },
     ecmaVersion: 2020, // Allow modern ECMAScript
     sourceType: 'module', // Allow imports
   },
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    'node/no-unpublished-import': 'off',
+    'eslint-comments/no-unlimited-disable': 'off',
+    'no-param-reassign': 'off', // Reduce functions
+    'no-use-before-define': 'off', // React imports have an error to due version mismatches in packages
+    'node/no-unpublished-import': [
+      'error',
+      {
+        allowModules: ['chance', 'mock-apollo-client'],
+      },
+    ],
     'react/display-name': 'off',
-    'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }], // Allow JSX is TSX Files
+    'react/no-array-index-key': 'off', // :shrug:
     'unicorn/no-abusive-eslint-disable': 'off',
   },
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.ts', '.tsx'],
+        extensions: ['.types.ts', '.ts', '.tsx', 'js', '.jsx'],
       },
+      typescript: {},
     },
     react: {
       version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
