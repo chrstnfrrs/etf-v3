@@ -18,7 +18,6 @@ export default {
       title: 'links',
     },
     prepare(selection) {
-      console.log('selection', selection)
       return {
         title: `Links: ${selection.title.map(title => title.text).join(', ')}`,
         media: MdMenu
