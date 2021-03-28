@@ -1,0 +1,29 @@
+query page($route: String){
+  allPages(where:{route:{eq:$route}}) {
+    route
+    title
+    description
+    sections {
+      ... on PageHeading {
+        _key
+        _type
+        title
+      }
+      ... on ContactForm {
+        _key
+        _type
+        submit
+      }
+      ... on Hero{
+        _key
+        heading
+        heroImage{
+          alt
+          asset{
+            url
+          }
+        }
+      }
+    }
+  }
+}
