@@ -1,42 +1,25 @@
-import React from 'react';
 import { GetStaticProps } from 'next';
 
-import withLayout from '../components/App/withLayout';
-import HomeHero from '../components/Home/HomeHero';
-import { AllPagesDocument } from '../graphql/generated';
+import withLayout from '../components/app/with-layout';
+import { Page } from '../components/app/page';
 import { getGraphqlClient } from '../graphql/utils';
-import { HomeProps } from '../types/home';
-import { getLinks } from '../utils/menu';
+import { getLinks } from '../repositories/menu';
+import { getHomePage } from '../repositories/page';
 
-const sectionMap = {
-  Hero: HomeHero,
-};
-
-const Home: React.FC<HomeProps> = (props: HomeProps) =>
-  props?.sections ? (
-    <>
-      {props.sections.map((section) =>
-        sectionMap[section?.__typename] ? sectionMap[section.__typename](section) : null,
-      )}
-    </>
-  ) : null;
-
-export const getStaticProps: GetStaticProps = async () => {
+const getStaticProps: GetStaticProps = async () => {
   const client = getGraphqlClient();
 
-  const { data } = await client.query({
-    query: AllPagesDocument,
-    variables: {
-      route: '/',
-    },
-  });
+  const page = await getHomePage(client);
 
   return {
     props: {
-      sections: data?.allPages?.[0]?.sections,
+      page,
+      sections: page.sections,
       ...(await getLinks(client)),
     },
   };
 };
 
-export default withLayout(Home);
+export { getStaticProps };
+
+export default withLayout(Page);
