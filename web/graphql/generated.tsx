@@ -23,6 +23,7 @@ export type Scalars = {
 
 export type RootQuery = {
   __typename?: 'RootQuery';
+  ContactForm?: Maybe<ContactForm>;
   Button?: Maybe<Button>;
   Hero?: Maybe<Hero>;
   Link?: Maybe<Link>;
@@ -30,12 +31,14 @@ export type RootQuery = {
   LinkOptions?: Maybe<LinkOptions>;
   Navigation?: Maybe<Navigation>;
   NavigationOptions?: Maybe<NavigationOptions>;
+  PageHeading?: Maybe<PageHeading>;
   Pages?: Maybe<Pages>;
   Post?: Maybe<Post>;
   Settings?: Maybe<Settings>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   Document?: Maybe<Document>;
+  allContactForm: Array<ContactForm>;
   allButton: Array<Button>;
   allHero: Array<Hero>;
   allLink: Array<Link>;
@@ -43,12 +46,18 @@ export type RootQuery = {
   allLinkOptions: Array<LinkOptions>;
   allNavigation: Array<Navigation>;
   allNavigationOptions: Array<NavigationOptions>;
+  allPageHeading: Array<PageHeading>;
   allPages: Array<Pages>;
   allPost: Array<Post>;
   allSettings: Array<Settings>;
   allSanityImageAsset: Array<SanityImageAsset>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allDocument: Array<Document>;
+};
+
+
+export type RootQueryContactFormArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -87,6 +96,11 @@ export type RootQueryNavigationOptionsArgs = {
 };
 
 
+export type RootQueryPageHeadingArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type RootQueryPagesArgs = {
   id: Scalars['ID'];
 };
@@ -114,6 +128,14 @@ export type RootQuerySanityFileAssetArgs = {
 
 export type RootQueryDocumentArgs = {
   id: Scalars['ID'];
+};
+
+
+export type RootQueryAllContactFormArgs = {
+  where?: Maybe<ContactFormFilter>;
+  sort?: Maybe<Array<ContactFormSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
 };
 
 
@@ -173,6 +195,14 @@ export type RootQueryAllNavigationOptionsArgs = {
 };
 
 
+export type RootQueryAllPageHeadingArgs = {
+  where?: Maybe<PageHeadingFilter>;
+  sort?: Maybe<Array<PageHeadingSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type RootQueryAllPagesArgs = {
   where?: Maybe<PagesFilter>;
   sort?: Maybe<Array<PagesSorting>>;
@@ -220,8 +250,8 @@ export type RootQueryAllDocumentArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
-export type Button = Document & {
-  __typename?: 'Button';
+export type ContactForm = Document & {
+  __typename?: 'ContactForm';
   /** Document ID */
   _id?: Maybe<Scalars['ID']>;
   /** Document type */
@@ -233,7 +263,7 @@ export type Button = Document & {
   /** Current document revision */
   _rev?: Maybe<Scalars['String']>;
   _key?: Maybe<Scalars['String']>;
-  link?: Maybe<Link>;
+  submit?: Maybe<Scalars['String']>;
 };
 
 /** A Sanity document */
@@ -250,6 +280,22 @@ export type Document = {
   _rev?: Maybe<Scalars['String']>;
 };
 
+
+export type Button = Document & {
+  __typename?: 'Button';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  link?: Maybe<Link>;
+};
 
 export type Link = Document & {
   __typename?: 'Link';
@@ -477,6 +523,22 @@ export type NavigationOptions = Document & {
   alignItems?: Maybe<Scalars['String']>;
 };
 
+export type PageHeading = Document & {
+  __typename?: 'PageHeading';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
 export type Pages = Document & {
   __typename?: 'Pages';
   /** Document ID */
@@ -491,9 +553,12 @@ export type Pages = Document & {
   _rev?: Maybe<Scalars['String']>;
   _key?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   route?: Maybe<Scalars['String']>;
-  sections?: Maybe<Array<Maybe<Hero>>>;
+  sections?: Maybe<Array<Maybe<ContactFormOrHeroOrPageHeading>>>;
 };
+
+export type ContactFormOrHeroOrPageHeading = ContactForm | Hero | PageHeading;
 
 export type Post = Document & {
   __typename?: 'Post';
@@ -567,7 +632,7 @@ export type SanityFileAsset = Document & {
   source?: Maybe<SanityAssetSourceData>;
 };
 
-export type ButtonFilter = {
+export type ContactFormFilter = {
   /** Apply filters on document level */
   _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
@@ -576,7 +641,7 @@ export type ButtonFilter = {
   _updatedAt?: Maybe<DatetimeFilter>;
   _rev?: Maybe<StringFilter>;
   _key?: Maybe<StringFilter>;
-  link?: Maybe<LinkFilter>;
+  submit?: Maybe<StringFilter>;
 };
 
 export type Sanity_DocumentFilter = {
@@ -623,6 +688,35 @@ export type DatetimeFilter = {
   lte?: Maybe<Scalars['DateTime']>;
 };
 
+export type ContactFormSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  submit?: Maybe<SortOrder>;
+};
+
+export enum SortOrder {
+  /** Sorts on the value in ascending order. */
+  Asc = 'ASC',
+  /** Sorts on the value in descending order. */
+  Desc = 'DESC'
+}
+
+export type ButtonFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  link?: Maybe<LinkFilter>;
+};
+
 export type LinkFilter = {
   /** Apply filters on document level */
   _?: Maybe<Sanity_DocumentFilter>;
@@ -660,13 +754,6 @@ export type ButtonSorting = {
   _key?: Maybe<SortOrder>;
   link?: Maybe<LinkSorting>;
 };
-
-export enum SortOrder {
-  /** Sorts on the value in ascending order. */
-  Asc = 'ASC',
-  /** Sorts on the value in descending order. */
-  Desc = 'DESC'
-}
 
 export type LinkSorting = {
   _id?: Maybe<SortOrder>;
@@ -935,6 +1022,28 @@ export type NavigationOptionsSorting = {
   alignItems?: Maybe<SortOrder>;
 };
 
+export type PageHeadingFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+};
+
+export type PageHeadingSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+};
+
 export type PagesFilter = {
   /** Apply filters on document level */
   _?: Maybe<Sanity_DocumentFilter>;
@@ -945,6 +1054,7 @@ export type PagesFilter = {
   _rev?: Maybe<StringFilter>;
   _key?: Maybe<StringFilter>;
   title?: Maybe<StringFilter>;
+  description?: Maybe<StringFilter>;
   route?: Maybe<StringFilter>;
 };
 
@@ -956,6 +1066,7 @@ export type PagesSorting = {
   _rev?: Maybe<SortOrder>;
   _key?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
   route?: Maybe<SortOrder>;
 };
 
@@ -1253,26 +1364,14 @@ export type FileSorting = {
   _type?: Maybe<SortOrder>;
 };
 
-export type AllPagesQueryVariables = Exact<{
-  route?: Maybe<Scalars['String']>;
-}>;
+export type AllPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AllPagesQuery = (
   { __typename?: 'RootQuery' }
   & { allPages: Array<(
     { __typename?: 'Pages' }
-    & { sections?: Maybe<Array<Maybe<(
-      { __typename?: 'Hero' }
-      & Pick<Hero, '_key' | '_type' | 'heading'>
-      & { heroImage?: Maybe<(
-        { __typename?: 'MainImage' }
-        & { asset?: Maybe<(
-          { __typename?: 'SanityImageAsset' }
-          & Pick<SanityImageAsset, 'url'>
-        )> }
-      )> }
-    )>>> }
+    & Pick<Pages, 'route'>
   )> }
 );
 
@@ -1334,6 +1433,66 @@ export type AllSlugsQuery = (
   )> }
 );
 
+export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HomePageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPages: Array<(
+    { __typename?: 'Pages' }
+    & Pick<Pages, 'route' | 'title' | 'description'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename?: 'ContactForm' }
+      & Pick<ContactForm, '_key' | '_type' | 'submit'>
+    ) | (
+      { __typename?: 'Hero' }
+      & Pick<Hero, '_key' | 'heading'>
+      & { heroImage?: Maybe<(
+        { __typename?: 'MainImage' }
+        & Pick<MainImage, 'alt'>
+        & { asset?: Maybe<(
+          { __typename?: 'SanityImageAsset' }
+          & Pick<SanityImageAsset, 'url'>
+        )> }
+      )> }
+    ) | (
+      { __typename?: 'PageHeading' }
+      & Pick<PageHeading, '_key' | '_type' | 'title'>
+    )>>> }
+  )> }
+);
+
+export type PageQueryVariables = Exact<{
+  route?: Maybe<Scalars['String']>;
+}>;
+
+
+export type PageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPages: Array<(
+    { __typename?: 'Pages' }
+    & Pick<Pages, 'route' | 'title' | 'description'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename?: 'ContactForm' }
+      & Pick<ContactForm, '_key' | '_type' | 'submit'>
+    ) | (
+      { __typename?: 'Hero' }
+      & Pick<Hero, '_key' | 'heading'>
+      & { heroImage?: Maybe<(
+        { __typename?: 'MainImage' }
+        & Pick<MainImage, 'alt'>
+        & { asset?: Maybe<(
+          { __typename?: 'SanityImageAsset' }
+          & Pick<SanityImageAsset, 'url'>
+        )> }
+      )> }
+    ) | (
+      { __typename?: 'PageHeading' }
+      & Pick<PageHeading, '_key' | '_type' | 'title'>
+    )>>> }
+  )> }
+);
+
 export type SettingsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1363,20 +1522,9 @@ export type SettingsQuery = (
 
 
 export const AllPagesDocument = gql`
-    query allPages($route: String) {
-  allPages(where: {route: {eq: $route}}) {
-    sections {
-      ... on Hero {
-        _key
-        _type
-        heading
-        heroImage {
-          asset {
-            url
-          }
-        }
-      }
-    }
+    query allPages {
+  allPages {
+    route
   }
 }
     `;
@@ -1393,7 +1541,6 @@ export const AllPagesDocument = gql`
  * @example
  * const { data, loading, error } = useAllPagesQuery({
  *   variables: {
- *      route: // value for 'route'
  *   },
  * });
  */
@@ -1525,6 +1672,119 @@ export function useAllSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllSlugsQueryHookResult = ReturnType<typeof useAllSlugsQuery>;
 export type AllSlugsLazyQueryHookResult = ReturnType<typeof useAllSlugsLazyQuery>;
 export type AllSlugsQueryResult = Apollo.QueryResult<AllSlugsQuery, AllSlugsQueryVariables>;
+export const HomePageDocument = gql`
+    query homePage {
+  allPages(where: {title: {eq: "Home"}}) {
+    route
+    title
+    description
+    sections {
+      ... on PageHeading {
+        _key
+        _type
+        title
+      }
+      ... on ContactForm {
+        _key
+        _type
+        submit
+      }
+      ... on Hero {
+        _key
+        heading
+        heroImage {
+          alt
+          asset {
+            url
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useHomePageQuery__
+ *
+ * To run a query within a React component, call `useHomePageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHomePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHomePageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useHomePageQuery(baseOptions?: Apollo.QueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
+        return Apollo.useQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, baseOptions);
+      }
+export function useHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
+          return Apollo.useLazyQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, baseOptions);
+        }
+export type HomePageQueryHookResult = ReturnType<typeof useHomePageQuery>;
+export type HomePageLazyQueryHookResult = ReturnType<typeof useHomePageLazyQuery>;
+export type HomePageQueryResult = Apollo.QueryResult<HomePageQuery, HomePageQueryVariables>;
+export const PageDocument = gql`
+    query page($route: String) {
+  allPages(where: {route: {eq: $route}}) {
+    route
+    title
+    description
+    sections {
+      ... on PageHeading {
+        _key
+        _type
+        title
+      }
+      ... on ContactForm {
+        _key
+        _type
+        submit
+      }
+      ... on Hero {
+        _key
+        heading
+        heroImage {
+          alt
+          asset {
+            url
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __usePageQuery__
+ *
+ * To run a query within a React component, call `usePageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageQuery({
+ *   variables: {
+ *      route: // value for 'route'
+ *   },
+ * });
+ */
+export function usePageQuery(baseOptions?: Apollo.QueryHookOptions<PageQuery, PageQueryVariables>) {
+        return Apollo.useQuery<PageQuery, PageQueryVariables>(PageDocument, baseOptions);
+      }
+export function usePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageQuery, PageQueryVariables>) {
+          return Apollo.useLazyQuery<PageQuery, PageQueryVariables>(PageDocument, baseOptions);
+        }
+export type PageQueryHookResult = ReturnType<typeof usePageQuery>;
+export type PageLazyQueryHookResult = ReturnType<typeof usePageLazyQuery>;
+export type PageQueryResult = Apollo.QueryResult<PageQuery, PageQueryVariables>;
 export const SettingsDocument = gql`
     query settings {
   allSettings {
