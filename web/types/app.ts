@@ -1,23 +1,63 @@
-import { NavigationOptions, Links } from '../graphql/generated';
+import {
+  NavigationOptions,
+  ContactFormOrHeroOrPageHeading,
+  Links,
+  Pages,
+} from '../graphql/generated';
 
-export interface UnknownObject {
+/* eslint-disable */
+// @ts-ignore
+type ALLOW_ANY = any;
+/* eslint-enable */
+
+type TStaticPagePaths = {
+  params: {
+    slug: string;
+  };
+}[];
+
+interface IPageProps {
+  props: {
+    page: Pages;
+  };
+}
+
+interface UnknownObject {
   [key: string]: unknown;
 }
 
-export interface LinkOptions {
+interface LinkOptions {
   size: string;
   weight: string;
   decorator: string;
 }
 
-export interface Link {
+interface Link {
   _key: string;
   route?: string;
   text?: string;
   linkOptions?: LinkOptions;
 }
 
-export interface MenuLinks {
-  navigationLinks?: [Links];
-  navigationOptions?: NavigationOptions;
+interface MenuLinks {
+  navigationLinks: Links[];
+  navigationOptions: NavigationOptions;
 }
+
+interface IHomeProps {
+  page: Pages;
+  sections: ContactFormOrHeroOrPageHeading[];
+  navigationLinks: Link[];
+  navigationOptions: NavigationOptions;
+}
+
+export type {
+  UnknownObject,
+  Link,
+  LinkOptions,
+  MenuLinks,
+  TStaticPagePaths,
+  ALLOW_ANY,
+  IPageProps,
+  IHomeProps,
+};
