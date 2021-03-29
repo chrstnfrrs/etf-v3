@@ -16,6 +16,8 @@ import pageHeading from './pageHeading'
 import pages from './pages'
 import post from './post'
 import settings from './settings'
+import pageBlog from './pageBlog'
+import pageContact from './pageContact'
 
 export default createSchema({
   name: 'default',
@@ -31,9 +33,11 @@ export default createSchema({
     mainImage,
     navigation,
     navigationOptions,
+    pageBlog,
+    pageContact,
     pageHeading,
-    pages,
     post,
+    pages,
     settings,
   ]),
 })
