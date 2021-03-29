@@ -1,5 +1,5 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { MdSettings } from 'react-icons/md'
+import { MdCreate, MdEmail, MdGridOn, MdSettings, MdViewHeadline } from 'react-icons/md'
 export default () =>
   S.list()
     .title('Content')
@@ -12,6 +12,24 @@ export default () =>
             .title('Application Settings')
             .schemaType('settings')
             .documentId('appSettings')
+        ),
+      S.listItem()
+        .title('Blog Page')
+        .icon(MdGridOn)
+        .child(
+          S.document()
+            .title('Blog Page')
+            .schemaType('pageBlog')
+            .documentId('pageBlog')
+        ),
+      S.listItem()
+        .title('Contact Page')
+        .icon(MdEmail)
+        .child(
+          S.document()
+            .title('Contact Page')
+            .schemaType('pageContact')
+            .documentId('pageContact')
         ),
       
       // Add a visual divider (optional)
@@ -27,5 +45,9 @@ export default () =>
           'navigation',
           'navigationOptions',
           'settings',
+          'pageContact',
+          'contactForm',
+          'pageHeading',
+          'pageBlog',
         ].includes(listItem.getId()))
     ])
