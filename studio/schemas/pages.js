@@ -1,7 +1,10 @@
+import { MdViewHeadline } from "react-icons/md";
+
 export default {
   name: 'pages',
-  title: 'Pages',
+  title: 'Other Pages',
   type: 'document',
+  icon: MdViewHeadline,
   fields: [
     {
       name: 'title',
