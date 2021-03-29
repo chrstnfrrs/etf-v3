@@ -1,7 +1,10 @@
+import { MdCreate } from 'react-icons/md';
+
 export default {
   name: 'post',
-  title: 'Post',
+  title: 'Blog Posts',
   type: 'document',
+  icon: MdCreate,
   fields: [
     {
       name: 'title',
