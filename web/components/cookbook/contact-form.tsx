@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
-import { PlaceholderForm } from '../placeholders';
+import {
+  PlaceholderButton,
+  PlaceholderForm,
+  PlaceholderSpacer,
+} from '../placeholders';
 
 import { PlaceholderInput, PlaceholderTextArea } from './input';
 
-const ContactForm = (): JSX.Element => {
+const ContactForm = ({ submit, ...props }): JSX.Element => {
   const [input, setInput] = useState({});
 
   const handleChange = (
@@ -40,8 +44,10 @@ const ContactForm = (): JSX.Element => {
         name='message'
         onChange={handleChange}
         placeholder='Start typing here...'
+        rows={5}
       />
-      {JSON.stringify(input)}
+      <PlaceholderSpacer />
+      <PlaceholderButton>{submit}</PlaceholderButton>
     </PlaceholderForm>
   );
 };
