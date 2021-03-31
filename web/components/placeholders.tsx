@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { ALLOW_ANY } from '../types/app';
+
 const PlaceholderNav = styled.nav`
   display: flex;
   align-items: center;
@@ -24,21 +26,33 @@ const PlaceholderContainer = styled.div`
   }
 `;
 
+const PlaceholderContainerContact = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 128px;
+  height: 85vh;
+  @media (max-width: 768px) {
+    padding: 16px 32px;
+  }
+`;
+
 const PlaceholderBox = styled.div`
   display: flex;
-  flex-direction: ${(props) => props.direction || 'row'};
+  flex-direction: ${(props: ALLOW_ANY) => props.direction || 'row'};
 `;
 
 const PlaceholderRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: ${(props) => props?.justify || 'center'};
+  justify-content: ${(props: ALLOW_ANY) => props?.justify || 'center'};
 `;
 
 const PlaceholderCol = styled.div`
   display: flex;
-  justify-content: ${(props) => props?.justify || 'flex-start'};
+  justify-content: ${(props: ALLOW_ANY) => props?.justify || 'flex-start'};
   flex-direction: column;
   width: fill-available;
   margin: 16px;
@@ -83,6 +97,7 @@ export {
   PlaceholderNav,
   PlaceholderLink,
   PlaceholderContainer,
+  PlaceholderContainerContact,
   PlaceholderBox,
   PlaceholderRow,
   PlaceholderCol,
