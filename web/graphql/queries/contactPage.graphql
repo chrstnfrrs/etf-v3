@@ -1,0 +1,19 @@
+query contactPage {
+ allPageContact {
+  	_key
+  	title
+  	description
+  	callToActionRaw
+  	links {
+      _key
+      text
+      route
+      linkOptions {
+        decorator
+      }
+    }
+  	contactForm {
+      submit
+    }
+	}
+}
