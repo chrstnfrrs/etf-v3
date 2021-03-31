@@ -1,8 +1,8 @@
 import {
   NavigationOptions,
-  ContactFormOrHeroOrPageHeading,
   Links,
   Pages,
+  PageContact,
 } from '../graphql/generated';
 
 /* eslint-disable */
@@ -15,12 +15,6 @@ type TStaticPagePaths = {
     slug: string;
   };
 }[];
-
-interface IPageProps {
-  props: {
-    page: Pages;
-  };
-}
 
 interface UnknownObject {
   [key: string]: unknown;
@@ -44,9 +38,14 @@ interface MenuLinks {
   navigationOptions: NavigationOptions;
 }
 
-interface IHomeProps {
-  page: Pages;
-  sections: ContactFormOrHeroOrPageHeading[];
+interface IPageProps {
+  page: Pages | PageContact;
+  navigationLinks: Link[];
+  navigationOptions: NavigationOptions;
+}
+
+interface IContactPageProps {
+  page: PageContact;
   navigationLinks: Link[];
   navigationOptions: NavigationOptions;
 }
@@ -59,5 +58,5 @@ export type {
   TStaticPagePaths,
   ALLOW_ANY,
   IPageProps,
-  IHomeProps,
+  IContactPageProps,
 };
