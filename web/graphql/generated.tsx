@@ -31,9 +31,11 @@ export type RootQuery = {
   LinkOptions?: Maybe<LinkOptions>;
   Navigation?: Maybe<Navigation>;
   NavigationOptions?: Maybe<NavigationOptions>;
+  PageBlog?: Maybe<PageBlog>;
+  PageContact?: Maybe<PageContact>;
   PageHeading?: Maybe<PageHeading>;
-  Pages?: Maybe<Pages>;
   Post?: Maybe<Post>;
+  Pages?: Maybe<Pages>;
   Settings?: Maybe<Settings>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
@@ -46,9 +48,11 @@ export type RootQuery = {
   allLinkOptions: Array<LinkOptions>;
   allNavigation: Array<Navigation>;
   allNavigationOptions: Array<NavigationOptions>;
+  allPageBlog: Array<PageBlog>;
+  allPageContact: Array<PageContact>;
   allPageHeading: Array<PageHeading>;
-  allPages: Array<Pages>;
   allPost: Array<Post>;
+  allPages: Array<Pages>;
   allSettings: Array<Settings>;
   allSanityImageAsset: Array<SanityImageAsset>;
   allSanityFileAsset: Array<SanityFileAsset>;
@@ -96,17 +100,27 @@ export type RootQueryNavigationOptionsArgs = {
 };
 
 
+export type RootQueryPageBlogArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryPageContactArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type RootQueryPageHeadingArgs = {
   id: Scalars['ID'];
 };
 
 
-export type RootQueryPagesArgs = {
+export type RootQueryPostArgs = {
   id: Scalars['ID'];
 };
 
 
-export type RootQueryPostArgs = {
+export type RootQueryPagesArgs = {
   id: Scalars['ID'];
 };
 
@@ -195,6 +209,22 @@ export type RootQueryAllNavigationOptionsArgs = {
 };
 
 
+export type RootQueryAllPageBlogArgs = {
+  where?: Maybe<PageBlogFilter>;
+  sort?: Maybe<Array<PageBlogSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllPageContactArgs = {
+  where?: Maybe<PageContactFilter>;
+  sort?: Maybe<Array<PageContactSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type RootQueryAllPageHeadingArgs = {
   where?: Maybe<PageHeadingFilter>;
   sort?: Maybe<Array<PageHeadingSorting>>;
@@ -203,17 +233,17 @@ export type RootQueryAllPageHeadingArgs = {
 };
 
 
-export type RootQueryAllPagesArgs = {
-  where?: Maybe<PagesFilter>;
-  sort?: Maybe<Array<PagesSorting>>;
+export type RootQueryAllPostArgs = {
+  where?: Maybe<PostFilter>;
+  sort?: Maybe<Array<PostSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
 
 
-export type RootQueryAllPostArgs = {
-  where?: Maybe<PostFilter>;
-  sort?: Maybe<Array<PostSorting>>;
+export type RootQueryAllPagesArgs = {
+  where?: Maybe<PagesFilter>;
+  sort?: Maybe<Array<PagesSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
@@ -523,6 +553,50 @@ export type NavigationOptions = Document & {
   alignItems?: Maybe<Scalars['String']>;
 };
 
+export type PageBlog = Document & {
+  __typename?: 'PageBlog';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  /** This field is used for SEO. It will appear in the tab and as the title for search results. */
+  title?: Maybe<Scalars['String']>;
+  /** This field is used for SEO. It will appear as the description for search results. */
+  description?: Maybe<Scalars['String']>;
+  pageHeading?: Maybe<Scalars['String']>;
+  showPosts?: Maybe<Scalars['Boolean']>;
+};
+
+export type PageContact = Document & {
+  __typename?: 'PageContact';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  /** This field is used for SEO. It will appear in the tab and as the title for search results. */
+  title?: Maybe<Scalars['String']>;
+  /** This field is used for SEO. It will appear as the description for search results. */
+  description?: Maybe<Scalars['String']>;
+  callToActionRaw?: Maybe<Scalars['JSON']>;
+  links?: Maybe<Array<Maybe<Link>>>;
+  contactForm?: Maybe<ContactForm>;
+};
+
+
 export type PageHeading = Document & {
   __typename?: 'PageHeading';
   /** Document ID */
@@ -538,27 +612,6 @@ export type PageHeading = Document & {
   _key?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
 };
-
-export type Pages = Document & {
-  __typename?: 'Pages';
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>;
-  _key?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  route?: Maybe<Scalars['String']>;
-  sections?: Maybe<Array<Maybe<ContactFormOrHeroOrPageHeading>>>;
-};
-
-export type ContactFormOrHeroOrPageHeading = ContactForm | Hero | PageHeading;
 
 export type Post = Document & {
   __typename?: 'Post';
@@ -581,13 +634,33 @@ export type Post = Document & {
   slug?: Maybe<Slug>;
 };
 
-
 export type Slug = {
   __typename?: 'Slug';
   _key?: Maybe<Scalars['String']>;
   _type?: Maybe<Scalars['String']>;
   current?: Maybe<Scalars['String']>;
 };
+
+export type Pages = Document & {
+  __typename?: 'Pages';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  route?: Maybe<Scalars['String']>;
+  sections?: Maybe<Array<Maybe<ContactFormOrHeroOrPageHeading>>>;
+};
+
+export type ContactFormOrHeroOrPageHeading = ContactForm | Hero | PageHeading;
 
 export type Settings = Document & {
   __typename?: 'Settings';
@@ -1022,6 +1095,60 @@ export type NavigationOptionsSorting = {
   alignItems?: Maybe<SortOrder>;
 };
 
+export type PageBlogFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+  description?: Maybe<StringFilter>;
+  pageHeading?: Maybe<StringFilter>;
+  showPosts?: Maybe<BooleanFilter>;
+};
+
+export type PageBlogSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  pageHeading?: Maybe<SortOrder>;
+  showPosts?: Maybe<SortOrder>;
+};
+
+export type PageContactFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+  description?: Maybe<StringFilter>;
+  contactForm?: Maybe<ContactFormFilter>;
+};
+
+export type PageContactSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  contactForm?: Maybe<ContactFormSorting>;
+};
+
 export type PageHeadingFilter = {
   /** Apply filters on document level */
   _?: Maybe<Sanity_DocumentFilter>;
@@ -1042,32 +1169,6 @@ export type PageHeadingSorting = {
   _rev?: Maybe<SortOrder>;
   _key?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
-};
-
-export type PagesFilter = {
-  /** Apply filters on document level */
-  _?: Maybe<Sanity_DocumentFilter>;
-  _id?: Maybe<IdFilter>;
-  _type?: Maybe<StringFilter>;
-  _createdAt?: Maybe<DatetimeFilter>;
-  _updatedAt?: Maybe<DatetimeFilter>;
-  _rev?: Maybe<StringFilter>;
-  _key?: Maybe<StringFilter>;
-  title?: Maybe<StringFilter>;
-  description?: Maybe<StringFilter>;
-  route?: Maybe<StringFilter>;
-};
-
-export type PagesSorting = {
-  _id?: Maybe<SortOrder>;
-  _type?: Maybe<SortOrder>;
-  _createdAt?: Maybe<SortOrder>;
-  _updatedAt?: Maybe<SortOrder>;
-  _rev?: Maybe<SortOrder>;
-  _key?: Maybe<SortOrder>;
-  title?: Maybe<SortOrder>;
-  description?: Maybe<SortOrder>;
-  route?: Maybe<SortOrder>;
 };
 
 export type PostFilter = {
@@ -1108,6 +1209,32 @@ export type SlugSorting = {
   _key?: Maybe<SortOrder>;
   _type?: Maybe<SortOrder>;
   current?: Maybe<SortOrder>;
+};
+
+export type PagesFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+  description?: Maybe<StringFilter>;
+  route?: Maybe<StringFilter>;
+};
+
+export type PagesSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+  route?: Maybe<SortOrder>;
 };
 
 export type SettingsFilter = {
@@ -1433,6 +1560,28 @@ export type AllSlugsQuery = (
   )> }
 );
 
+export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ContactPageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPageContact: Array<(
+    { __typename?: 'PageContact' }
+    & Pick<PageContact, '_key' | 'title' | 'description' | 'callToActionRaw'>
+    & { links?: Maybe<Array<Maybe<(
+      { __typename?: 'Link' }
+      & Pick<Link, '_key' | 'text' | 'route'>
+      & { linkOptions?: Maybe<(
+        { __typename?: 'LinkOptions' }
+        & Pick<LinkOptions, 'decorator'>
+      )> }
+    )>>>, contactForm?: Maybe<(
+      { __typename?: 'ContactForm' }
+      & Pick<ContactForm, 'submit'>
+    )> }
+  )> }
+);
+
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1672,6 +1821,52 @@ export function useAllSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllSlugsQueryHookResult = ReturnType<typeof useAllSlugsQuery>;
 export type AllSlugsLazyQueryHookResult = ReturnType<typeof useAllSlugsLazyQuery>;
 export type AllSlugsQueryResult = Apollo.QueryResult<AllSlugsQuery, AllSlugsQueryVariables>;
+export const ContactPageDocument = gql`
+    query contactPage {
+  allPageContact {
+    _key
+    title
+    description
+    callToActionRaw
+    links {
+      _key
+      text
+      route
+      linkOptions {
+        decorator
+      }
+    }
+    contactForm {
+      submit
+    }
+  }
+}
+    `;
+
+/**
+ * __useContactPageQuery__
+ *
+ * To run a query within a React component, call `useContactPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useContactPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useContactPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useContactPageQuery(baseOptions?: Apollo.QueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+        return Apollo.useQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
+      }
+export function useContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+          return Apollo.useLazyQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
+        }
+export type ContactPageQueryHookResult = ReturnType<typeof useContactPageQuery>;
+export type ContactPageLazyQueryHookResult = ReturnType<typeof useContactPageLazyQuery>;
+export type ContactPageQueryResult = Apollo.QueryResult<ContactPageQuery, ContactPageQueryVariables>;
 export const HomePageDocument = gql`
     query homePage {
   allPages(where: {title: {eq: "Home"}}) {
