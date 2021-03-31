@@ -3,8 +3,10 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import {
   AllPagesDocument,
   HomePageDocument,
+  ContactPageDocument,
   PageDocument,
   Pages,
+  PageContact,
 } from '../graphql/generated';
 
 const getHomePage = async (
@@ -15,6 +17,16 @@ const getHomePage = async (
   });
 
   return data.allPages[0];
+};
+
+const getContactPage = async (
+  client: ApolloClient<NormalizedCacheObject>,
+): Promise<PageContact> => {
+  const { data } = await client.query({
+    query: ContactPageDocument,
+  });
+
+  return data.allPageContact[0];
 };
 
 const getPages = async (
@@ -41,4 +53,4 @@ const getPage = async (
   return data.allPages[0];
 };
 
-export { getHomePage, getPage, getPages };
+export { getHomePage, getContactPage, getPage, getPages };
