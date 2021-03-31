@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 
-import { IHomeProps } from '../../types/app';
+import { IPageProps } from '../../types/app';
 
 import AppMenu from './menu';
 
-const withLayout = (Page: React.FC<IHomeProps>) => (
-  props: IHomeProps,
+const withLayout = (Page: React.FC<IPageProps>) => (
+  props: IPageProps,
 ): ReactElement => (
   <>
     <AppMenu
