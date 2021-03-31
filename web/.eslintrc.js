@@ -22,7 +22,12 @@ module.exports = {
     'node/no-unpublished-import': [
       'error',
       {
-        allowModules: ['chance', 'mock-apollo-client'],
+        allowModules: [
+          'chance',
+          'mock-apollo-client',
+          '@testing-library/react',
+          '@testing-library/jest-dom',
+        ],
       },
     ],
     'react/display-name': 'off',
