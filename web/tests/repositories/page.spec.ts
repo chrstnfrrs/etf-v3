@@ -3,11 +3,17 @@ import Chance from 'chance';
 
 import {
   AllPagesDocument,
+  ContactPageDocument,
   HomePageDocument,
   PageDocument,
   Pages,
 } from '../../graphql/generated';
-import { getHomePage, getPage, getPages } from '../../repositories/page';
+import {
+  getHomePage,
+  getContactPage,
+  getPage,
+  getPages,
+} from '../../repositories/page';
 import { createRandomPage } from '../model-factories/page';
 
 const chance = new Chance();
@@ -30,6 +36,21 @@ describe('page', () => {
     });
     test('should fetch all pages', async () => {
       const result = await getHomePage(client);
+
+      expect(result).toStrictEqual(page);
+    });
+  });
+  describe('getContactPage', () => {
+    let page: Pages;
+
+    beforeEach(() => {
+      page = createRandomPage();
+      client.setRequestHandler(ContactPageDocument, () =>
+        Promise.resolve({ data: { allPages: [page] } }),
+      );
+    });
+    test('should fetch all pages', async () => {
+      const result = await getContactPage(client);
 
       expect(result).toStrictEqual(page);
     });
