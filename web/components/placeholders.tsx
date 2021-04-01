@@ -18,7 +18,7 @@ const PlaceholderLink = styled.a`
 const PlaceholderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding: 64px 128px;
   @media (max-width: 768px) {
@@ -29,8 +29,8 @@ const PlaceholderContainer = styled.div`
 const PlaceholderContainerContact = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   padding: 64px 128px;
   height: 85vh;
   @media (max-width: 768px) {
@@ -63,9 +63,14 @@ const PlaceholderCol = styled.div`
 const PlaceholderH1 = styled.h1`
   line-height: 2;
 `;
+const PlaceholderH2 = styled.h2``;
 const PlaceholderH3 = styled.h3`
   line-height: 1.5;
 `;
+const PlaceholderH4 = styled.h2``;
+const PlaceholderH5 = styled.h2``;
+const PlaceholderH6 = styled.h2``;
+const PlaceholderStrong = styled.strong``;
 
 const PlaceholderForm = styled.form`
   display: flex;
@@ -89,6 +94,26 @@ const PlaceholderSpacer = styled.div`
   padding: 12px;
 `;
 
+const PlaceholderCard = styled.div`
+  position: static;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  border-radius: 1px;
+  border: 1px solid black;
+  overflow-wrap: anywhere;
+  max-height: 256px;
+  overflow: hidden;
+`;
+
+const PlaceholderGrid = styled.div`
+  width: 100%;
+  display: grid;
+  grid-gap: 1rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+`;
+
 const PlaceholderChip = styled.p`
   padding: 0 16px 0 0;
 `;
@@ -102,9 +127,16 @@ export {
   PlaceholderRow,
   PlaceholderCol,
   PlaceholderH1,
+  PlaceholderH2,
   PlaceholderH3,
+  PlaceholderH4,
+  PlaceholderH5,
+  PlaceholderH6,
+  PlaceholderStrong,
   PlaceholderForm,
   PlaceholderButton,
   PlaceholderSpacer,
+  PlaceholderCard,
+  PlaceholderGrid,
   PlaceholderChip,
 };
