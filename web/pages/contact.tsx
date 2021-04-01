@@ -33,7 +33,7 @@ const ContactPage = ({
         <meta content={page.description as string} name='description' />
       </Head>
       <PlaceholderContainerContact>
-        <PlaceholderRow>
+        <PlaceholderRow justify='space-between'>
           <PlaceholderCol justify='space-between'>
             <PlaceholderBlock content={page.callToActionRaw} />
             <PlaceholderSpacer />
