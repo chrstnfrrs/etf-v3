@@ -2,21 +2,22 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
 import {
   AllPagesDocument,
-  HomePageDocument,
+  BlogPageDocument,
   ContactPageDocument,
+  HomePageDocument,
   PageDocument,
   Pages,
   PageContact,
 } from '../graphql/generated';
 
-const getHomePage = async (
+const getBlogPage = async (
   client: ApolloClient<NormalizedCacheObject>,
-): Promise<Pages> => {
+): Promise<PageContact> => {
   const { data } = await client.query({
-    query: HomePageDocument,
+    query: BlogPageDocument,
   });
 
-  return data.allPages[0];
+  return data.allPageBlog[0];
 };
 
 const getContactPage = async (
@@ -27,6 +28,16 @@ const getContactPage = async (
   });
 
   return data.allPageContact[0];
+};
+
+const getHomePage = async (
+  client: ApolloClient<NormalizedCacheObject>,
+): Promise<Pages> => {
+  const { data } = await client.query({
+    query: HomePageDocument,
+  });
+
+  return data.allPages[0];
 };
 
 const getPages = async (
@@ -53,4 +64,4 @@ const getPage = async (
   return data.allPages[0];
 };
 
-export { getHomePage, getContactPage, getPage, getPages };
+export { getBlogPage, getContactPage, getHomePage, getPage, getPages };
