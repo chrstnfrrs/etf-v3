@@ -2,6 +2,7 @@ import {
   NavigationOptions,
   Links,
   Pages,
+  PageBlog,
   PageContact,
 } from '../graphql/generated';
 
@@ -39,12 +40,19 @@ interface MenuLinks {
 }
 
 interface IPageProps {
-  page: Pages | PageContact;
+  page: Pages | PageContact | PageBlog;
   navigationLinks: Link[];
   navigationOptions: NavigationOptions;
 }
 
-interface IContactPageProps {
+interface IBlogPageProps extends IPageProps {
+  page: PageBlog;
+  posts: ALLOW_ANY;
+  navigationLinks: Link[];
+  navigationOptions: NavigationOptions;
+}
+
+interface IContactPageProps extends IPageProps {
   page: PageContact;
   navigationLinks: Link[];
   navigationOptions: NavigationOptions;
@@ -58,5 +66,6 @@ export type {
   TStaticPagePaths,
   ALLOW_ANY,
   IPageProps,
+  IBlogPageProps,
   IContactPageProps,
 };
