@@ -1491,6 +1491,39 @@ export type FileSorting = {
   _type?: Maybe<SortOrder>;
 };
 
+export type BlogPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BlogPageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPageBlog: Array<(
+    { __typename?: 'PageBlog' }
+    & Pick<PageBlog, '_key' | 'title' | 'description' | 'pageHeading' | 'showPosts'>
+  )> }
+);
+
+export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ContactPageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPageContact: Array<(
+    { __typename?: 'PageContact' }
+    & Pick<PageContact, '_key' | 'title' | 'description' | 'callToActionRaw'>
+    & { links?: Maybe<Array<Maybe<(
+      { __typename?: 'Link' }
+      & Pick<Link, '_key' | 'text' | 'route'>
+      & { linkOptions?: Maybe<(
+        { __typename?: 'LinkOptions' }
+        & Pick<LinkOptions, 'decorator'>
+      )> }
+    )>>>, contactForm?: Maybe<(
+      { __typename?: 'ContactForm' }
+      & Pick<ContactForm, 'submit'>
+    )> }
+  )> }
+);
+
 export type AllPagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1556,28 +1589,6 @@ export type AllSlugsQuery = (
     & { slug?: Maybe<(
       { __typename?: 'Slug' }
       & Pick<Slug, 'current'>
-    )> }
-  )> }
-);
-
-export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type ContactPageQuery = (
-  { __typename?: 'RootQuery' }
-  & { allPageContact: Array<(
-    { __typename?: 'PageContact' }
-    & Pick<PageContact, '_key' | 'title' | 'description' | 'callToActionRaw'>
-    & { links?: Maybe<Array<Maybe<(
-      { __typename?: 'Link' }
-      & Pick<Link, '_key' | 'text' | 'route'>
-      & { linkOptions?: Maybe<(
-        { __typename?: 'LinkOptions' }
-        & Pick<LinkOptions, 'decorator'>
-      )> }
-    )>>>, contactForm?: Maybe<(
-      { __typename?: 'ContactForm' }
-      & Pick<ContactForm, 'submit'>
     )> }
   )> }
 );
@@ -1670,6 +1681,88 @@ export type SettingsQuery = (
 );
 
 
+export const BlogPageDocument = gql`
+    query blogPage {
+  allPageBlog {
+    _key
+    title
+    description
+    pageHeading
+    showPosts
+  }
+}
+    `;
+
+/**
+ * __useBlogPageQuery__
+ *
+ * To run a query within a React component, call `useBlogPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useBlogPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useBlogPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useBlogPageQuery(baseOptions?: Apollo.QueryHookOptions<BlogPageQuery, BlogPageQueryVariables>) {
+        return Apollo.useQuery<BlogPageQuery, BlogPageQueryVariables>(BlogPageDocument, baseOptions);
+      }
+export function useBlogPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogPageQuery, BlogPageQueryVariables>) {
+          return Apollo.useLazyQuery<BlogPageQuery, BlogPageQueryVariables>(BlogPageDocument, baseOptions);
+        }
+export type BlogPageQueryHookResult = ReturnType<typeof useBlogPageQuery>;
+export type BlogPageLazyQueryHookResult = ReturnType<typeof useBlogPageLazyQuery>;
+export type BlogPageQueryResult = Apollo.QueryResult<BlogPageQuery, BlogPageQueryVariables>;
+export const ContactPageDocument = gql`
+    query contactPage {
+  allPageContact {
+    _key
+    title
+    description
+    callToActionRaw
+    links {
+      _key
+      text
+      route
+      linkOptions {
+        decorator
+      }
+    }
+    contactForm {
+      submit
+    }
+  }
+}
+    `;
+
+/**
+ * __useContactPageQuery__
+ *
+ * To run a query within a React component, call `useContactPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useContactPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useContactPageQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useContactPageQuery(baseOptions?: Apollo.QueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+        return Apollo.useQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
+      }
+export function useContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+          return Apollo.useLazyQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
+        }
+export type ContactPageQueryHookResult = ReturnType<typeof useContactPageQuery>;
+export type ContactPageLazyQueryHookResult = ReturnType<typeof useContactPageLazyQuery>;
+export type ContactPageQueryResult = Apollo.QueryResult<ContactPageQuery, ContactPageQueryVariables>;
 export const AllPagesDocument = gql`
     query allPages {
   allPages {
@@ -1821,52 +1914,6 @@ export function useAllSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllSlugsQueryHookResult = ReturnType<typeof useAllSlugsQuery>;
 export type AllSlugsLazyQueryHookResult = ReturnType<typeof useAllSlugsLazyQuery>;
 export type AllSlugsQueryResult = Apollo.QueryResult<AllSlugsQuery, AllSlugsQueryVariables>;
-export const ContactPageDocument = gql`
-    query contactPage {
-  allPageContact {
-    _key
-    title
-    description
-    callToActionRaw
-    links {
-      _key
-      text
-      route
-      linkOptions {
-        decorator
-      }
-    }
-    contactForm {
-      submit
-    }
-  }
-}
-    `;
-
-/**
- * __useContactPageQuery__
- *
- * To run a query within a React component, call `useContactPageQuery` and pass it any options that fit your needs.
- * When your component renders, `useContactPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useContactPageQuery({
- *   variables: {
- *   },
- * });
- */
-export function useContactPageQuery(baseOptions?: Apollo.QueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
-        return Apollo.useQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
-      }
-export function useContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
-          return Apollo.useLazyQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
-        }
-export type ContactPageQueryHookResult = ReturnType<typeof useContactPageQuery>;
-export type ContactPageLazyQueryHookResult = ReturnType<typeof useContactPageLazyQuery>;
-export type ContactPageQueryResult = Apollo.QueryResult<ContactPageQuery, ContactPageQueryVariables>;
 export const HomePageDocument = gql`
     query homePage {
   allPages(where: {title: {eq: "Home"}}) {
