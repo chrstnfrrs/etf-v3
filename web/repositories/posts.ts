@@ -1,10 +1,15 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
-import { AllPostPreviewDocument, Post } from '../graphql/generated';
+import {
+  AllPostPreviewDocument,
+  AllPostPostDocument,
+  AllSlugsDocument,
+  Post,
+} from '../graphql/generated';
 
 const getAllPosts = async (
   client: ApolloClient<NormalizedCacheObject>,
-): Promise<Promise<Post>[]> => {
+): Promise<Post[]> => {
   const { data } = await client.query({
     query: AllPostPreviewDocument,
   });
@@ -12,4 +17,28 @@ const getAllPosts = async (
   return data.allPost;
 };
 
-export { getAllPosts };
+const getAllPostSlugs = async (
+  client: ApolloClient<NormalizedCacheObject>,
+): Promise<Post[]> => {
+  const { data } = await client.query({
+    query: AllSlugsDocument,
+  });
+
+  return data.allPost;
+};
+
+const getPost = async (
+  client: ApolloClient<NormalizedCacheObject>,
+  slug: string,
+): Promise<Post[]> => {
+  const { data } = await client.query({
+    query: AllPostPostDocument,
+    variables: {
+      slug,
+    },
+  });
+
+  return data.allPost[0];
+};
+
+export { getAllPosts, getAllPostSlugs, getPost };
