@@ -114,10 +114,6 @@ const PlaceholderGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
 `;
 
-const PlaceholderChip = styled.p`
-  padding: 0 16px 0 0;
-`;
-
 export {
   PlaceholderNav,
   PlaceholderLink,
