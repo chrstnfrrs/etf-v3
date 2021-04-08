@@ -4,6 +4,7 @@ import {
   Pages,
   PageBlog,
   PageContact,
+  Post,
 } from '../graphql/generated';
 
 /* eslint-disable */
@@ -40,7 +41,7 @@ interface MenuLinks {
 }
 
 interface IPageProps {
-  page: Pages | PageContact | PageBlog;
+  page: Pages | PageContact | PageBlog | Post;
   navigationLinks: Link[];
   navigationOptions: NavigationOptions;
 }
@@ -48,6 +49,12 @@ interface IPageProps {
 interface IBlogPageProps extends IPageProps {
   page: PageBlog;
   posts: ALLOW_ANY;
+  navigationLinks: Link[];
+  navigationOptions: NavigationOptions;
+}
+
+interface IPostPageProps extends IPageProps {
+  page: Post;
   navigationLinks: Link[];
   navigationOptions: NavigationOptions;
 }
@@ -67,5 +74,6 @@ export type {
   ALLOW_ANY,
   IPageProps,
   IBlogPageProps,
+  IPostPageProps,
   IContactPageProps,
 };
