@@ -1,5 +1,13 @@
 {
-  "coveragePathIgnorePatterns": ["<rootDir>/graphql/generated", "<rootDir>/tests", "<rootDir>/components/placeholders"],
+  "coveragePathIgnorePatterns": ["tests", "node_modules", "graphql/generated"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 100,
+      "functions": 100,
+      "lines": 100,
+      "statements": 100
+    }
+  },
   "globals": {
     "ts-jest": {
       "babelConfig": true
