@@ -1,10 +1,18 @@
 import React from 'react';
+// @ts-ignore
 import BlockContent from '@sanity/block-content-to-react';
+import styled from '@emotion/styled';
 
-import { ALLOW_ANY } from '../../types/app';
-import { PlaceholderH1, PlaceholderH3 } from '../placeholders';
+import { AllowAny } from '../../types/index.d';
 
-const BlockRenderer = (props: ALLOW_ANY) => {
+const PlaceholderH1 = styled.h1`
+  line-height: 2;
+`;
+const PlaceholderH3 = styled.h3`
+  line-height: 1.5;
+`;
+
+const BlockRenderer = (props: AllowAny) => {
   const { style = 'normal' } = props.node;
 
   if (style === 'h1') {
@@ -24,8 +32,8 @@ const serializers = {
   },
 };
 
-const PlaceholderBlock = ({ content }: ALLOW_ANY): JSX.Element => {
-  return <BlockContent blocks={content} serializers={serializers} />;
-};
+const PlaceholderBlock = ({ content }: AllowAny): JSX.Element => (
+  <BlockContent blocks={content} serializers={serializers} />
+);
 
 export { PlaceholderBlock };
