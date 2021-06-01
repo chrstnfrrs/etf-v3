@@ -2,7 +2,8 @@ html,
 body,
 p,
 h1,
-h3 {
+h3,
+textarea {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -19,19 +20,21 @@ a {
 }
 
 :root {
-  --A-background: #ffffff !important;
-  --AContainer-padding: 64px 128px !important;
+  --A-primary: #003366 !important;
 }
 
 .a-nav {
-  --ANav-background: #f5f5f5 !important;
-  --ANav-color: #101010 !important;
+  --ANav-background: #003366 !important;
+  --ANav-color: #F3F4F7 !important;
 }
 
-.asdf {
-  background: #101010;
+.a-btn {
+  --ABtn-color: #F3F4F7 !important;
 }
 
-.menu-link {
-  padding: 2px 8px;
+.a-image {
+  width: 100%;
+  height: 144px;
+  object-fit: cover;
 }
+
