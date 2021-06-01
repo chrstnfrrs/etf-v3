@@ -34,6 +34,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }], // Allow JSX is TSX Files
     'react/no-array-index-key': 'off', // :shrug:
     'unicorn/no-abusive-eslint-disable': 'off',
+    'unicorn/no-null': 'off',
   },
   settings: {
     'import/resolver': {
