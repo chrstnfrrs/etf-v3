@@ -1,91 +1,143 @@
 import * as React from 'react';
-import { GetStaticPropsContext } from 'next';
-import { createMockClient } from 'mock-apollo-client';
-import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
-import Chance from 'chance';
-import '@testing-library/jest-dom';
+import * as Apollo from '@apollo/client';
 import * as RTL from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Chance from 'chance';
 
-import ContactPage, { getStaticProps } from '../../pages/contact';
-import { createRandomGetStaticPropsContextForPage } from '../model-factories/next';
-import {
-  createRandomLink,
-  createRandomLinkOptions,
-} from '../model-factories/menu';
-import { createRandomContactPage } from '../model-factories/page';
-import { ALLOW_ANY, MenuLinks } from '../../types/app';
-import { PageContact } from '../../graphql/generated';
-import * as GraphqlUtils from '../../graphql/utils';
-import * as PageRepository from '../../repositories/page';
+// UI Imports
+import * as ContactPage from '../../pages/contact';
+import * as Types from '../../types/index.d';
+import * as AppFactory from '../model-factories/app';
+import * as SanityFactory from '../model-factories/sanity';
+// Static Prop Imports
+import * as GraphqlClient from '../../graphql/graphql-client';
 import * as MenuRepository from '../../repositories/menu';
+import * as Codegen from '../../graphql/generated';
+import * as ApolloFactory from '../model-factories/apollo';
 
-jest.mock('../../graphql/utils');
-jest.mock('../../repositories/page');
+jest.mock('../../graphql/graphql-client');
 jest.mock('../../repositories/menu');
 
 const chance = new Chance();
 
-const { getGraphqlClient } = GraphqlUtils as jest.Mocked<typeof GraphqlUtils>;
-const { getContactPage } = PageRepository as jest.Mocked<typeof PageRepository>;
-const { getLinks } = MenuRepository as jest.Mocked<typeof MenuRepository>;
+const { default: Page } = ContactPage;
+const MockGraphqlClient = GraphqlClient as jest.Mocked<typeof GraphqlClient>;
+const MockedMenuRepository = MenuRepository as jest.Mocked<
+  typeof MenuRepository
+>;
 
-describe('contact page', () => {
+const createRandomContactPage = (
+  callToActionRaw: Types.Sanity.Block[],
+  links: Types.App.Link[],
+) => ({
+  callToActionRaw,
+  contactForm: {
+    submit: chance.string(),
+  },
+  description: chance.string(),
+  links,
+  title: chance.string(),
+});
+
+describe('Given a contact page', () => {
+  let props: ContactPage.Props,
+    links: Types.App.Link[],
+    menu: Types.App.Menu,
+    callToActionRaw: Types.Sanity.Block[];
+
+  beforeEach(() => {
+    // Setup Links
+    links = chance.n(AppFactory.createLink, chance.d6());
+
+    // Setup Menu for Nav
+    menu = AppFactory.createMenu();
+
+    // Setup Sanity Block Content
+    callToActionRaw = chance.n(SanityFactory.createBlock, chance.d4());
+
+    props = {
+      menu,
+      page: createRandomContactPage(callToActionRaw, links),
+    };
+  });
+
   afterEach(jest.resetAllMocks);
-  describe('getStaticProps', () => {
-    let result: ALLOW_ANY,
-      context: GetStaticPropsContext,
-      client: ApolloClient<NormalizedCacheObject>,
-      page: PageContact,
-      menuLinks: MenuLinks;
+  describe('When rendering the page', () => {
+    beforeEach(() => {
+      RTL.render(<Page {...props} />);
+    });
+    test('Then should render contact links', () => {
+      links
+        .filter((link: Types.App.Link) => link.text)
+        .forEach((link: Types.App.Link) => {
+          expect(RTL.screen.getByText(link.text)).toBeVisible();
+        });
+    });
+    test('Then should render block content', () => {
+      callToActionRaw.forEach((block: Types.Sanity.Block) => {
+        block.children.forEach((child: string) => {
+          const list = RTL.screen.queryAllByText(child);
 
-    beforeEach(async () => {
-      context = createRandomGetStaticPropsContextForPage();
-      client = createMockClient();
-      getGraphqlClient.mockReturnValue(client);
-      page = createRandomContactPage();
-      getContactPage.mockResolvedValue(page);
-      menuLinks = {
-        navigationLinks: chance.n(createRandomLink, chance.d4()),
-        navigationOptions: createRandomLinkOptions(),
-      };
-      getLinks.mockResolvedValue(menuLinks);
-      result = await getStaticProps(context);
-    });
-    test('should get graphql cliend', () => {
-      expect(getGraphqlClient).toHaveBeenCalledTimes(1);
-      expect(getGraphqlClient).toHaveBeenCalledWith();
-    });
-    test('should get contact page information', () => {
-      expect(getContactPage).toHaveBeenCalledTimes(1);
-      expect(getContactPage).toHaveBeenCalledWith(client);
-    });
-    test('should get links', () => {
-      expect(getLinks).toHaveBeenCalledTimes(1);
-      expect(getLinks).toHaveBeenCalledWith(client);
-    });
-    test('should return page information and links', () => {
-      expect(result).toStrictEqual({
-        props: {
-          page,
-          ...menuLinks,
-        },
+          list.forEach((item: Types.AllowAny) => {
+            expect(item).toBeVisible();
+          });
+        });
       });
     });
-  });
-  describe('ContactPage', () => {
-    let props: ALLOW_ANY;
-
-    beforeEach(() => {
-      props = {
-        navigationLinks: chance.n(createRandomLink, chance.d4()),
-        navigationOptions: createRandomLinkOptions(),
-        page: createRandomContactPage(),
-      };
+    test('Then should render a contact form', () => {
+      expect(RTL.screen.getByTestId('contact-form')).toBeVisible();
     });
-    test('do the thing', () => {
-      const result = RTL.render(<ContactPage {...props} />);
+  });
+  describe('When fetching data for the page', () => {
+    let client: Types.Apollo.Client,
+      page: ContactPage.Page,
+      result: ContactPage.StaticProps,
+      expectedResult: ContactPage.StaticProps;
 
-      expect(result).toBeDefined();
+    beforeEach(async () => {
+      const query = jest.fn().mockReturnValue({
+        data: {
+          allPageContact: [page],
+        },
+      });
+
+      client = ApolloFactory.createClient(query);
+
+      MockGraphqlClient.get.mockReturnValue(
+        client as Apollo.ApolloClient<Apollo.NormalizedCacheObject>,
+      );
+      MockedMenuRepository.getLinks.mockResolvedValue(menu);
+
+      expectedResult = {
+        props: {
+          menu,
+          page,
+        },
+      };
+
+      result = (await ContactPage.getStaticProps(
+        {},
+      )) as ContactPage.StaticProps;
+    });
+    test('Then should get a graphql client', () => {
+      expect(MockGraphqlClient.get).toHaveBeenCalledTimes(1);
+      expect(MockGraphqlClient.get).toHaveBeenCalledWith();
+    });
+
+    test('Then should fetch data', () => {
+      expect(client.query).toHaveBeenCalledTimes(1);
+      expect(client.query).toHaveBeenCalledWith({
+        query: Codegen.ContactPageDocument,
+      });
+    });
+
+    test('Then should fetch menu links', () => {
+      expect(MockedMenuRepository.getLinks).toHaveBeenCalledTimes(1);
+      expect(MockedMenuRepository.getLinks).toHaveBeenCalledWith(client);
+    });
+
+    test('Then should return expected page props', () => {
+      expect(result).toStrictEqual(expectedResult);
     });
   });
 });
