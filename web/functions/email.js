@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable */
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
@@ -19,7 +19,7 @@ function createEmailTemplate(email, name, message) {
   return template;
 }
 
-exports.handler = async function (event, context) {
+exports.handler = async function (event, _context) {
   try {
     const body = JSON.parse(event.body);
 
@@ -48,3 +48,5 @@ exports.handler = async function (event, context) {
     };
   }
 };
+
+/* eslint-enable */
