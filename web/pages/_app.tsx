@@ -1,16 +1,31 @@
-import React from 'react';
+import * as React from 'react';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
+// import { setTheme } from 'aspire-components-react';
+
 import '../globals.css';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const AppLayout = ({ Component, pageProps }: AppProps) => (
-  <>
-    <Head>
-      <link href='/favicon.ico' rel='shortcut icon' />
-    </Head>
-    <Component {...pageProps} />
-  </>
-);
+const AppLayout = ({ Component, pageProps }: AppProps): React.ReactNode => {
+  // if (typeof window !== 'undefined') {
+  //   const ctaPrimary = '#003366';
+  //   const textWhite = 'rgba(239, 246, 255, 1)';
+
+  //   setTheme({
+  //     ANav: {
+  //       background: ctaPrimary,
+  //       color: textWhite,
+  //     },
+  //   });
+  // }
+
+  return (
+    <>
+      <Head>
+        <link href='/favicon.ico' rel='shortcut icon' />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
+};
 
 export default AppLayout;
