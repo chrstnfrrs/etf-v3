@@ -13,6 +13,7 @@ type Props = {
     description: string;
     [key: string]: Types.AllowAny;
   };
+  children: Types.AllowAny;
   [key: string]: Types.AllowAny;
 };
 
