@@ -18,12 +18,24 @@ type Props = {
 const ETFMenu: React.FC<Props> = (props) => {
   const linkSections = props.navigationLinks;
 
+  const first = {
+    fontSize: '2rem',
+  };
+
+  const list = {
+    paddingTop: '1.375rem',
+  };
+
   return (
     <ANav direction='row' justify='between' padding='8x'>
       {linkSections.map((linkSection: Types.App.LinkSection, index: number) => (
-        <ABox direction='row' key={index}>
+        <ABox align='center' direction='row' height='full' key={index}>
           {linkSection.links.map((link: Types.App.Link, i: number) => (
-            <PlaceholderLink href={link.route || '/'} key={i}>
+            <PlaceholderLink
+              href={link.route || '/'}
+              key={i}
+              style={i === 0 && index === 0 ? first : list}
+            >
               {link.text}
             </PlaceholderLink>
           ))}
