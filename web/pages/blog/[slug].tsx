@@ -11,6 +11,7 @@ import { PlaceholderBlock } from '../../components/cookbook/block';
 import { ETFLayout } from '../../components/etf/etf-layout';
 
 type Page = {
+  description: string;
   title: string;
   publishedAt: Date;
   mainImage: {
@@ -24,6 +25,7 @@ type Page = {
 
 type Props = {
   page: Page;
+  menu: Types.AllowAny;
 };
 
 type StaticProps = {
