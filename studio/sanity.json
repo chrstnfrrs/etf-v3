@@ -3,6 +3,10 @@
   "project": {
     "name": "Erin Tallard Fitness"
   },
+  "api": {
+    "projectId": "wbbg77u8",
+    "dataset": "production"
+  },
   "plugins": [
     "@sanity/base",
     "@sanity/components",

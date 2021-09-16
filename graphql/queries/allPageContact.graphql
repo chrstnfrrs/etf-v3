@@ -1,10 +1,10 @@
 query contactPage {
- allPageContact {
-  	_key
-  	title
-  	description
-  	callToActionRaw
-  	links {
+  allPageContact {
+    _key
+    title
+    description
+    callToActionRaw
+    links {
       _key
       text
       route
@@ -12,8 +12,8 @@ query contactPage {
         decorator
       }
     }
-  	contactForm {
+    contactForm {
       submit
     }
-	}
+  }
 }

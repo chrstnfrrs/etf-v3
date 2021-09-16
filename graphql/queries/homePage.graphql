@@ -1,5 +1,5 @@
 query homePage {
-  allPages(where:{title:{eq:"Home"}}) {
+  allPages(where: { title: { eq: "Home" } }) {
     route
     title
     description
@@ -14,12 +14,12 @@ query homePage {
         _type
         submit
       }
-      ... on Hero{
+      ... on Hero {
         _key
         heading
-        heroImage{
+        heroImage {
           alt
-          asset{
+          asset {
             url
           }
         }

@@ -1,5 +1,5 @@
-query page($route: String){
-  allPages(where:{route:{eq:$route}}) {
+query page($route: String) {
+  allPages(where: { route: { eq: $route } }) {
     route
     title
     description
@@ -14,12 +14,12 @@ query page($route: String){
         _type
         submit
       }
-      ... on Hero{
+      ... on Hero {
         _key
         heading
-        heroImage{
+        heroImage {
           alt
-          asset{
+          asset {
             url
           }
         }
