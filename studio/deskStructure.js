@@ -1,5 +1,5 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { MdCreate, MdEmail, MdGridOn, MdSettings, MdViewHeadline } from 'react-icons/md'
+import { MdEmail, MdGridOn, MdHome, MdSettings } from 'react-icons/md'
 export default () =>
   S.list()
     .title('Content')
@@ -13,6 +13,15 @@ export default () =>
             .schemaType('settings')
             .documentId('appSettings')
         ),
+        S.listItem()
+          .title('Home')
+          .icon(MdHome)
+          .child(
+            S.document()
+              .title('Home')
+              .schemaType('homePage')
+              .documentId('homePage')
+          ),
       S.listItem()
         .title('Blog Page')
         .icon(MdGridOn)
@@ -39,6 +48,7 @@ export default () =>
         .filter(listItem => ![
           'button',
           'hero',
+          'homePage',
           'links',
           'link',
           'linkOptions',
@@ -49,5 +59,8 @@ export default () =>
           'contactForm',
           'pageHeading',
           'pageBlog',
+          'sectionTestimonial',
+          'testimonial',
+          'pages'
         ].includes(listItem.getId()))
     ])

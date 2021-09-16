@@ -1,9 +1,0 @@
-query blogPage {
- allPageBlog {
-  	_key
-  	title
-  	description
-    pageHeading
-    showPosts
-	}
-}

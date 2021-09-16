@@ -6,6 +6,7 @@ import contentMain from './contentMain'
 import contentPreview from './contentPreview'
 import button from './button'
 import hero from './hero'
+import homePage from './homePage'
 import link from './link'
 import links from './links'
 import linkOptions from './linkOptions'
@@ -15,7 +16,9 @@ import navigationOptions from './navigationOptions'
 import pageHeading from './pageHeading'
 import pages from './pages'
 import post from './post'
+import sectionTestimonial from './sectionTestimonial'
 import settings from './settings'
+import testimonial from './testimonial'
 import pageBlog from './pageBlog'
 import pageContact from './pageContact'
 
@@ -27,6 +30,7 @@ export default createSchema({
     contentPreview,
     button,
     hero,
+    homePage,
     link,
     links,
     linkOptions,
@@ -38,6 +42,8 @@ export default createSchema({
     pageHeading,
     post,
     pages,
+    sectionTestimonial,
     settings,
+    testimonial
   ]),
 })

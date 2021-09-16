@@ -25,11 +25,11 @@ a {
 
 .a-nav {
   --ANav-background: #003366 !important;
-  --ANav-color: #F3F4F7 !important;
+  --ANav-color: #f3f4f7 !important;
 }
 
 .a-btn {
-  --ABtn-color: #F3F4F7 !important;
+  --ABtn-color: #f3f4f7 !important;
 }
 
 .a-image {
@@ -37,4 +37,3 @@ a {
   height: 144px;
   object-fit: cover;
 }
-

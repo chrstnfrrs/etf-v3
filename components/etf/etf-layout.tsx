@@ -1,6 +1,7 @@
 import React from 'react';
 import { AContainer } from 'aspire-components-react';
 import Head from 'next/head';
+import styled from '@emotion/styled';
 
 import * as Types from '../../types/index.d';
 
@@ -17,6 +18,11 @@ type Props = {
   [key: string]: Types.AllowAny;
 };
 
+const ETFLayoutContainer = styled(AContainer)`
+  max-width: 100vw;
+  overflow: hidden;
+`;
+
 const ETFLayout: React.FC<Props> = (props) => (
   <>
     <ETFMenu {...props.menu} />
@@ -25,7 +31,7 @@ const ETFLayout: React.FC<Props> = (props) => (
       <meta content={props.page.title} key='title' property='og:title' />
       <meta content={props.page.description} name='description' />
     </Head>
-    <AContainer minHeight='100vh'>{props.children}</AContainer>
+    <ETFLayoutContainer minHeight='100vh'>{props.children}</ETFLayoutContainer>
   </>
 );
 
