@@ -1,21 +1,18 @@
-import { MdStar } from 'react-icons/md'
+import { MdStar } from 'react-icons/md';
 
 export default {
-  name: 'link',
-  title: 'Link',
-  type: 'document',
   fields: [
     {
       name: 'text',
       title: 'Text',
       type: 'string',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'route',
       title: 'Route',
       type: 'string',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'linkOptions',
@@ -23,15 +20,18 @@ export default {
       type: 'linkOptions',
     },
   ],
+  name: 'link',
   preview: {
-    select: {
-      title: 'text',
-      subtitle: 'route',
-    },
     prepare: (selection) => ({
-      title: selection.title,
+      media: MdStar,
       subtitle: selection.subtitle,
-      media: MdStar
+      title: selection.title,
     }),
-  }
-}
+    select: {
+      subtitle: 'route',
+      title: 'text',
+    },
+  },
+  title: 'Link',
+  type: 'document',
+};

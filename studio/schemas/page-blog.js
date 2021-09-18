@@ -1,35 +1,35 @@
-import { MdViewHeadline } from 'react-icons/md';
-
 export default {
   fields: [
     {
+      description:
+        'This field is used for SEO. It will appear in the tab and as the title for search results.',
       name: 'title',
       title: 'Page Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
+      description:
+        'This field is used for SEO. It will appear as the description for search results.',
       name: 'description',
       title: 'Page Description',
       type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'route',
-      title: 'Route',
+      name: 'pageHeading',
+      title: 'Page Heading',
       type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'sections',
-      of: [{ type: 'pageHeading' }, { type: 'hero' }, { type: 'contactForm' }],
-      title: 'Page Sections',
-      type: 'array',
+      name: 'showPosts',
+      title: 'Show Posts',
+      type: 'boolean',
       validation: (Rule) => Rule.required(),
     },
   ],
-  icon: MdViewHeadline,
-  name: 'pages',
-  title: 'Other Pages',
+  name: 'pageBlog',
+  title: 'Blog Page',
   type: 'document',
 };
