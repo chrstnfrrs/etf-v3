@@ -1,30 +1,33 @@
-import createSchema from 'part:@sanity/base/schema-creator'
-import schemaTypes from 'all:part:@sanity/base/schema-type'
+/* eslint-disable import/no-unresolved */
+import createSchema from 'part:@sanity/base/schema-creator';
+import schemaTypes from 'all:part:@sanity/base/schema-type';
+/* eslint-enable import/no-unresolved */
 
-import contactForm from './contactForm'
-import contentMain from './contentMain'
-import contentPreview from './contentPreview'
-import button from './button'
-import hero from './hero'
-import homePage from './homePage'
-import link from './link'
-import links from './links'
-import linkOptions from './linkOptions'
-import mainImage from './mainImage'
-import navigation from './navigation'
-import navigationOptions from './navigationOptions'
-import pageHeading from './pageHeading'
-import pages from './pages'
-import post from './post'
-import sectionTestimonial from './sectionTestimonial'
-import settings from './settings'
-import testimonial from './testimonial'
-import pageBlog from './pageBlog'
-import pageContact from './pageContact'
+import contactForm from './contact-form';
+import contentMain from './content-main';
+import contentPreview from './content-preview';
+import button from './button';
+import hero from './hero';
+import homePage from './home-page';
+import link from './link';
+import links from './links';
+import linkOptions from './link-options';
+import mainImage from './main-image';
+import navigation from './navigation';
+import navigationOptions from './navigation-options';
+import pageHeading from './page-heading';
+import pages from './pages';
+import post from './post';
+import sectionTestimonial from './section-testimonial';
+import settings from './settings';
+import testimonial from './testimonial';
+import pageBlog from './page-blog';
+import pageContact from './page-contact';
 
 export default createSchema({
   name: 'default',
-  types: schemaTypes.concat([
+  types: [
+    ...schemaTypes,
     contactForm,
     contentMain,
     contentPreview,
@@ -44,6 +47,6 @@ export default createSchema({
     pages,
     sectionTestimonial,
     settings,
-    testimonial
-  ]),
-})
+    testimonial,
+  ],
+});

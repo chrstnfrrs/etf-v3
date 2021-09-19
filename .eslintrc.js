@@ -30,7 +30,10 @@ module.exports = {
       },
     ],
     'react/display-name': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.jsx'] }], // Allow JSX is TSX Files
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.tsx', '.jsx', '.js'] },
+    ], // Allow JSX is TSX Files
     'react/no-array-index-key': 'off', // :shrug:
     'unicorn/no-abusive-eslint-disable': 'off',
     'unicorn/no-null': 'off',

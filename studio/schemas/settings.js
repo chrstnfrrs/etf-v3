@@ -1,8 +1,4 @@
-import { MdSettings } from 'react-icons/md'
-
 export default {
-  name: 'settings',
-  type: 'document',
   fields: [
     {
       name: 'navigation',
@@ -10,9 +6,11 @@ export default {
       type: 'navigation',
     },
   ],
+  name: 'settings',
   preview: {
     select: {
-      title: 'Settings'
-    }
-  }
-}
+      title: 'Settings',
+    },
+  },
+  type: 'document',
+};
