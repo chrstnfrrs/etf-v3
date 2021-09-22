@@ -2,7 +2,20 @@ export default {
   fields: [
     {
       name: 'display',
-      of: [{ type: 'mainImage' }, { type: 'contentMain' }],
+      of: [
+        { type: 'mainImage' },
+        {
+          fields: [
+            {
+              name: 'content',
+              title: 'Content',
+              type: 'contentMain',
+            },
+          ],
+          name: 'content',
+          type: 'object',
+        },
+      ],
       title: 'Display',
       type: 'array',
       validation: (Rule) => Rule.min(1).max(1).error('Must have one item'),
