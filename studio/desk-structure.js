@@ -51,6 +51,8 @@ export default () =>
             'button',
             'hero',
             'homePage',
+            'layoutSplitFields',
+            'layoutSplit',
             'links',
             'link',
             'linkOptions',
