@@ -19,13 +19,8 @@ export default {
       of: [{ type: 'layoutSplit' }],
       title: 'Page Sections',
       type: 'array',
+      validation: (Rule) => Rule.required().min(1),
     },
-    // {
-    //   name: 'layoutSplit',
-    //   title: 'Split Layout',
-    //   type: 'layoutSplit',
-    // },
-    // {
     //   name: 'sectionTestimonial',
     //   title: 'Testimonial Section',
     //   type: 'sectionTestimonial',
