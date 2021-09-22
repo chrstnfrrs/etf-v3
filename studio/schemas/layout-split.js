@@ -13,7 +13,7 @@ export default {
       validation: (Rule) => Rule.required(),
     },
   ],
-  name: 'splitLayout',
+  name: 'layoutSplit',
   title: 'Split Layout',
   type: 'document',
 };
