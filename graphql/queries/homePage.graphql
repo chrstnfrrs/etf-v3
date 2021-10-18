@@ -1,28 +1,57 @@
-query homePage {
-  allPages(where: { title: { eq: "Home" } }) {
+fragment MainImageFragment on MainImage {
+  alt
+  asset {
+    url
+    metadata {
+      dimensions {
+        height
+        width
+      }
+    }
+  }
+  hotspot {
+    width
+    height
+  }
+}
+
+fragment LayoutSplitContentFragment on LayoutSplitContent {
+  heading
+  subheading
+  link {
+    text
     route
+  }
+}
+
+query HomePage {
+  allHomePage(limit: 1) {
     title
     description
     sections {
-      ... on PageHeading {
-        _key
-        _type
-        title
-      }
-      ... on ContactForm {
-        _key
-        _type
-        submit
-      }
-      ... on Hero {
-        _key
-        heading
-        heroImage {
-          alt
-          asset {
-            url
+      __typename
+      _key
+      left {
+        display {
+          ... on LayoutSplitContent {
+            ...LayoutSplitContentFragment
+          }
+          ... on MainImage {
+            ...MainImageFragment
           }
         }
+        mobile
+      }
+      right {
+        display {
+          ... on LayoutSplitContent {
+            ...LayoutSplitContentFragment
+          }
+          ... on MainImage {
+            ...MainImageFragment
+          }
+        }
+        mobile
       }
     }
   }
