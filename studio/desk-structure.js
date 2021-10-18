@@ -66,6 +66,7 @@ export default () =>
             'sectionTestimonial',
             'testimonial',
             'pages',
+            'layoutSplitContent',
           ].includes(listItem.getId()),
       ),
     ]);
