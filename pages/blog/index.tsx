@@ -75,7 +75,7 @@ const BlogPage: React.FC<Props> = (props) => (
     {props.posts.length ? (
       <AGrid>
         {props.posts.map((post: AllowAny) => (
-          <ALink href={`blog/${post.slug.current}`} key={post._key}>
+          <ALink href={`blog/${post.slug.current}`} key={post._id}>
             <ACard padding='0' style={ACardStyles}>
               <AImage
                 alt={post.mainImage.alt}
