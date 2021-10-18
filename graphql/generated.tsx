@@ -1,13 +1,9 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -23,11 +19,17 @@ export type Scalars = {
   Date: any;
 };
 
+
+
 export type RootQuery = {
   __typename?: 'RootQuery';
   ContactForm?: Maybe<ContactForm>;
+  LayoutSplitContent?: Maybe<LayoutSplitContent>;
   Button?: Maybe<Button>;
   Hero?: Maybe<Hero>;
+  HomePage?: Maybe<HomePage>;
+  LayoutSplitFields?: Maybe<LayoutSplitFields>;
+  LayoutSplit?: Maybe<LayoutSplit>;
   Link?: Maybe<Link>;
   Links?: Maybe<Links>;
   LinkOptions?: Maybe<LinkOptions>;
@@ -38,13 +40,19 @@ export type RootQuery = {
   PageHeading?: Maybe<PageHeading>;
   Post?: Maybe<Post>;
   Pages?: Maybe<Pages>;
+  SectionTestimonial?: Maybe<SectionTestimonial>;
   Settings?: Maybe<Settings>;
+  Testimonial?: Maybe<Testimonial>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
   SanityFileAsset?: Maybe<SanityFileAsset>;
   Document?: Maybe<Document>;
   allContactForm: Array<ContactForm>;
+  allLayoutSplitContent: Array<LayoutSplitContent>;
   allButton: Array<Button>;
   allHero: Array<Hero>;
+  allHomePage: Array<HomePage>;
+  allLayoutSplitFields: Array<LayoutSplitFields>;
+  allLayoutSplit: Array<LayoutSplit>;
   allLink: Array<Link>;
   allLinks: Array<Links>;
   allLinkOptions: Array<LinkOptions>;
@@ -55,79 +63,129 @@ export type RootQuery = {
   allPageHeading: Array<PageHeading>;
   allPost: Array<Post>;
   allPages: Array<Pages>;
+  allSectionTestimonial: Array<SectionTestimonial>;
   allSettings: Array<Settings>;
+  allTestimonial: Array<Testimonial>;
   allSanityImageAsset: Array<SanityImageAsset>;
   allSanityFileAsset: Array<SanityFileAsset>;
   allDocument: Array<Document>;
 };
 
+
 export type RootQueryContactFormArgs = {
   id: Scalars['ID'];
 };
+
+
+export type RootQueryLayoutSplitContentArgs = {
+  id: Scalars['ID'];
+};
+
 
 export type RootQueryButtonArgs = {
   id: Scalars['ID'];
 };
 
+
 export type RootQueryHeroArgs = {
   id: Scalars['ID'];
 };
+
+
+export type RootQueryHomePageArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryLayoutSplitFieldsArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryLayoutSplitArgs = {
+  id: Scalars['ID'];
+};
+
 
 export type RootQueryLinkArgs = {
   id: Scalars['ID'];
 };
 
+
 export type RootQueryLinksArgs = {
   id: Scalars['ID'];
 };
+
 
 export type RootQueryLinkOptionsArgs = {
   id: Scalars['ID'];
 };
 
+
 export type RootQueryNavigationArgs = {
   id: Scalars['ID'];
 };
+
 
 export type RootQueryNavigationOptionsArgs = {
   id: Scalars['ID'];
 };
 
+
 export type RootQueryPageBlogArgs = {
   id: Scalars['ID'];
 };
+
 
 export type RootQueryPageContactArgs = {
   id: Scalars['ID'];
 };
 
+
 export type RootQueryPageHeadingArgs = {
   id: Scalars['ID'];
 };
+
 
 export type RootQueryPostArgs = {
   id: Scalars['ID'];
 };
 
+
 export type RootQueryPagesArgs = {
   id: Scalars['ID'];
 };
+
+
+export type RootQuerySectionTestimonialArgs = {
+  id: Scalars['ID'];
+};
+
 
 export type RootQuerySettingsArgs = {
   id: Scalars['ID'];
 };
 
+
+export type RootQueryTestimonialArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type RootQuerySanityImageAssetArgs = {
   id: Scalars['ID'];
 };
+
 
 export type RootQuerySanityFileAssetArgs = {
   id: Scalars['ID'];
 };
 
+
 export type RootQueryDocumentArgs = {
   id: Scalars['ID'];
 };
+
 
 export type RootQueryAllContactFormArgs = {
   where?: Maybe<ContactFormFilter>;
@@ -136,12 +194,22 @@ export type RootQueryAllContactFormArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
+export type RootQueryAllLayoutSplitContentArgs = {
+  where?: Maybe<LayoutSplitContentFilter>;
+  sort?: Maybe<Array<LayoutSplitContentSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type RootQueryAllButtonArgs = {
   where?: Maybe<ButtonFilter>;
   sort?: Maybe<Array<ButtonSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
 
 export type RootQueryAllHeroArgs = {
   where?: Maybe<HeroFilter>;
@@ -150,12 +218,38 @@ export type RootQueryAllHeroArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
+export type RootQueryAllHomePageArgs = {
+  where?: Maybe<HomePageFilter>;
+  sort?: Maybe<Array<HomePageSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllLayoutSplitFieldsArgs = {
+  where?: Maybe<LayoutSplitFieldsFilter>;
+  sort?: Maybe<Array<LayoutSplitFieldsSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllLayoutSplitArgs = {
+  where?: Maybe<LayoutSplitFilter>;
+  sort?: Maybe<Array<LayoutSplitSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type RootQueryAllLinkArgs = {
   where?: Maybe<LinkFilter>;
   sort?: Maybe<Array<LinkSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
 
 export type RootQueryAllLinksArgs = {
   where?: Maybe<LinksFilter>;
@@ -164,12 +258,14 @@ export type RootQueryAllLinksArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
 export type RootQueryAllLinkOptionsArgs = {
   where?: Maybe<LinkOptionsFilter>;
   sort?: Maybe<Array<LinkOptionsSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
 
 export type RootQueryAllNavigationArgs = {
   where?: Maybe<NavigationFilter>;
@@ -178,12 +274,14 @@ export type RootQueryAllNavigationArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
 export type RootQueryAllNavigationOptionsArgs = {
   where?: Maybe<NavigationOptionsFilter>;
   sort?: Maybe<Array<NavigationOptionsSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
 
 export type RootQueryAllPageBlogArgs = {
   where?: Maybe<PageBlogFilter>;
@@ -192,12 +290,14 @@ export type RootQueryAllPageBlogArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
 export type RootQueryAllPageContactArgs = {
   where?: Maybe<PageContactFilter>;
   sort?: Maybe<Array<PageContactSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
 
 export type RootQueryAllPageHeadingArgs = {
   where?: Maybe<PageHeadingFilter>;
@@ -206,12 +306,14 @@ export type RootQueryAllPageHeadingArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
 export type RootQueryAllPostArgs = {
   where?: Maybe<PostFilter>;
   sort?: Maybe<Array<PostSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
 
 export type RootQueryAllPagesArgs = {
   where?: Maybe<PagesFilter>;
@@ -220,12 +322,30 @@ export type RootQueryAllPagesArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
+export type RootQueryAllSectionTestimonialArgs = {
+  where?: Maybe<SectionTestimonialFilter>;
+  sort?: Maybe<Array<SectionTestimonialSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type RootQueryAllSettingsArgs = {
   where?: Maybe<SettingsFilter>;
   sort?: Maybe<Array<SettingsSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
+
+export type RootQueryAllTestimonialArgs = {
+  where?: Maybe<TestimonialFilter>;
+  sort?: Maybe<Array<TestimonialSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
 
 export type RootQueryAllSanityImageAssetArgs = {
   where?: Maybe<SanityImageAssetFilter>;
@@ -234,12 +354,14 @@ export type RootQueryAllSanityImageAssetArgs = {
   offset?: Maybe<Scalars['Int']>;
 };
 
+
 export type RootQueryAllSanityFileAssetArgs = {
   where?: Maybe<SanityFileAssetFilter>;
   sort?: Maybe<Array<SanityFileAssetSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
+
 
 export type RootQueryAllDocumentArgs = {
   where?: Maybe<DocumentFilter>;
@@ -278,8 +400,9 @@ export type Document = {
   _rev?: Maybe<Scalars['String']>;
 };
 
-export type Button = Document & {
-  __typename?: 'Button';
+
+export type LayoutSplitContent = Document & {
+  __typename?: 'LayoutSplitContent';
   /** Document ID */
   _id?: Maybe<Scalars['ID']>;
   /** Document type */
@@ -291,6 +414,8 @@ export type Button = Document & {
   /** Current document revision */
   _rev?: Maybe<Scalars['String']>;
   _key?: Maybe<Scalars['String']>;
+  heading?: Maybe<Scalars['String']>;
+  subheading?: Maybe<Scalars['String']>;
   link?: Maybe<Link>;
 };
 
@@ -328,6 +453,22 @@ export type LinkOptions = Document & {
   size?: Maybe<Scalars['String']>;
   weight?: Maybe<Scalars['String']>;
   decorator?: Maybe<Scalars['String']>;
+};
+
+export type Button = Document & {
+  __typename?: 'Button';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  link?: Maybe<Link>;
 };
 
 export type Hero = Document & {
@@ -471,6 +612,60 @@ export type SanityImageCrop = {
   right?: Maybe<Scalars['Float']>;
 };
 
+export type HomePage = Document & {
+  __typename?: 'HomePage';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  sections?: Maybe<Array<Maybe<LayoutSplit>>>;
+};
+
+export type LayoutSplit = Document & {
+  __typename?: 'LayoutSplit';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  left?: Maybe<LayoutSplitFields>;
+  right?: Maybe<LayoutSplitFields>;
+};
+
+export type LayoutSplitFields = Document & {
+  __typename?: 'LayoutSplitFields';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  display?: Maybe<Array<Maybe<LayoutSplitContentOrMainImage>>>;
+  mobile?: Maybe<Scalars['String']>;
+};
+
+export type LayoutSplitContentOrMainImage = LayoutSplitContent | MainImage;
+
 export type Links = Document & {
   __typename?: 'Links';
   /** Document ID */
@@ -563,6 +758,7 @@ export type PageContact = Document & {
   contactForm?: Maybe<ContactForm>;
 };
 
+
 export type PageHeading = Document & {
   __typename?: 'PageHeading';
   /** Document ID */
@@ -627,6 +823,40 @@ export type Pages = Document & {
 };
 
 export type ContactFormOrHeroOrPageHeading = ContactForm | Hero | PageHeading;
+
+export type SectionTestimonial = Document & {
+  __typename?: 'SectionTestimonial';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  testimonials?: Maybe<Array<Maybe<Testimonial>>>;
+};
+
+export type Testimonial = Document & {
+  __typename?: 'Testimonial';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+};
 
 export type Settings = Document & {
   __typename?: 'Settings';
@@ -741,10 +971,10 @@ export enum SortOrder {
   /** Sorts on the value in ascending order. */
   Asc = 'ASC',
   /** Sorts on the value in descending order. */
-  Desc = 'DESC',
+  Desc = 'DESC'
 }
 
-export type ButtonFilter = {
+export type LayoutSplitContentFilter = {
   /** Apply filters on document level */
   _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
@@ -753,6 +983,8 @@ export type ButtonFilter = {
   _updatedAt?: Maybe<DatetimeFilter>;
   _rev?: Maybe<StringFilter>;
   _key?: Maybe<StringFilter>;
+  heading?: Maybe<StringFilter>;
+  subheading?: Maybe<StringFilter>;
   link?: Maybe<LinkFilter>;
 };
 
@@ -784,13 +1016,15 @@ export type LinkOptionsFilter = {
   decorator?: Maybe<StringFilter>;
 };
 
-export type ButtonSorting = {
+export type LayoutSplitContentSorting = {
   _id?: Maybe<SortOrder>;
   _type?: Maybe<SortOrder>;
   _createdAt?: Maybe<SortOrder>;
   _updatedAt?: Maybe<SortOrder>;
   _rev?: Maybe<SortOrder>;
   _key?: Maybe<SortOrder>;
+  heading?: Maybe<SortOrder>;
+  subheading?: Maybe<SortOrder>;
   link?: Maybe<LinkSorting>;
 };
 
@@ -816,6 +1050,28 @@ export type LinkOptionsSorting = {
   size?: Maybe<SortOrder>;
   weight?: Maybe<SortOrder>;
   decorator?: Maybe<SortOrder>;
+};
+
+export type ButtonFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  link?: Maybe<LinkFilter>;
+};
+
+export type ButtonSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  link?: Maybe<LinkSorting>;
 };
 
 export type HeroFilter = {
@@ -995,6 +1251,76 @@ export type SanityImageCropSorting = {
   bottom?: Maybe<SortOrder>;
   left?: Maybe<SortOrder>;
   right?: Maybe<SortOrder>;
+};
+
+export type HomePageFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+  description?: Maybe<StringFilter>;
+};
+
+export type HomePageSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
+};
+
+export type LayoutSplitFieldsFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  mobile?: Maybe<StringFilter>;
+};
+
+export type LayoutSplitFieldsSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  mobile?: Maybe<SortOrder>;
+};
+
+export type LayoutSplitFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  left?: Maybe<LayoutSplitFieldsFilter>;
+  right?: Maybe<LayoutSplitFieldsFilter>;
+};
+
+export type LayoutSplitSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  left?: Maybe<LayoutSplitFieldsSorting>;
+  right?: Maybe<LayoutSplitFieldsSorting>;
 };
 
 export type LinksFilter = {
@@ -1203,6 +1529,28 @@ export type PagesSorting = {
   route?: Maybe<SortOrder>;
 };
 
+export type SectionTestimonialFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+};
+
+export type SectionTestimonialSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+};
+
 export type SettingsFilter = {
   /** Apply filters on document level */
   _?: Maybe<Sanity_DocumentFilter>;
@@ -1223,6 +1571,30 @@ export type SettingsSorting = {
   _rev?: Maybe<SortOrder>;
   _key?: Maybe<SortOrder>;
   navigation?: Maybe<NavigationSorting>;
+};
+
+export type TestimonialFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  name?: Maybe<StringFilter>;
+  text?: Maybe<StringFilter>;
+};
+
+export type TestimonialSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  text?: Maybe<SortOrder>;
 };
 
 export type SanityImageAssetSorting = {
@@ -1430,6 +1802,7 @@ export type DateFilter = {
   lte?: Maybe<Scalars['Date']>;
 };
 
+
 export type ImageFilter = {
   _key?: Maybe<StringFilter>;
   _type?: Maybe<StringFilter>;
@@ -1456,246 +1829,269 @@ export type FileSorting = {
   _type?: Maybe<SortOrder>;
 };
 
-export type BlogPageQueryVariables = Exact<{ [key: string]: never }>;
+export type BlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type BlogPageQuery = { __typename?: 'RootQuery' } & {
-  allPageBlog: Array<
-    { __typename?: 'PageBlog' } & Pick<
-      PageBlog,
-      '_key' | 'title' | 'description' | 'pageHeading' | 'showPosts'
-    >
-  >;
-};
 
-export type ContactPageQueryVariables = Exact<{ [key: string]: never }>;
+export type BlogPageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPageBlog: Array<(
+    { __typename?: 'PageBlog' }
+    & Pick<PageBlog, '_key' | 'title' | 'description' | 'pageHeading' | 'showPosts'>
+  )> }
+);
 
-export type ContactPageQuery = { __typename?: 'RootQuery' } & {
-  allPageContact: Array<
-    { __typename?: 'PageContact' } & Pick<
-      PageContact,
-      '_key' | 'title' | 'description' | 'callToActionRaw'
-    > & {
-        links?: Maybe<
-          Array<
-            Maybe<
-              { __typename?: 'Link' } & Pick<
-                Link,
-                '_key' | 'text' | 'route'
-              > & {
-                  linkOptions?: Maybe<
-                    { __typename?: 'LinkOptions' } & Pick<
-                      LinkOptions,
-                      'decorator'
-                    >
-                  >;
-                }
-            >
-          >
-        >;
-        contactForm?: Maybe<
-          { __typename?: 'ContactForm' } & Pick<ContactForm, 'submit'>
-        >;
-      }
-  >;
-};
+export type ContactPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type AllPagesQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AllPagesQuery = { __typename?: 'RootQuery' } & {
-  allPages: Array<{ __typename?: 'Pages' } & Pick<Pages, 'route'>>;
-};
+export type ContactPageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPageContact: Array<(
+    { __typename?: 'PageContact' }
+    & Pick<PageContact, '_key' | 'title' | 'description' | 'callToActionRaw'>
+    & { links?: Maybe<Array<Maybe<(
+      { __typename?: 'Link' }
+      & Pick<Link, '_key' | 'text' | 'route'>
+      & { linkOptions?: Maybe<(
+        { __typename?: 'LinkOptions' }
+        & Pick<LinkOptions, 'decorator'>
+      )> }
+    )>>>, contactForm?: Maybe<(
+      { __typename?: 'ContactForm' }
+      & Pick<ContactForm, 'submit'>
+    )> }
+  )> }
+);
+
+export type AllPagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllPagesQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPages: Array<(
+    { __typename?: 'Pages' }
+    & Pick<Pages, 'route'>
+  )> }
+);
 
 export type AllPostPostQueryVariables = Exact<{
   slug?: Maybe<Scalars['String']>;
 }>;
 
-export type AllPostPostQuery = { __typename?: 'RootQuery' } & {
-  allPost: Array<
-    { __typename?: 'Post' } & Pick<
-      Post,
-      'title' | 'publishedAt' | 'bodyRaw'
-    > & {
-        mainImage?: Maybe<
-          { __typename?: 'MainImage' } & {
-            asset?: Maybe<
-              { __typename?: 'SanityImageAsset' } & Pick<
-                SanityImageAsset,
-                'url'
-              >
-            >;
-          }
-        >;
-        slug?: Maybe<{ __typename?: 'Slug' } & Pick<Slug, 'current'>>;
-      }
-  >;
-};
 
-export type AllPostPreviewQueryVariables = Exact<{ [key: string]: never }>;
+export type AllPostPostQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPost: Array<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'title' | 'publishedAt' | 'bodyRaw'>
+    & { mainImage?: Maybe<(
+      { __typename?: 'MainImage' }
+      & { asset?: Maybe<(
+        { __typename?: 'SanityImageAsset' }
+        & Pick<SanityImageAsset, 'url'>
+      )> }
+    )>, slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
+);
 
-export type AllPostPreviewQuery = { __typename?: 'RootQuery' } & {
-  allPost: Array<
-    { __typename?: 'Post' } & Pick<
-      Post,
-      'title' | 'publishedAt' | 'previewRaw'
-    > & {
-        mainImage?: Maybe<
-          { __typename?: 'MainImage' } & {
-            asset?: Maybe<
-              { __typename?: 'SanityImageAsset' } & Pick<
-                SanityImageAsset,
-                'url'
-              >
-            >;
-          }
-        >;
-        slug?: Maybe<{ __typename?: 'Slug' } & Pick<Slug, 'current'>>;
-      }
-  >;
-};
+export type AllPostPreviewQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type AllSlugsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type AllSlugsQuery = { __typename?: 'RootQuery' } & {
-  allPost: Array<
-    { __typename?: 'Post' } & {
-      slug?: Maybe<{ __typename?: 'Slug' } & Pick<Slug, 'current'>>;
-    }
-  >;
-};
+export type AllPostPreviewQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPost: Array<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'title' | 'publishedAt' | 'previewRaw'>
+    & { mainImage?: Maybe<(
+      { __typename?: 'MainImage' }
+      & { asset?: Maybe<(
+        { __typename?: 'SanityImageAsset' }
+        & Pick<SanityImageAsset, 'url'>
+      )> }
+    )>, slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
+);
 
-export type HomePageQueryVariables = Exact<{ [key: string]: never }>;
+export type AllSlugsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type HomePageQuery = { __typename?: 'RootQuery' } & {
-  allPages: Array<
-    { __typename?: 'Pages' } & Pick<
-      Pages,
-      'route' | 'title' | 'description'
-    > & {
-        sections?: Maybe<
-          Array<
-            Maybe<
-              | ({ __typename?: 'ContactForm' } & Pick<
-                  ContactForm,
-                  '_key' | '_type' | 'submit'
-                >)
-              | ({ __typename?: 'Hero' } & Pick<Hero, '_key' | 'heading'> & {
-                    heroImage?: Maybe<
-                      { __typename?: 'MainImage' } & Pick<MainImage, 'alt'> & {
-                          asset?: Maybe<
-                            { __typename?: 'SanityImageAsset' } & Pick<
-                              SanityImageAsset,
-                              'url'
-                            >
-                          >;
-                        }
-                    >;
-                  })
-              | ({ __typename?: 'PageHeading' } & Pick<
-                  PageHeading,
-                  '_key' | '_type' | 'title'
-                >)
-            >
-          >
-        >;
-      }
-  >;
-};
+
+export type AllSlugsQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPost: Array<(
+    { __typename?: 'Post' }
+    & { slug?: Maybe<(
+      { __typename?: 'Slug' }
+      & Pick<Slug, 'current'>
+    )> }
+  )> }
+);
+
+export type MainImageFragmentFragment = (
+  { __typename?: 'MainImage' }
+  & Pick<MainImage, 'alt'>
+  & { asset?: Maybe<(
+    { __typename?: 'SanityImageAsset' }
+    & Pick<SanityImageAsset, 'url'>
+    & { metadata?: Maybe<(
+      { __typename?: 'SanityImageMetadata' }
+      & { dimensions?: Maybe<(
+        { __typename?: 'SanityImageDimensions' }
+        & Pick<SanityImageDimensions, 'height' | 'width'>
+      )> }
+    )> }
+  )>, hotspot?: Maybe<(
+    { __typename?: 'SanityImageHotspot' }
+    & Pick<SanityImageHotspot, 'width' | 'height'>
+  )> }
+);
+
+export type LayoutSplitContentFragmentFragment = (
+  { __typename?: 'LayoutSplitContent' }
+  & Pick<LayoutSplitContent, 'heading' | 'subheading'>
+  & { link?: Maybe<(
+    { __typename?: 'Link' }
+    & Pick<Link, 'text' | 'route'>
+  )> }
+);
+
+export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HomePageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allHomePage: Array<(
+    { __typename?: 'HomePage' }
+    & Pick<HomePage, 'title' | 'description'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename: 'LayoutSplit' }
+      & Pick<LayoutSplit, '_key'>
+      & { left?: Maybe<(
+        { __typename?: 'LayoutSplitFields' }
+        & Pick<LayoutSplitFields, 'mobile'>
+        & { display?: Maybe<Array<Maybe<(
+          { __typename?: 'LayoutSplitContent' }
+          & LayoutSplitContentFragmentFragment
+        ) | (
+          { __typename?: 'MainImage' }
+          & MainImageFragmentFragment
+        )>>> }
+      )>, right?: Maybe<(
+        { __typename?: 'LayoutSplitFields' }
+        & Pick<LayoutSplitFields, 'mobile'>
+        & { display?: Maybe<Array<Maybe<(
+          { __typename?: 'LayoutSplitContent' }
+          & LayoutSplitContentFragmentFragment
+        ) | (
+          { __typename?: 'MainImage' }
+          & MainImageFragmentFragment
+        )>>> }
+      )> }
+    )>>> }
+  )> }
+);
 
 export type PageQueryVariables = Exact<{
   route?: Maybe<Scalars['String']>;
 }>;
 
-export type PageQuery = { __typename?: 'RootQuery' } & {
-  allPages: Array<
-    { __typename?: 'Pages' } & Pick<
-      Pages,
-      'route' | 'title' | 'description'
-    > & {
-        sections?: Maybe<
-          Array<
-            Maybe<
-              | ({ __typename?: 'ContactForm' } & Pick<
-                  ContactForm,
-                  '_key' | '_type' | 'submit'
-                >)
-              | ({ __typename?: 'Hero' } & Pick<Hero, '_key' | 'heading'> & {
-                    heroImage?: Maybe<
-                      { __typename?: 'MainImage' } & Pick<MainImage, 'alt'> & {
-                          asset?: Maybe<
-                            { __typename?: 'SanityImageAsset' } & Pick<
-                              SanityImageAsset,
-                              'url'
-                            >
-                          >;
-                        }
-                    >;
-                  })
-              | ({ __typename?: 'PageHeading' } & Pick<
-                  PageHeading,
-                  '_key' | '_type' | 'title'
-                >)
-            >
-          >
-        >;
+
+export type PageQuery = (
+  { __typename?: 'RootQuery' }
+  & { allPages: Array<(
+    { __typename?: 'Pages' }
+    & Pick<Pages, 'route' | 'title' | 'description'>
+    & { sections?: Maybe<Array<Maybe<(
+      { __typename?: 'ContactForm' }
+      & Pick<ContactForm, '_key' | '_type' | 'submit'>
+    ) | (
+      { __typename?: 'Hero' }
+      & Pick<Hero, '_key' | 'heading'>
+      & { heroImage?: Maybe<(
+        { __typename?: 'MainImage' }
+        & Pick<MainImage, 'alt'>
+        & { asset?: Maybe<(
+          { __typename?: 'SanityImageAsset' }
+          & Pick<SanityImageAsset, 'url'>
+        )> }
+      )> }
+    ) | (
+      { __typename?: 'PageHeading' }
+      & Pick<PageHeading, '_key' | '_type' | 'title'>
+    )>>> }
+  )> }
+);
+
+export type SettingsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SettingsQuery = (
+  { __typename?: 'RootQuery' }
+  & { allSettings: Array<(
+    { __typename?: 'Settings' }
+    & { navigation?: Maybe<(
+      { __typename?: 'Navigation' }
+      & { navigationLinks?: Maybe<Array<Maybe<(
+        { __typename?: 'Links' }
+        & { links?: Maybe<Array<Maybe<(
+          { __typename?: 'Link' }
+          & Pick<Link, '_key' | 'text' | 'route'>
+          & { linkOptions?: Maybe<(
+            { __typename?: 'LinkOptions' }
+            & Pick<LinkOptions, 'size' | 'weight' | 'decorator'>
+          )> }
+        )>>> }
+      )>>>, navigationOptions?: Maybe<(
+        { __typename?: 'NavigationOptions' }
+        & Pick<NavigationOptions, 'alignItems'>
+      )> }
+    )> }
+  )> }
+);
+
+export const MainImageFragmentFragmentDoc = gql`
+    fragment MainImageFragment on MainImage {
+  alt
+  asset {
+    url
+    metadata {
+      dimensions {
+        height
+        width
       }
-  >;
-};
-
-export type SettingsQueryVariables = Exact<{ [key: string]: never }>;
-
-export type SettingsQuery = { __typename?: 'RootQuery' } & {
-  allSettings: Array<
-    { __typename?: 'Settings' } & {
-      navigation?: Maybe<
-        { __typename?: 'Navigation' } & {
-          navigationLinks?: Maybe<
-            Array<
-              Maybe<
-                { __typename?: 'Links' } & {
-                  links?: Maybe<
-                    Array<
-                      Maybe<
-                        { __typename?: 'Link' } & Pick<
-                          Link,
-                          '_key' | 'text' | 'route'
-                        > & {
-                            linkOptions?: Maybe<
-                              { __typename?: 'LinkOptions' } & Pick<
-                                LinkOptions,
-                                'size' | 'weight' | 'decorator'
-                              >
-                            >;
-                          }
-                      >
-                    >
-                  >;
-                }
-              >
-            >
-          >;
-          navigationOptions?: Maybe<
-            { __typename?: 'NavigationOptions' } & Pick<
-              NavigationOptions,
-              'alignItems'
-            >
-          >;
-        }
-      >;
-    }
-  >;
-};
-
-export const BlogPageDocument = gql`
-  query blogPage {
-    allPageBlog {
-      _key
-      title
-      description
-      pageHeading
-      showPosts
     }
   }
-`;
+  hotspot {
+    width
+    height
+  }
+}
+    `;
+export const LayoutSplitContentFragmentFragmentDoc = gql`
+    fragment LayoutSplitContentFragment on LayoutSplitContent {
+  heading
+  subheading
+  link {
+    text
+    route
+  }
+}
+    `;
+export const BlogPageDocument = gql`
+    query blogPage {
+  allPageBlog {
+    _key
+    title
+    description
+    pageHeading
+    showPosts
+  }
+}
+    `;
 
 /**
  * __useBlogPageQuery__
@@ -1712,54 +2108,36 @@ export const BlogPageDocument = gql`
  *   },
  * });
  */
-export function useBlogPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<BlogPageQuery, BlogPageQueryVariables>,
-) {
-  return Apollo.useQuery<BlogPageQuery, BlogPageQueryVariables>(
-    BlogPageDocument,
-    baseOptions,
-  );
-}
-export function useBlogPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    BlogPageQuery,
-    BlogPageQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<BlogPageQuery, BlogPageQueryVariables>(
-    BlogPageDocument,
-    baseOptions,
-  );
-}
-export type BlogPageQueryHookResult = ReturnType<typeof useBlogPageQuery>;
-export type BlogPageLazyQueryHookResult = ReturnType<
-  typeof useBlogPageLazyQuery
->;
-export type BlogPageQueryResult = Apollo.QueryResult<
-  BlogPageQuery,
-  BlogPageQueryVariables
->;
-export const ContactPageDocument = gql`
-  query contactPage {
-    allPageContact {
-      _key
-      title
-      description
-      callToActionRaw
-      links {
-        _key
-        text
-        route
-        linkOptions {
-          decorator
-        }
+export function useBlogPageQuery(baseOptions?: Apollo.QueryHookOptions<BlogPageQuery, BlogPageQueryVariables>) {
+        return Apollo.useQuery<BlogPageQuery, BlogPageQueryVariables>(BlogPageDocument, baseOptions);
       }
-      contactForm {
-        submit
+export function useBlogPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<BlogPageQuery, BlogPageQueryVariables>) {
+          return Apollo.useLazyQuery<BlogPageQuery, BlogPageQueryVariables>(BlogPageDocument, baseOptions);
+        }
+export type BlogPageQueryHookResult = ReturnType<typeof useBlogPageQuery>;
+export type BlogPageLazyQueryHookResult = ReturnType<typeof useBlogPageLazyQuery>;
+export type BlogPageQueryResult = Apollo.QueryResult<BlogPageQuery, BlogPageQueryVariables>;
+export const ContactPageDocument = gql`
+    query contactPage {
+  allPageContact {
+    _key
+    title
+    description
+    callToActionRaw
+    links {
+      _key
+      text
+      route
+      linkOptions {
+        decorator
       }
     }
+    contactForm {
+      submit
+    }
   }
-`;
+}
+    `;
 
 /**
  * __useContactPageQuery__
@@ -1776,43 +2154,22 @@ export const ContactPageDocument = gql`
  *   },
  * });
  */
-export function useContactPageQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    ContactPageQuery,
-    ContactPageQueryVariables
-  >,
-) {
-  return Apollo.useQuery<ContactPageQuery, ContactPageQueryVariables>(
-    ContactPageDocument,
-    baseOptions,
-  );
-}
-export function useContactPageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    ContactPageQuery,
-    ContactPageQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<ContactPageQuery, ContactPageQueryVariables>(
-    ContactPageDocument,
-    baseOptions,
-  );
-}
+export function useContactPageQuery(baseOptions?: Apollo.QueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+        return Apollo.useQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
+      }
+export function useContactPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ContactPageQuery, ContactPageQueryVariables>) {
+          return Apollo.useLazyQuery<ContactPageQuery, ContactPageQueryVariables>(ContactPageDocument, baseOptions);
+        }
 export type ContactPageQueryHookResult = ReturnType<typeof useContactPageQuery>;
-export type ContactPageLazyQueryHookResult = ReturnType<
-  typeof useContactPageLazyQuery
->;
-export type ContactPageQueryResult = Apollo.QueryResult<
-  ContactPageQuery,
-  ContactPageQueryVariables
->;
+export type ContactPageLazyQueryHookResult = ReturnType<typeof useContactPageLazyQuery>;
+export type ContactPageQueryResult = Apollo.QueryResult<ContactPageQuery, ContactPageQueryVariables>;
 export const AllPagesDocument = gql`
-  query allPages {
-    allPages {
-      route
-    }
+    query allPages {
+  allPages {
+    route
   }
-`;
+}
+    `;
 
 /**
  * __useAllPagesQuery__
@@ -1829,50 +2186,32 @@ export const AllPagesDocument = gql`
  *   },
  * });
  */
-export function useAllPagesQuery(
-  baseOptions?: Apollo.QueryHookOptions<AllPagesQuery, AllPagesQueryVariables>,
-) {
-  return Apollo.useQuery<AllPagesQuery, AllPagesQueryVariables>(
-    AllPagesDocument,
-    baseOptions,
-  );
-}
-export function useAllPagesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    AllPagesQuery,
-    AllPagesQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<AllPagesQuery, AllPagesQueryVariables>(
-    AllPagesDocument,
-    baseOptions,
-  );
-}
-export type AllPagesQueryHookResult = ReturnType<typeof useAllPagesQuery>;
-export type AllPagesLazyQueryHookResult = ReturnType<
-  typeof useAllPagesLazyQuery
->;
-export type AllPagesQueryResult = Apollo.QueryResult<
-  AllPagesQuery,
-  AllPagesQueryVariables
->;
-export const AllPostPostDocument = gql`
-  query allPostPost($slug: String) {
-    allPost(where: { slug: { current: { eq: $slug } } }) {
-      title
-      mainImage {
-        asset {
-          url
-        }
+export function useAllPagesQuery(baseOptions?: Apollo.QueryHookOptions<AllPagesQuery, AllPagesQueryVariables>) {
+        return Apollo.useQuery<AllPagesQuery, AllPagesQueryVariables>(AllPagesDocument, baseOptions);
       }
-      publishedAt
-      bodyRaw
-      slug {
-        current
+export function useAllPagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllPagesQuery, AllPagesQueryVariables>) {
+          return Apollo.useLazyQuery<AllPagesQuery, AllPagesQueryVariables>(AllPagesDocument, baseOptions);
+        }
+export type AllPagesQueryHookResult = ReturnType<typeof useAllPagesQuery>;
+export type AllPagesLazyQueryHookResult = ReturnType<typeof useAllPagesLazyQuery>;
+export type AllPagesQueryResult = Apollo.QueryResult<AllPagesQuery, AllPagesQueryVariables>;
+export const AllPostPostDocument = gql`
+    query allPostPost($slug: String) {
+  allPost(where: {slug: {current: {eq: $slug}}}) {
+    title
+    mainImage {
+      asset {
+        url
       }
     }
+    publishedAt
+    bodyRaw
+    slug {
+      current
+    }
   }
-`;
+}
+    `;
 
 /**
  * __useAllPostPostQuery__
@@ -1890,53 +2229,32 @@ export const AllPostPostDocument = gql`
  *   },
  * });
  */
-export function useAllPostPostQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    AllPostPostQuery,
-    AllPostPostQueryVariables
-  >,
-) {
-  return Apollo.useQuery<AllPostPostQuery, AllPostPostQueryVariables>(
-    AllPostPostDocument,
-    baseOptions,
-  );
-}
-export function useAllPostPostLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    AllPostPostQuery,
-    AllPostPostQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<AllPostPostQuery, AllPostPostQueryVariables>(
-    AllPostPostDocument,
-    baseOptions,
-  );
-}
-export type AllPostPostQueryHookResult = ReturnType<typeof useAllPostPostQuery>;
-export type AllPostPostLazyQueryHookResult = ReturnType<
-  typeof useAllPostPostLazyQuery
->;
-export type AllPostPostQueryResult = Apollo.QueryResult<
-  AllPostPostQuery,
-  AllPostPostQueryVariables
->;
-export const AllPostPreviewDocument = gql`
-  query allPostPreview {
-    allPost {
-      title
-      mainImage {
-        asset {
-          url
-        }
+export function useAllPostPostQuery(baseOptions?: Apollo.QueryHookOptions<AllPostPostQuery, AllPostPostQueryVariables>) {
+        return Apollo.useQuery<AllPostPostQuery, AllPostPostQueryVariables>(AllPostPostDocument, baseOptions);
       }
-      publishedAt
-      previewRaw
-      slug {
-        current
+export function useAllPostPostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllPostPostQuery, AllPostPostQueryVariables>) {
+          return Apollo.useLazyQuery<AllPostPostQuery, AllPostPostQueryVariables>(AllPostPostDocument, baseOptions);
+        }
+export type AllPostPostQueryHookResult = ReturnType<typeof useAllPostPostQuery>;
+export type AllPostPostLazyQueryHookResult = ReturnType<typeof useAllPostPostLazyQuery>;
+export type AllPostPostQueryResult = Apollo.QueryResult<AllPostPostQuery, AllPostPostQueryVariables>;
+export const AllPostPreviewDocument = gql`
+    query allPostPreview {
+  allPost {
+    title
+    mainImage {
+      asset {
+        url
       }
     }
+    publishedAt
+    previewRaw
+    slug {
+      current
+    }
   }
-`;
+}
+    `;
 
 /**
  * __useAllPostPreviewQuery__
@@ -1953,47 +2271,24 @@ export const AllPostPreviewDocument = gql`
  *   },
  * });
  */
-export function useAllPostPreviewQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    AllPostPreviewQuery,
-    AllPostPreviewQueryVariables
-  >,
-) {
-  return Apollo.useQuery<AllPostPreviewQuery, AllPostPreviewQueryVariables>(
-    AllPostPreviewDocument,
-    baseOptions,
-  );
-}
-export function useAllPostPreviewLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    AllPostPreviewQuery,
-    AllPostPreviewQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<AllPostPreviewQuery, AllPostPreviewQueryVariables>(
-    AllPostPreviewDocument,
-    baseOptions,
-  );
-}
-export type AllPostPreviewQueryHookResult = ReturnType<
-  typeof useAllPostPreviewQuery
->;
-export type AllPostPreviewLazyQueryHookResult = ReturnType<
-  typeof useAllPostPreviewLazyQuery
->;
-export type AllPostPreviewQueryResult = Apollo.QueryResult<
-  AllPostPreviewQuery,
-  AllPostPreviewQueryVariables
->;
-export const AllSlugsDocument = gql`
-  query allSlugs {
-    allPost {
-      slug {
-        current
+export function useAllPostPreviewQuery(baseOptions?: Apollo.QueryHookOptions<AllPostPreviewQuery, AllPostPreviewQueryVariables>) {
+        return Apollo.useQuery<AllPostPreviewQuery, AllPostPreviewQueryVariables>(AllPostPreviewDocument, baseOptions);
       }
+export function useAllPostPreviewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllPostPreviewQuery, AllPostPreviewQueryVariables>) {
+          return Apollo.useLazyQuery<AllPostPreviewQuery, AllPostPreviewQueryVariables>(AllPostPreviewDocument, baseOptions);
+        }
+export type AllPostPreviewQueryHookResult = ReturnType<typeof useAllPostPreviewQuery>;
+export type AllPostPreviewLazyQueryHookResult = ReturnType<typeof useAllPostPreviewLazyQuery>;
+export type AllPostPreviewQueryResult = Apollo.QueryResult<AllPostPreviewQuery, AllPostPreviewQueryVariables>;
+export const AllSlugsDocument = gql`
+    query allSlugs {
+  allPost {
+    slug {
+      current
     }
   }
-`;
+}
+    `;
 
 /**
  * __useAllSlugsQuery__
@@ -2010,64 +2305,50 @@ export const AllSlugsDocument = gql`
  *   },
  * });
  */
-export function useAllSlugsQuery(
-  baseOptions?: Apollo.QueryHookOptions<AllSlugsQuery, AllSlugsQueryVariables>,
-) {
-  return Apollo.useQuery<AllSlugsQuery, AllSlugsQueryVariables>(
-    AllSlugsDocument,
-    baseOptions,
-  );
-}
-export function useAllSlugsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    AllSlugsQuery,
-    AllSlugsQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<AllSlugsQuery, AllSlugsQueryVariables>(
-    AllSlugsDocument,
-    baseOptions,
-  );
-}
+export function useAllSlugsQuery(baseOptions?: Apollo.QueryHookOptions<AllSlugsQuery, AllSlugsQueryVariables>) {
+        return Apollo.useQuery<AllSlugsQuery, AllSlugsQueryVariables>(AllSlugsDocument, baseOptions);
+      }
+export function useAllSlugsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllSlugsQuery, AllSlugsQueryVariables>) {
+          return Apollo.useLazyQuery<AllSlugsQuery, AllSlugsQueryVariables>(AllSlugsDocument, baseOptions);
+        }
 export type AllSlugsQueryHookResult = ReturnType<typeof useAllSlugsQuery>;
-export type AllSlugsLazyQueryHookResult = ReturnType<
-  typeof useAllSlugsLazyQuery
->;
-export type AllSlugsQueryResult = Apollo.QueryResult<
-  AllSlugsQuery,
-  AllSlugsQueryVariables
->;
+export type AllSlugsLazyQueryHookResult = ReturnType<typeof useAllSlugsLazyQuery>;
+export type AllSlugsQueryResult = Apollo.QueryResult<AllSlugsQuery, AllSlugsQueryVariables>;
 export const HomePageDocument = gql`
-  query homePage {
-    allPages(where: { title: { eq: "Home" } }) {
-      route
-      title
-      description
-      sections {
-        ... on PageHeading {
-          _key
-          _type
-          title
-        }
-        ... on ContactForm {
-          _key
-          _type
-          submit
-        }
-        ... on Hero {
-          _key
-          heading
-          heroImage {
-            alt
-            asset {
-              url
-            }
+    query HomePage {
+  allHomePage(limit: 1) {
+    title
+    description
+    sections {
+      __typename
+      _key
+      left {
+        display {
+          ... on LayoutSplitContent {
+            ...LayoutSplitContentFragment
+          }
+          ... on MainImage {
+            ...MainImageFragment
           }
         }
+        mobile
+      }
+      right {
+        display {
+          ... on LayoutSplitContent {
+            ...LayoutSplitContentFragment
+          }
+          ... on MainImage {
+            ...MainImageFragment
+          }
+        }
+        mobile
       }
     }
   }
-`;
+}
+    ${LayoutSplitContentFragmentFragmentDoc}
+${MainImageFragmentFragmentDoc}`;
 
 /**
  * __useHomePageQuery__
@@ -2084,64 +2365,46 @@ export const HomePageDocument = gql`
  *   },
  * });
  */
-export function useHomePageQuery(
-  baseOptions?: Apollo.QueryHookOptions<HomePageQuery, HomePageQueryVariables>,
-) {
-  return Apollo.useQuery<HomePageQuery, HomePageQueryVariables>(
-    HomePageDocument,
-    baseOptions,
-  );
-}
-export function useHomePageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    HomePageQuery,
-    HomePageQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<HomePageQuery, HomePageQueryVariables>(
-    HomePageDocument,
-    baseOptions,
-  );
-}
+export function useHomePageQuery(baseOptions?: Apollo.QueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
+        return Apollo.useQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, baseOptions);
+      }
+export function useHomePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HomePageQuery, HomePageQueryVariables>) {
+          return Apollo.useLazyQuery<HomePageQuery, HomePageQueryVariables>(HomePageDocument, baseOptions);
+        }
 export type HomePageQueryHookResult = ReturnType<typeof useHomePageQuery>;
-export type HomePageLazyQueryHookResult = ReturnType<
-  typeof useHomePageLazyQuery
->;
-export type HomePageQueryResult = Apollo.QueryResult<
-  HomePageQuery,
-  HomePageQueryVariables
->;
+export type HomePageLazyQueryHookResult = ReturnType<typeof useHomePageLazyQuery>;
+export type HomePageQueryResult = Apollo.QueryResult<HomePageQuery, HomePageQueryVariables>;
 export const PageDocument = gql`
-  query page($route: String) {
-    allPages(where: { route: { eq: $route } }) {
-      route
-      title
-      description
-      sections {
-        ... on PageHeading {
-          _key
-          _type
-          title
-        }
-        ... on ContactForm {
-          _key
-          _type
-          submit
-        }
-        ... on Hero {
-          _key
-          heading
-          heroImage {
-            alt
-            asset {
-              url
-            }
+    query page($route: String) {
+  allPages(where: {route: {eq: $route}}) {
+    route
+    title
+    description
+    sections {
+      ... on PageHeading {
+        _key
+        _type
+        title
+      }
+      ... on ContactForm {
+        _key
+        _type
+        submit
+      }
+      ... on Hero {
+        _key
+        heading
+        heroImage {
+          alt
+          asset {
+            url
           }
         }
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __usePageQuery__
@@ -2159,48 +2422,38 @@ export const PageDocument = gql`
  *   },
  * });
  */
-export function usePageQuery(
-  baseOptions?: Apollo.QueryHookOptions<PageQuery, PageQueryVariables>,
-) {
-  return Apollo.useQuery<PageQuery, PageQueryVariables>(
-    PageDocument,
-    baseOptions,
-  );
-}
-export function usePageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<PageQuery, PageQueryVariables>,
-) {
-  return Apollo.useLazyQuery<PageQuery, PageQueryVariables>(
-    PageDocument,
-    baseOptions,
-  );
-}
+export function usePageQuery(baseOptions?: Apollo.QueryHookOptions<PageQuery, PageQueryVariables>) {
+        return Apollo.useQuery<PageQuery, PageQueryVariables>(PageDocument, baseOptions);
+      }
+export function usePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageQuery, PageQueryVariables>) {
+          return Apollo.useLazyQuery<PageQuery, PageQueryVariables>(PageDocument, baseOptions);
+        }
 export type PageQueryHookResult = ReturnType<typeof usePageQuery>;
 export type PageLazyQueryHookResult = ReturnType<typeof usePageLazyQuery>;
 export type PageQueryResult = Apollo.QueryResult<PageQuery, PageQueryVariables>;
 export const SettingsDocument = gql`
-  query settings {
-    allSettings {
-      navigation {
-        navigationLinks {
-          links {
-            _key
-            text
-            route
-            linkOptions {
-              size
-              weight
-              decorator
-            }
+    query settings {
+  allSettings {
+    navigation {
+      navigationLinks {
+        links {
+          _key
+          text
+          route
+          linkOptions {
+            size
+            weight
+            decorator
           }
         }
-        navigationOptions {
-          alignItems
-        }
+      }
+      navigationOptions {
+        alignItems
       }
     }
   }
-`;
+}
+    `;
 
 /**
  * __useSettingsQuery__
@@ -2217,30 +2470,12 @@ export const SettingsDocument = gql`
  *   },
  * });
  */
-export function useSettingsQuery(
-  baseOptions?: Apollo.QueryHookOptions<SettingsQuery, SettingsQueryVariables>,
-) {
-  return Apollo.useQuery<SettingsQuery, SettingsQueryVariables>(
-    SettingsDocument,
-    baseOptions,
-  );
-}
-export function useSettingsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    SettingsQuery,
-    SettingsQueryVariables
-  >,
-) {
-  return Apollo.useLazyQuery<SettingsQuery, SettingsQueryVariables>(
-    SettingsDocument,
-    baseOptions,
-  );
-}
+export function useSettingsQuery(baseOptions?: Apollo.QueryHookOptions<SettingsQuery, SettingsQueryVariables>) {
+        return Apollo.useQuery<SettingsQuery, SettingsQueryVariables>(SettingsDocument, baseOptions);
+      }
+export function useSettingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SettingsQuery, SettingsQueryVariables>) {
+          return Apollo.useLazyQuery<SettingsQuery, SettingsQueryVariables>(SettingsDocument, baseOptions);
+        }
 export type SettingsQueryHookResult = ReturnType<typeof useSettingsQuery>;
-export type SettingsLazyQueryHookResult = ReturnType<
-  typeof useSettingsLazyQuery
->;
-export type SettingsQueryResult = Apollo.QueryResult<
-  SettingsQuery,
-  SettingsQueryVariables
->;
+export type SettingsLazyQueryHookResult = ReturnType<typeof useSettingsLazyQuery>;
+export type SettingsQueryResult = Apollo.QueryResult<SettingsQuery, SettingsQueryVariables>;

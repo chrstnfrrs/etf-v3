@@ -1,3 +1,5 @@
+import { MdViewAgenda } from 'react-icons/md';
+
 export default {
   fields: [
     {
@@ -13,7 +15,23 @@ export default {
       validation: (Rule) => Rule.required(),
     },
   ],
-  name: 'splitLayout',
+  name: 'layoutSplit',
+  preview: {
+    prepare: (selection) => {
+      const title = `Split Layout: ${
+        selection?.left?.display?.[0]?._type || 'Missing left field'
+      } and ${selection.right.display[0]._type || 'Missing right field'}`;
+
+      return {
+        media: MdViewAgenda,
+        title,
+      };
+    },
+    select: {
+      left: 'left',
+      right: 'right',
+    },
+  },
   title: 'Split Layout',
   type: 'document',
 };

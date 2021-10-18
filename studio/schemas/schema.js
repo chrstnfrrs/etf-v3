@@ -4,11 +4,14 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 /* eslint-enable import/no-unresolved */
 
 import contactForm from './contact-form';
+import layoutSplitContent from './layout-split-content';
 import contentMain from './content-main';
 import contentPreview from './content-preview';
 import button from './button';
 import hero from './hero';
 import homePage from './home-page';
+import layoutSplitFields from './layout-split-fields';
+import layoutSplit from './layout-split';
 import link from './link';
 import links from './links';
 import linkOptions from './link-options';
@@ -29,11 +32,14 @@ export default createSchema({
   types: [
     ...schemaTypes,
     contactForm,
+    layoutSplitContent,
     contentMain,
     contentPreview,
     button,
     hero,
     homePage,
+    layoutSplitFields,
+    layoutSplit,
     link,
     links,
     linkOptions,

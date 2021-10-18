@@ -55,6 +55,8 @@ const BlockRenderer = (props: AllowAny) => {
 const serializers = {
   types: {
     block: BlockRenderer,
+    // @ts-ignore
+    button: ({ node: { link } }) => <a href={link.route}>{link.text}</a>,
   },
 };
 
