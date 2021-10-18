@@ -1903,7 +1903,7 @@ export type AllPostPreviewQuery = (
   { __typename?: 'RootQuery' }
   & { allPost: Array<(
     { __typename?: 'Post' }
-    & Pick<Post, 'title' | 'publishedAt' | 'previewRaw'>
+    & Pick<Post, '_id' | 'title' | 'publishedAt' | 'previewRaw'>
     & { mainImage?: Maybe<(
       { __typename?: 'MainImage' }
       & { asset?: Maybe<(
@@ -2241,6 +2241,7 @@ export type AllPostPostQueryResult = Apollo.QueryResult<AllPostPostQuery, AllPos
 export const AllPostPreviewDocument = gql`
     query allPostPreview {
   allPost {
+    _id
     title
     mainImage {
       asset {
