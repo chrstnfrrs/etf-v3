@@ -91,7 +91,14 @@ const StyledBtn = styled.div`
   background: #000;
   color: #fff;
   width: fit-content;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.15rem;
+  @media only screen and (max-width: 768px) {
+    font-size: 1rem;
+    letter-spacing: auto;
+  }
 `;
 
 const LayoutSplitField = ({ display, mobile }) => {
