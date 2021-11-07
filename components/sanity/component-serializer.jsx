@@ -1,29 +1,27 @@
 import React from 'react';
 
 import { Hero } from '../cookbook/hero';
-import { SectionRow } from '../cookbook/section-row';
+import { RowSection } from '../cookbook/row-section';
 import { LayoutSplit } from '../cookbook/layout-split';
+import { DescriptionListSection } from '../cookbook/description-list-section';
 
 const Components = {
+  DescriptionListSection,
   Hero,
   LayoutSplit,
-  SectionRow,
+  Row: RowSection,
 };
 
-const InvalidSection = () => 'Invalid Section';
+const InvalidSection = () => <div />;
 
-const PageSerializer = ({ data, sections }) => {
-  console.log('sections', sections);
-
+const PageSerializer = ({ sections }) => {
   return (
     <>
       {sections.map((section) => {
         const SectionComponent =
           Components?.[section.__typename] || InvalidSection;
 
-        return (
-          <SectionComponent data={section} key={section._key} {...section} />
-        );
+        return <SectionComponent data={section} key={section._key} />;
       })}
     </>
   );
