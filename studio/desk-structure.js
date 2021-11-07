@@ -49,8 +49,10 @@ export default () =>
         (listItem) =>
           ![
             'button',
+            'descriptionListSection',
             'hero',
             'homePage',
+            'keyValuePair',
             'layoutSplitFields',
             'layoutSplit',
             'links',
@@ -63,7 +65,9 @@ export default () =>
             'contactForm',
             'pageHeading',
             'pageBlog',
+            'row',
             'sectionTestimonial',
+            'service',
             'testimonial',
             'pages',
             'layoutSplitContent',
