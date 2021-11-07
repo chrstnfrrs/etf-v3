@@ -91,8 +91,8 @@ describe('Given a contact page', () => {
   describe('When fetching data for the page', () => {
     let client: Types.Apollo.Client,
       page: ContactPage.Page,
-      result: ContactPage.ServerSideProps,
-      expectedResult: ContactPage.ServerSideProps;
+      result: ContactPage.StaticProps,
+      expectedResult: ContactPage.StaticProps;
 
     beforeEach(async () => {
       const query = jest.fn().mockReturnValue({
@@ -115,9 +115,9 @@ describe('Given a contact page', () => {
         },
       };
 
-      result = (await ContactPage.getServerSideProps(
+      result = (await ContactPage.getStaticProps(
         {},
-      )) as ContactPage.ServerSideProps;
+      )) as ContactPage.StaticProps;
     });
     test('Then should get a graphql client', () => {
       expect(MockGraphqlClient.get).toHaveBeenCalledTimes(1);

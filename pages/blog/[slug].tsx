@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 import * as Types from '../../types/index.d';
 import * as GraphqlClient from '../../graphql/graphql-client';
@@ -26,7 +26,7 @@ type Props = {
   menu: Types.AllowAny;
 };
 
-type ServerSideProps = {
+type StaticProps = {
   props: Props;
 };
 
@@ -38,18 +38,18 @@ const PostPage: React.FC<Props> = ({ menu, post }) => {
   );
 };
 
-// const getStaticPaths: GetStaticPaths = async () => {
-//   const client = GraphqlClient.get();
+const getStaticPaths: GetStaticPaths = async () => {
+  const client = GraphqlClient.get();
 
-//   const paths = await BlogRepository.getAllPostSlugs({ client });
+  const paths = await BlogRepository.getAllPostSlugs({ client });
 
-//   return {
-//     fallback: false,
-//     paths,
-//   };
-// };
+  return {
+    fallback: false,
+    paths,
+  };
+};
 
-const getServerSideProps: GetServerSideProps = async ({ params }) => {
+const getStaticProps: GetStaticProps = async ({ params }) => {
   const client = GraphqlClient.get();
 
   const slug = `${(params?.slug as string) || ''}`;
@@ -70,6 +70,6 @@ const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-export { getServerSideProps };
-export type { ServerSideProps, Props, Page };
+export { getStaticProps };
+export type { StaticProps, Props, Page };
 export default PostPage;

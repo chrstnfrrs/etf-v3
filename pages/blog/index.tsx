@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import styled from '@emotion/styled';
 import { AGrid, ACard, ABox } from 'aspire-components-react';
 
@@ -43,7 +43,7 @@ type Props = {
   posts: Post[];
 };
 
-type ServerSideProps = {
+type StaticProps = {
   props: Props;
 };
 
@@ -80,7 +80,7 @@ const BlogPage: React.FC<Props> = ({ menu, page, posts }) => (
   </ETFLayout>
 );
 
-const getServerSideProps: GetServerSideProps = async () => {
+const getStaticProps: GetStaticProps = async () => {
   const client = GraphqlClient.get();
 
   const [menu, page, posts] = await Promise.all([
@@ -98,6 +98,6 @@ const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export { getServerSideProps };
-export type { ServerSideProps, Props, Page };
+export { getStaticProps };
+export type { StaticProps, Props, Page };
 export default BlogPage;
