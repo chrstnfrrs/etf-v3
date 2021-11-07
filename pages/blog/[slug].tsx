@@ -70,6 +70,6 @@ const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export { getStaticProps };
+export { getStaticProps, getStaticPaths };
 export type { StaticProps, Props, Page };
 export default PostPage;
