@@ -12,11 +12,13 @@ const PlaceholderLink = styled.a`
 `;
 
 type Props = {
-  navigationLinks: Types.App.LinkSection[];
+  menu: {
+    navigationLinks: Types.App.LinkSection[];
+  };
 };
 
-const ETFMenu: React.FC<Props> = (props) => {
-  const linkSections = props.navigationLinks;
+const ETFMenu: React.FC<Props> = ({ menu }) => {
+  const linkSections = menu.navigationLinks;
 
   const first = {
     fontSize: '2rem',

@@ -1,7 +1,6 @@
 import React from 'react';
 import { AContainer } from 'aspire-components-react';
 import Head from 'next/head';
-import styled from '@emotion/styled';
 
 import * as Types from '../../types/index.d';
 import { StyledContainer, StyledWrapper } from '../cookbook/styled';
@@ -19,11 +18,6 @@ type Props = {
   [key: string]: Types.AllowAny;
 };
 
-const ETFLayoutContainer = styled(AContainer)`
-  max-width: 100vw;
-  overflow: hidden;
-`;
-
 const ETFLayout: React.FC<Props> = ({ children, menu, page }) => (
   <>
     <ETFMenu menu={menu} />
@@ -32,11 +26,11 @@ const ETFLayout: React.FC<Props> = ({ children, menu, page }) => (
       <meta content={page.title} key='title' property='og:title' />
       <meta content={page.description} name='description' />
     </Head>
-    <ETFLayoutContainer minHeight='100vh'>
+    <AContainer minHeight='100vh'>
       <StyledContainer>
         <StyledWrapper>{children}</StyledWrapper>
       </StyledContainer>
-    </ETFLayoutContainer>
+    </AContainer>
   </>
 );
 
