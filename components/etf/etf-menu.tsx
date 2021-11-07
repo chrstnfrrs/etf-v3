@@ -1,10 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { ABox, ANav } from 'aspire-components-react';
-<<<<<<< HEAD
-=======
 import Link from 'next/link';
->>>>>>> adb278aa8b92a697e295c817ae137606a6580804
 
 import * as Types from '../../types/index.d';
 
@@ -27,29 +24,11 @@ const PlaceholderLink = styled.span`
 type Props = {
   menu: {
     navigationLinks: Types.App.LinkSection[];
-<<<<<<< HEAD
   };
 };
 
-// { menu }
 const ETFMenu: React.FC<Props> = ({ menu }) => {
   const linkSections = menu.navigationLinks;
-
-  const first = {
-    fontSize: '2rem',
-=======
->>>>>>> adb278aa8b92a697e295c817ae137606a6580804
-  };
-};
-
-<<<<<<< HEAD
-  const list = {
-    paddingTop: '1.375rem',
-  };
-=======
-const ETFMenu: React.FC<Props> = ({ menu }) => {
-  const linkSections = menu.navigationLinks;
->>>>>>> adb278aa8b92a697e295c817ae137606a6580804
 
   return (
     <ANav direction='row' justify='between' padding='8x'>
