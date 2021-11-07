@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 
 import {
   StyledSubHeading,
@@ -25,7 +26,7 @@ const DescriptionListSection = ({
         <>
           <StyledSpacer size='0.5rem' />
           <StyledBtn>
-            <a href={callToAction.route}>{callToAction.text}</a>
+            <Link href={callToAction.route}>{callToAction.text}</Link>
           </StyledBtn>
         </>
       )}

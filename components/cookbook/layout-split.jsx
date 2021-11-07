@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 import {
   StyledRow,
@@ -40,7 +41,7 @@ const LayoutSplitField = ({ display }) => {
         <StyledHeading>{display[0].heading}</StyledHeading>
         <StyledSubHeading>{display[0].subheading}</StyledSubHeading>
         <StyledBtn>
-          <a href={display[0].link.route}>{display[0].link.text}</a>
+          <Link href={display[0].link.route}>{display[0].link.text}</Link>
         </StyledBtn>
       </>
     ),

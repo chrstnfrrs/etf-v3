@@ -1,4 +1,4 @@
-import { GetStaticPathsContext, GetServerSidePropsContext } from 'next';
+import { GetStaticPathsContext, GetStaticPropsContext } from 'next';
 import Chance from 'chance';
 
 const chance = new Chance();
@@ -8,11 +8,11 @@ const createRandomGetStaticPathsContext = (): GetStaticPathsContext => ({
   locales: undefined,
 });
 
-const createRandomGetServerSidePropsContextForPage = (): GetServerSidePropsContext => ({
+const createRandomGetStaticPropsContextForPage = (): GetStaticPropsContext => ({
   params: { slug: chance.word() },
 });
 
 export {
   createRandomGetStaticPathsContext,
-  createRandomGetServerSidePropsContextForPage,
+  createRandomGetStaticPropsContextForPage,
 };

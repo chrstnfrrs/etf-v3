@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 // @ts-ignore
 import BlockContent from '@sanity/block-content-to-react';
 import {
@@ -55,7 +56,7 @@ const serializers = {
   types: {
     block: BlockRenderer,
     // @ts-ignore
-    button: ({ node: { link } }) => <a href={link.route}>{link.text}</a>,
+    button: ({ node: { link } }) => <Link href={link.route}>{link.text}</Link>,
   },
 };
 

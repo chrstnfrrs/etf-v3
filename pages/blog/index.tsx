@@ -1,7 +1,8 @@
 import React from 'react';
-import { GetServerSideProps } from 'next';
-import styled from '@emotion/styled';
+import { GetStaticProps } from 'next';
 import { AGrid, ACard, ABox } from 'aspire-components-react';
+import Link from 'next/link';
+import styled from '@emotion/styled';
 
 import { AllowAny } from '../../types/index.d';
 import { ETFLayout } from '../../components/etf/etf-layout';
@@ -16,7 +17,9 @@ import * as GraphqlClient from '../../graphql/graphql-client';
 import * as BlogRepository from '../../repositories/blog-repository';
 import * as MenuRepository from '../../repositories/menu';
 
-const ALink = styled.a``;
+const StyledSpan = styled.a`
+  cursor: pointer;
+`;
 
 type Post = {
   _key: string;
@@ -43,7 +46,7 @@ type Props = {
   posts: Post[];
 };
 
-type ServerSideProps = {
+type StaticProps = {
   props: Props;
 };
 
@@ -60,17 +63,19 @@ const BlogPage: React.FC<Props> = ({ menu, page, posts }) => (
       {posts.length ? (
         <AGrid gap='8'>
           {posts.map((post: AllowAny) => (
-            <ALink href={`blog/${post.slug.current}`} key={post._id}>
-              <ACard height='full' padding='0' style={ACardStyles}>
-                <StyledImage
-                  alt={post.mainImage.alt}
-                  src={post.mainImage.asset.url}
-                />
-                <ABox padding='4 0b'>
-                  <StyledH3>{post.title}</StyledH3>
-                </ABox>
-              </ACard>
-            </ALink>
+            <Link href={`blog/${post.slug.current}`} key={post._id}>
+              <StyledSpan>
+                <ACard height='full' padding='0' style={ACardStyles}>
+                  <StyledImage
+                    alt={post.mainImage.alt}
+                    src={post.mainImage.asset.url}
+                  />
+                  <ABox padding='4 0b'>
+                    <StyledH3>{post.title}</StyledH3>
+                  </ABox>
+                </ACard>
+              </StyledSpan>
+            </Link>
           ))}
         </AGrid>
       ) : (
@@ -80,7 +85,7 @@ const BlogPage: React.FC<Props> = ({ menu, page, posts }) => (
   </ETFLayout>
 );
 
-const getServerSideProps: GetServerSideProps = async () => {
+const getStaticProps: GetStaticProps = async () => {
   const client = GraphqlClient.get();
 
   const [menu, page, posts] = await Promise.all([
@@ -98,6 +103,6 @@ const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export { getServerSideProps };
-export type { ServerSideProps, Props, Page };
+export { getStaticProps };
+export type { StaticProps, Props, Page };
 export default BlogPage;
