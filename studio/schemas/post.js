@@ -22,9 +22,9 @@ export default {
     },
     {
       name: 'preview',
-      rows: '4',
+      rows: 4,
       title: 'Preview',
-      type: 'contentPreview',
+      type: 'text',
       validation: (Rule) => Rule.required(),
     },
     {

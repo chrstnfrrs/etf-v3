@@ -1,20 +1,21 @@
 export default {
   fields: [
     {
-      name: 'name',
-      title: 'Name',
+      name: 'key',
+      title: 'Header',
       type: 'string',
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'preview',
+      name: 'value',
       rows: 4,
-      title: 'Preview',
+      title: 'Text',
       type: 'text',
       validation: (Rule) => Rule.required(),
     },
   ],
-  name: 'testimonial',
-  title: 'Testimonial',
+  // icon: MdViewHeadline,
+  name: 'keyValuePair',
+  title: 'Key Value',
   type: 'document',
 };

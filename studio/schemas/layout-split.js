@@ -15,15 +15,15 @@ export default {
       validation: (Rule) => Rule.required(),
     },
   ],
+  icon: MdViewAgenda,
   name: 'layoutSplit',
   preview: {
     prepare: (selection) => {
       const title = `Split Layout: ${
         selection?.left?.display?.[0]?._type || 'Missing left field'
-      } and ${selection.right.display[0]._type || 'Missing right field'}`;
+      } and ${selection?.right?.display?.[0]?._type || 'Missing right field'}`;
 
       return {
-        media: MdViewAgenda,
         title,
       };
     },

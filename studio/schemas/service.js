@@ -1,8 +1,8 @@
 export default {
   fields: [
     {
-      name: 'name',
-      title: 'Name',
+      name: 'title',
+      title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
     },
@@ -14,7 +14,7 @@ export default {
       validation: (Rule) => Rule.required(),
     },
   ],
-  name: 'testimonial',
-  title: 'Testimonial',
+  name: 'service',
+  title: 'Service',
   type: 'document',
 };

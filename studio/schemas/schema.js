@@ -7,9 +7,11 @@ import contactForm from './contact-form';
 import layoutSplitContent from './layout-split-content';
 import contentMain from './content-main';
 import contentPreview from './content-preview';
+import descriptionListSection from './description-list-section';
 import button from './button';
 import hero from './hero';
 import homePage from './home-page';
+import keyValuePair from './key-value-pair';
 import layoutSplitFields from './layout-split-fields';
 import layoutSplit from './layout-split';
 import link from './link';
@@ -21,7 +23,8 @@ import navigationOptions from './navigation-options';
 import pageHeading from './page-heading';
 import pages from './pages';
 import post from './post';
-import sectionTestimonial from './section-testimonial';
+import row from './row';
+import service from './service';
 import settings from './settings';
 import testimonial from './testimonial';
 import pageBlog from './page-blog';
@@ -35,9 +38,11 @@ export default createSchema({
     layoutSplitContent,
     contentMain,
     contentPreview,
+    descriptionListSection,
     button,
     hero,
     homePage,
+    keyValuePair,
     layoutSplitFields,
     layoutSplit,
     link,
@@ -51,7 +56,8 @@ export default createSchema({
     pageHeading,
     post,
     pages,
-    sectionTestimonial,
+    row,
+    service,
     settings,
     testimonial,
   ],

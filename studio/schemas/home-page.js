@@ -16,7 +16,11 @@ export default {
     },
     {
       name: 'sections',
-      of: [{ type: 'layoutSplit' }],
+      of: [
+        { type: 'layoutSplit' },
+        { type: 'row' },
+        { type: 'descriptionListSection' },
+      ],
       title: 'Page Sections',
       type: 'array',
       validation: (Rule) => Rule.required().min(1),
