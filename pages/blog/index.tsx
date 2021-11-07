@@ -1,6 +1,5 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
-import styled from '@emotion/styled';
 import { AGrid, ACard, ABox } from 'aspire-components-react';
 import Link from 'next/link';
 
