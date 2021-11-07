@@ -15,6 +15,7 @@ const PlaceholderLink = styled.span`
     props.i === 0 && props.index === 0
       ? 'font-size: 2rem;'
       : 'padding-top: 1.35rem;'}
+  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }

@@ -34,6 +34,7 @@ type StaticProps = {
 const PlaceholderLink = styled.span`
   color: #101010;
   padding: 16px 16px 0px 0;
+  cursor: pointer;
 `;
 // <ETFLayout {...props}>
 
