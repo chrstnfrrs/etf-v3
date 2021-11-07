@@ -18,7 +18,8 @@ type Props = {
   [key: string]: Types.AllowAny;
 };
 
-const ETFLayout: React.FC<Props> = ({ children, menu, page }) => (
+// menu,
+const ETFLayout: React.FC<Props> = ({ children, page }) => (
   <>
     {/* <ETFMenu menu={menu} /> */}
     <Head>
