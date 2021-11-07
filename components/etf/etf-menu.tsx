@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ANav } from 'aspire-components-react';
+import { ABox, ANav } from 'aspire-components-react';
 
-// import * as Types from '../../types/index.d';
+import * as Types from '../../types/index.d';
 
 const PlaceholderLink = styled.a`
   padding: 16px 16px 16px 0;
@@ -12,29 +12,26 @@ const PlaceholderLink = styled.a`
 `;
 
 type Props = {
-  // menu: {
-  //   navigationLinks: Types.App.LinkSection[];
-  // };
+  menu: {
+    navigationLinks: Types.App.LinkSection[];
+  };
 };
 
 // { menu }
-const ETFMenu: React.FC<Props> = () => {
-  // const linkSections = menu.navigationLinks;
+const ETFMenu: React.FC<Props> = ({ menu }) => {
+  const linkSections = menu.navigationLinks;
 
   const first = {
     fontSize: '2rem',
   };
 
-  // const list = {
-  //   paddingTop: '1.375rem',
-  // };
+  const list = {
+    paddingTop: '1.375rem',
+  };
 
   return (
     <ANav direction='row' justify='between' padding='8x'>
-      <PlaceholderLink href='/' style={first}>
-        {'Erin Tallard Fitness'}
-      </PlaceholderLink>
-      {/* {linkSections.map((linkSection: Types.App.LinkSection, index: number) => (
+      {linkSections.map((linkSection: Types.App.LinkSection, index: number) => (
         <ABox align='center' direction='row' height='full' key={index}>
           {linkSection.links.map((link: Types.App.Link, i: number) => (
             <PlaceholderLink
@@ -46,7 +43,7 @@ const ETFMenu: React.FC<Props> = () => {
             </PlaceholderLink>
           ))}
         </ABox>
-      ))} */}
+      ))}
     </ANav>
   );
 };

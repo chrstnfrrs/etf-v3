@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app';
 // import { setTheme } from 'aspire-components-react';
 
 import '../globals.css';
-import { ETFMenu } from '../components/etf/etf-menu';
 
 const AppLayout = ({ Component, pageProps }: AppProps): React.ReactNode => {
   // if (typeof window !== 'undefined') {
@@ -24,7 +23,6 @@ const AppLayout = ({ Component, pageProps }: AppProps): React.ReactNode => {
       <Head>
         <link href='/favicon.ico' rel='shortcut icon' />
       </Head>
-      <ETFMenu />
       <Component {...pageProps} />
     </>
   );
