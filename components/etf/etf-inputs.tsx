@@ -1,13 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import { ABox, AInput, ALabel, ATextArea } from 'aspire-components-react';
 
+type OnBlur = (
+  // eslint-disable-next-line no-unused-vars
+  e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+) => void;
 interface IInput {
   label?: string;
   name: string;
   id?: string;
-  onBlur?: (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
+  onBlur?: OnBlur;
   placeholder?: string;
 }
 
@@ -15,10 +17,13 @@ interface ITextArea extends IInput {
   rows?: number;
 }
 
-type TInput = (InputProps: IInput) => JSX.Element;
-type TTextArea = (TextAreaProps: ITextArea) => JSX.Element;
-
-const ETFInput: TInput = ({ label, placeholder, name, id, ...props }) => {
+const ETFInput: React.FC<IInput> = ({
+  label,
+  placeholder,
+  name,
+  id,
+  ...props
+}) => {
   return (
     <ABox align='stretch' width='full'>
       {label && <ALabel htmlFor={name}>{label}</ALabel>}
@@ -27,7 +32,7 @@ const ETFInput: TInput = ({ label, placeholder, name, id, ...props }) => {
   );
 };
 
-const ETFTextArea: TTextArea = ({
+const ETFTextArea: React.FC<ITextArea> = ({
   label,
   placeholder,
   name,

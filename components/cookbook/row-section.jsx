@@ -2,10 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import {
-  StyledContainer,
   StyledHeading,
   StyledH3,
-  StyledWrapper,
   StyledRow,
   StyledSpacer,
   StyledPreview,
@@ -50,11 +48,11 @@ const StyledCardWrapper = styled.div`
 //   text-overflow: clip;
 //   -webkit-box-orient: vertical;
 //   display: -webkit-box;
-// `;
-const Components = {
-  calendly: () => <p>calendly</p>,
-  testimonials: () => <p>Testimonial</p>,
-};
+// // `;
+// const Components = {
+//   calendly: () => <p>calendly</p>,
+//   testimonials: () => <p>Testimonial</p>,
+// };
 
 const CardComponent = ({ data, index }) => {
   const preview = data.preview;
@@ -72,7 +70,7 @@ const RowSection = ({ data: { title, cards } }) => {
   return (
     <div>
       <StyledHeading>{title}</StyledHeading>
-      <StyledSpacer size='1rem' sizeMobile='0.5rem' />
+      <StyledSpacer space='1rem' spaceMobile='0.5rem' />
       <StyledRow align='flex-start'>
         {cards?.map(({ _key, ...card }, index) => (
           <CardComponent data={card} index={index + 1} key={_key} />

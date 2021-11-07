@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-pascal-case */
 import React from 'react';
 // import styled from '@emotion/styled';
 
@@ -17,10 +16,12 @@ const BlogPage = ({ menu, page }) => {
   );
 };
 
-const getStaticProps = async () => {
+const getServerSideProps = async () => {
   const client = GraphqlClient.get();
-  const page = await HomePageRepository.getHomePage(client);
-  const menu = await MenuRepository.getLinks(client);
+  const [page, menu] = await Promise.all([
+    HomePageRepository.getHomePage({ client }),
+    MenuRepository.getLinks(client),
+  ]);
 
   return {
     props: {
@@ -30,6 +31,6 @@ const getStaticProps = async () => {
   };
 };
 
-export { getStaticProps };
-// export type { StaticProps, Props, Page };
+export { getServerSideProps };
+// export type { ServerSideProps, Props, Page };
 export default BlogPage;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import * as Types from '../../types/index.d';
 import * as GraphqlClient from '../../graphql/graphql-client';
@@ -26,7 +26,7 @@ type Props = {
   menu: Types.AllowAny;
 };
 
-type StaticProps = {
+type ServerSideProps = {
   props: Props;
 };
 
@@ -38,35 +38,38 @@ const PostPage: React.FC<Props> = ({ menu, post }) => {
   );
 };
 
-const getStaticPaths: GetStaticPaths = async () => {
-  const client = GraphqlClient.get();
+// const getStaticPaths: GetStaticPaths = async () => {
+//   const client = GraphqlClient.get();
 
-  const paths = await BlogRepository.getAllPostSlugs({ client });
+//   const paths = await BlogRepository.getAllPostSlugs({ client });
 
-  return {
-    fallback: false,
-    paths,
-  };
-};
+//   return {
+//     fallback: false,
+//     paths,
+//   };
+// };
 
-const getStaticProps: GetStaticProps = async ({ params }) => {
+const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const client = GraphqlClient.get();
 
   const slug = `${(params?.slug as string) || ''}`;
 
-  const post = await BlogRepository.getBlogPostBySlug({
-    client,
-    slug,
-  });
+  const [post, menu] = await Promise.all([
+    BlogRepository.getBlogPostBySlug({
+      client,
+      slug,
+    }),
+    MenuRepository.getLinks(client),
+  ]);
 
   return {
     props: {
-      menu: await MenuRepository.getLinks(client),
+      menu,
       post,
     },
   };
 };
 
-export { getStaticPaths, getStaticProps };
-export type { StaticProps, Props, Page };
+export { getServerSideProps };
+export type { ServerSideProps, Props, Page };
 export default PostPage;

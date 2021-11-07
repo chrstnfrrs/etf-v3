@@ -45,18 +45,17 @@ const ETFContactForm: React.FC<Props> = (props) => {
       input.message.length &&
       /^\S+@\S+\.\S+$/u.test(input.email)
     ) {
-      console.log('here');
       setSubmitError('');
     } else {
       setSubmitError('Please provide all fields.');
     }
 
-    console.log(input);
-    console.log(input.name.length);
-    console.log(input.email.length);
-    console.log(input.subject.length);
-    console.log(input.message.length);
-    console.log(/^\S+@\S+\.\S+$/u.test(input.email));
+    // console.log(input);
+    // console.log(input.name.length);
+    // console.log(input.email.length);
+    // console.log(input.subject.length);
+    // console.log(input.message.length);
+    // console.log(/^\S+@\S+\.\S+$/u.test(input.email));
   };
 
   const handleChange = (
@@ -108,10 +107,13 @@ const ETFContactForm: React.FC<Props> = (props) => {
         placeholder='Start typing here...'
         rows={5}
       />
-      <StyledSpacer size='1rem' />
+      <StyledSpacer space='1rem' />
       <button
         onClick={submitContactForm}
-        style={{ background: 'none', border: 'none' }}
+        style={{
+          background: 'none',
+          border: 'none',
+        }}
         type='button'
       >
         <StyledBtn>{props.submit}</StyledBtn>

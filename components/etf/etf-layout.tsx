@@ -5,7 +5,7 @@ import Head from 'next/head';
 import * as Types from '../../types/index.d';
 import { StyledContainer, StyledWrapper } from '../cookbook/styled';
 
-import { ETFMenu } from './etf-menu';
+// import { ETFMenu } from './etf-menu';
 
 type Props = {
   menu: Types.App.Menu;
@@ -18,9 +18,10 @@ type Props = {
   [key: string]: Types.AllowAny;
 };
 
-const ETFLayout: React.FC<Props> = ({ children, menu, page }) => (
+// menu,
+const ETFLayout: React.FC<Props> = ({ children, page }) => (
   <>
-    <ETFMenu menu={menu} />
+    {/* <ETFMenu menu={menu} /> */}
     <Head>
       <title>{page.title}</title>
       <meta content={page.title} key='title' property='og:title' />
