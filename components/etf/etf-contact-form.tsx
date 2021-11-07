@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { ABtn, AForm, ASpacer } from 'aspire-components-react';
+import { AForm } from 'aspire-components-react';
 import styled from '@emotion/styled';
 
 // import * as Types from '../../types/index.d';
+import { StyledBtn, StyledSpacer } from '../cookbook/styled';
 
 import { ETFInput, ETFTextArea } from './etf-inputs';
 
@@ -107,8 +108,14 @@ const ETFContactForm: React.FC<Props> = (props) => {
         placeholder='Start typing here...'
         rows={5}
       />
-      <ASpacer size='4' />
-      <ABtn onClick={submitContactForm}>{props.submit}</ABtn>
+      <StyledSpacer size='1rem' />
+      <button
+        onClick={submitContactForm}
+        style={{ background: 'none', border: 'none' }}
+        type='button'
+      >
+        <StyledBtn>{props.submit}</StyledBtn>
+      </button>
       {Boolean(submitError.length) && <Text>{submitError}</Text>}
     </AForm>
   );
