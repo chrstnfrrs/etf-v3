@@ -4,6 +4,7 @@ import Head from 'next/head';
 import styled from '@emotion/styled';
 
 import * as Types from '../../types/index.d';
+import { StyledContainer, StyledWrapper } from '../cookbook/styled';
 
 import { ETFMenu } from './etf-menu';
 
@@ -23,15 +24,19 @@ const ETFLayoutContainer = styled(AContainer)`
   overflow: hidden;
 `;
 
-const ETFLayout: React.FC<Props> = (props) => (
+const ETFLayout: React.FC<Props> = ({ children, menu, page }) => (
   <>
-    <ETFMenu {...props.menu} />
+    <ETFMenu menu={menu} />
     <Head>
-      <title>{props.page.title}</title>
-      <meta content={props.page.title} key='title' property='og:title' />
-      <meta content={props.page.description} name='description' />
+      <title>{page.title}</title>
+      <meta content={page.title} key='title' property='og:title' />
+      <meta content={page.description} name='description' />
     </Head>
-    <ETFLayoutContainer minHeight='100vh'>{props.children}</ETFLayoutContainer>
+    <ETFLayoutContainer minHeight='100vh'>
+      <StyledContainer>
+        <StyledWrapper>{children}</StyledWrapper>
+      </StyledContainer>
+    </ETFLayoutContainer>
   </>
 );
 
