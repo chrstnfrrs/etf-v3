@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GetStaticPaths, GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import * as Types from '../../types/index.d';
 import * as GraphqlClient from '../../graphql/graphql-client';
