@@ -2752,10 +2752,10 @@ aspire-components-functions@^0.0.9:
   resolved "https://registry.yarnpkg.com/aspire-components-functions/-/aspire-components-functions-0.0.9.tgz#8e9e5a2f0760db630342537b82b4b50f3757b67e"
   integrity sha512-YvcVT/nZr0r1S+TZSk6eOXOv2tkJW7HLwgYJ0YEK2umWUEUiIav9HRFwQHKz2tTn1t6mYl2DZZ2qC5xWY2RebQ==
 
-aspire-components-react@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/aspire-components-react/-/aspire-components-react-0.0.4.tgz#e0fd2644fcc672c527402fe9c093abe960b99ba0"
-  integrity sha512-W/wKMV5xVGLn79+gcYqfcZqC8tXtL1ik+tmblKDJPWWEOVQtYbauN0PuHBxQB77obLKYyH27yoj+4Hf9ffe3JA==
+aspire-components-react@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/aspire-components-react/-/aspire-components-react-0.0.5.tgz#b1a4d5773b6e3103da4688550b6432b964a47eb1"
+  integrity sha512-KWO9W/dc930/sYYKvQV/2WFeVEx3I/pAAe+z4IrjNFchsjRKRCWB0JkzMLe95moTitJ45LBfW8I+q9iJsPQYgA==
   dependencies:
     aspire-components-functions "^0.0.9"
     aspire-components-scss "^1.0.1"
