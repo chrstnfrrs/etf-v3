@@ -2,6 +2,7 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 import { ACol, ARow } from 'aspire-components-react';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 import * as Types from '../types/index.d';
 import * as GraphqlClient from '../graphql/graphql-client';
@@ -30,7 +31,7 @@ type StaticProps = {
   props: Props;
 };
 
-const PlaceholderLink = styled.a`
+const PlaceholderLink = styled.span`
   color: #101010;
   padding: 16px 16px 0px 0;
 `;
@@ -43,9 +44,9 @@ const ContactPage: React.FC<Props> = (props) => (
         <PlaceholderBlock content={props.page.callToActionRaw} />
         <ARow justify='start' padding='0'>
           {props.page.links.map((link) => (
-            <PlaceholderLink href={link.route} key={link._key}>
-              {link.text}
-            </PlaceholderLink>
+            <Link href={link.route as string} key={link._key}>
+              <PlaceholderLink>{link.text}</PlaceholderLink>
+            </Link>
           ))}
         </ARow>
       </ACol>

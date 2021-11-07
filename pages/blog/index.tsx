@@ -2,6 +2,7 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 import styled from '@emotion/styled';
 import { AGrid, ACard, ABox } from 'aspire-components-react';
+import Link from 'next/link';
 
 import { AllowAny } from '../../types/index.d';
 import { ETFLayout } from '../../components/etf/etf-layout';
@@ -15,8 +16,6 @@ import {
 import * as GraphqlClient from '../../graphql/graphql-client';
 import * as BlogRepository from '../../repositories/blog-repository';
 import * as MenuRepository from '../../repositories/menu';
-
-const ALink = styled.a``;
 
 type Post = {
   _key: string;
@@ -60,7 +59,7 @@ const BlogPage: React.FC<Props> = ({ menu, page, posts }) => (
       {posts.length ? (
         <AGrid gap='8'>
           {posts.map((post: AllowAny) => (
-            <ALink href={`blog/${post.slug.current}`} key={post._id}>
+            <Link href={`blog/${post.slug.current}`} key={post._id}>
               <ACard height='full' padding='0' style={ACardStyles}>
                 <StyledImage
                   alt={post.mainImage.alt}
@@ -70,7 +69,7 @@ const BlogPage: React.FC<Props> = ({ menu, page, posts }) => (
                   <StyledH3>{post.title}</StyledH3>
                 </ABox>
               </ACard>
-            </ALink>
+            </Link>
           ))}
         </AGrid>
       ) : (
