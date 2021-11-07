@@ -1,36 +1,20 @@
 import React from 'react';
-// import styled from '@emotion/styled';
+import styled from '@emotion/styled';
 
-import { ETFLayout } from '../components/etf/etf-layout';
-import { PageSerializer } from '../components/sanity/component-serializer';
-// Static Prop Imports
-import * as GraphqlClient from '../graphql/graphql-client';
-import * as HomePageRepository from '../repositories/home-repository';
-import * as MenuRepository from '../repositories/menu';
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  min-height: 100vh;
+`;
 
-const BlogPage = ({ menu, page }) => {
+const Page = () => {
   return (
-    <ETFLayout menu={menu} page={page}>
-      <PageSerializer sections={page.sections} />
-    </ETFLayout>
+    <StyledContainer>
+      <strong>{'Coming Soon'}</strong>
+    </StyledContainer>
   );
 };
 
-const getStaticProps = async () => {
-  const client = GraphqlClient.get();
-  const [page, menu] = await Promise.all([
-    HomePageRepository.getHomePage({ client }),
-    MenuRepository.getLinks(client),
-  ]);
-
-  return {
-    props: {
-      menu,
-      page,
-    },
-  };
-};
-
-export { getStaticProps };
-// export type { StaticProps, Props, Page };
-export default BlogPage;
+export default Page;
