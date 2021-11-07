@@ -16,7 +16,7 @@ const BlogPage = ({ menu, page }) => {
   );
 };
 
-const getStaticProps = async () => {
+const getServerSideProps = async () => {
   const client = GraphqlClient.get();
   const page = await HomePageRepository.getHomePage({ client });
   const menu = await MenuRepository.getLinks(client);
@@ -29,6 +29,6 @@ const getStaticProps = async () => {
   };
 };
 
-export { getStaticProps };
-// export type { StaticProps, Props, Page };
+export { getServerSideProps };
+// export type { ServerSideProps, Props, Page };
 export default BlogPage;

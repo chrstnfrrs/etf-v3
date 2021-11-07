@@ -1,5 +1,5 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { ACol, ARow } from 'aspire-components-react';
 import styled from '@emotion/styled';
 
@@ -26,7 +26,7 @@ type Props = {
   menu: Types.AllowAny;
 };
 
-type StaticProps = {
+type ServerSideProps = {
   props: Props;
 };
 
@@ -62,7 +62,7 @@ const ContactPage: React.FC<Props> = (props) => (
   </ETFLayout>
 );
 
-const getStaticProps: GetStaticProps = async () => {
+const getServerSideProps: GetServerSideProps = async () => {
   const client = GraphqlClient.get();
 
   const { data } = await client.query({
@@ -79,8 +79,8 @@ const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export { getStaticProps };
+export { getServerSideProps };
 
-export type { Props, Page, StaticProps };
+export type { Props, Page, ServerSideProps };
 
 export default ContactPage;
