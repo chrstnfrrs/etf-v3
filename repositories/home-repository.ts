@@ -1,6 +1,13 @@
+import * as Apollo from '@apollo/client';
+
 import * as Codegen from '../graphql/generated';
 
-const getHomePage = async (client) => {
+interface IRepoParams {
+  client: Apollo.ApolloClient<Apollo.NormalizedCacheObject>;
+}
+type RepoFn = (params: IRepoParams) => Promise<any>;
+
+const getHomePage: RepoFn = async ({ client }) => {
   // Fetch page info
   const {
     data: { allHomePage },

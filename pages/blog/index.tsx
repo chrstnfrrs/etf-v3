@@ -56,7 +56,7 @@ const BlogPage: React.FC<Props> = ({ menu, page, posts }) => (
   <ETFLayout menu={menu} page={page}>
     <div>
       <StyledHeading>{page.pageHeading}</StyledHeading>
-      <StyledSpacer size='1rem' sizeMobile='0.5rem' />
+      <StyledSpacer space='1rem' spaceMobile='0.5rem' />
       {posts.length ? (
         <AGrid gap='8'>
           {posts.map((post: AllowAny) => (

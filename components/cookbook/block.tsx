@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import BlockContent from '@sanity/block-content-to-react';
 import {
@@ -60,7 +59,10 @@ const serializers = {
   },
 };
 
-const PlaceholderBlock = ({ content }: AllowAny): JSX.Element => (
+interface IPlaceholderBlock {
+  content: AllowAny;
+}
+const PlaceholderBlock: React.FC<IPlaceholderBlock> = ({ content }) => (
   <BlockContent blocks={content} serializers={serializers} />
 );
 

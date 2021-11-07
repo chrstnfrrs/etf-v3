@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-pascal-case */
 import React from 'react';
 // import styled from '@emotion/styled';
 
@@ -19,7 +18,7 @@ const BlogPage = ({ menu, page }) => {
 
 const getStaticProps = async () => {
   const client = GraphqlClient.get();
-  const page = await HomePageRepository.getHomePage(client);
+  const page = await HomePageRepository.getHomePage({ client });
   const menu = await MenuRepository.getLinks(client);
 
   return {

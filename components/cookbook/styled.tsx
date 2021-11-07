@@ -19,6 +19,9 @@ const StyledWrapper = styled.div`
   margin: 0 auto;
 `;
 
+interface IStyledRow {
+  align?: string;
+}
 const StyledRow = styled.div`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -26,13 +29,16 @@ const StyledRow = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   grid-gap: 1rem;
-  align-items: ${(props) => props.align || 'center'};
+  align-items: ${(props: IStyledRow) => props.align || 'center'};
   @media only screen and (max-width: 768px) {
     grid-template-columns: none;
     grid-gap: 2rem;
   }
 `;
 
+interface IStyledCol {
+  mobile?: string;
+}
 const StyledColLeft = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,7 +50,7 @@ const StyledColLeft = styled.div`
   height: 100%;
   @media only screen and (max-width: 768px) {
     grid-column: 1/-1;
-    grid-row: ${(props) => (props.mobile === 'top' ? '1' : '2')};
+    grid-row: ${(props: IStyledCol) => (props.mobile === 'top' ? '1' : '2')};
   }
 `;
 
@@ -56,7 +62,7 @@ const StyledColRight = styled.div`
   height: 100%;
   @media only screen and (max-width: 768px) {
     grid-column: 1/-1;
-    grid-row: ${(props) => (props.mobile === 'top' ? '1' : '2')};
+    grid-row: ${(props: IStyledCol) => (props.mobile === 'top' ? '1' : '2')};
   }
 `;
 
@@ -125,10 +131,15 @@ const StyledBtn = styled.div`
   }
 `;
 
+interface IStyledSpacer {
+  space?: string;
+  spaceMobile?: string;
+}
 const StyledSpacer = styled.div`
-  padding: ${(props) => props.size || '1rem'};
+  padding: ${(props: IStyledSpacer) => props.space || '1rem'};
   @media only screen and (max-width: 768px) {
-    ${(props) => Boolean(props.sizeMobile) && `padding: ${props.sizeMobile}`};
+    ${(props: IStyledSpacer) =>
+      Boolean(props.spaceMobile) && `padding: ${props.spaceMobile}`};
   }
 `;
 
