@@ -65,15 +65,17 @@ const ContactPage: React.FC<Props> = (props) => (
 const getServerSideProps: GetServerSideProps = async () => {
   const client = GraphqlClient.get();
 
-  const { data } = await client.query({
-    query: ContactPageDocument,
-  });
-
+  const [{ data }, menu] = await Promise.all([
+    client.query({
+      query: ContactPageDocument,
+    }),
+    MenuRepository.getLinks(client),
+  ]);
   const page = data.allPageContact[0];
 
   return {
     props: {
-      menu: await MenuRepository.getLinks(client),
+      menu,
       page,
     },
   };

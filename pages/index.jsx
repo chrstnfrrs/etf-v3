@@ -18,8 +18,10 @@ const BlogPage = ({ menu, page }) => {
 
 const getServerSideProps = async () => {
   const client = GraphqlClient.get();
-  const page = await HomePageRepository.getHomePage({ client });
-  const menu = await MenuRepository.getLinks(client);
+  const [page, menu] = await Promise.all([
+    HomePageRepository.getHomePage({ client }),
+    MenuRepository.getLinks(client),
+  ]);
 
   return {
     props: {

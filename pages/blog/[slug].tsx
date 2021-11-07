@@ -54,14 +54,17 @@ const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   const slug = `${(params?.slug as string) || ''}`;
 
-  const post = await BlogRepository.getBlogPostBySlug({
-    client,
-    slug,
-  });
+  const [post, menu] = await Promise.all([
+    BlogRepository.getBlogPostBySlug({
+      client,
+      slug,
+    }),
+    MenuRepository.getLinks(client),
+  ]);
 
   return {
     props: {
-      menu: await MenuRepository.getLinks(client),
+      menu,
       post,
     },
   };
