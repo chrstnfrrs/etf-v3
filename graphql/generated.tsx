@@ -25,9 +25,11 @@ export type RootQuery = {
   __typename?: 'RootQuery';
   ContactForm?: Maybe<ContactForm>;
   LayoutSplitContent?: Maybe<LayoutSplitContent>;
+  DescriptionListSection?: Maybe<DescriptionListSection>;
   Button?: Maybe<Button>;
   Hero?: Maybe<Hero>;
   HomePage?: Maybe<HomePage>;
+  KeyValuePair?: Maybe<KeyValuePair>;
   LayoutSplitFields?: Maybe<LayoutSplitFields>;
   LayoutSplit?: Maybe<LayoutSplit>;
   Link?: Maybe<Link>;
@@ -40,7 +42,8 @@ export type RootQuery = {
   PageHeading?: Maybe<PageHeading>;
   Post?: Maybe<Post>;
   Pages?: Maybe<Pages>;
-  SectionTestimonial?: Maybe<SectionTestimonial>;
+  Row?: Maybe<Row>;
+  Service?: Maybe<Service>;
   Settings?: Maybe<Settings>;
   Testimonial?: Maybe<Testimonial>;
   SanityImageAsset?: Maybe<SanityImageAsset>;
@@ -48,9 +51,11 @@ export type RootQuery = {
   Document?: Maybe<Document>;
   allContactForm: Array<ContactForm>;
   allLayoutSplitContent: Array<LayoutSplitContent>;
+  allDescriptionListSection: Array<DescriptionListSection>;
   allButton: Array<Button>;
   allHero: Array<Hero>;
   allHomePage: Array<HomePage>;
+  allKeyValuePair: Array<KeyValuePair>;
   allLayoutSplitFields: Array<LayoutSplitFields>;
   allLayoutSplit: Array<LayoutSplit>;
   allLink: Array<Link>;
@@ -63,7 +68,8 @@ export type RootQuery = {
   allPageHeading: Array<PageHeading>;
   allPost: Array<Post>;
   allPages: Array<Pages>;
-  allSectionTestimonial: Array<SectionTestimonial>;
+  allRow: Array<Row>;
+  allService: Array<Service>;
   allSettings: Array<Settings>;
   allTestimonial: Array<Testimonial>;
   allSanityImageAsset: Array<SanityImageAsset>;
@@ -82,6 +88,11 @@ export type RootQueryLayoutSplitContentArgs = {
 };
 
 
+export type RootQueryDescriptionListSectionArgs = {
+  id: Scalars['ID'];
+};
+
+
 export type RootQueryButtonArgs = {
   id: Scalars['ID'];
 };
@@ -93,6 +104,11 @@ export type RootQueryHeroArgs = {
 
 
 export type RootQueryHomePageArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryKeyValuePairArgs = {
   id: Scalars['ID'];
 };
 
@@ -157,7 +173,12 @@ export type RootQueryPagesArgs = {
 };
 
 
-export type RootQuerySectionTestimonialArgs = {
+export type RootQueryRowArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryServiceArgs = {
   id: Scalars['ID'];
 };
 
@@ -203,6 +224,14 @@ export type RootQueryAllLayoutSplitContentArgs = {
 };
 
 
+export type RootQueryAllDescriptionListSectionArgs = {
+  where?: Maybe<DescriptionListSectionFilter>;
+  sort?: Maybe<Array<DescriptionListSectionSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
 export type RootQueryAllButtonArgs = {
   where?: Maybe<ButtonFilter>;
   sort?: Maybe<Array<ButtonSorting>>;
@@ -222,6 +251,14 @@ export type RootQueryAllHeroArgs = {
 export type RootQueryAllHomePageArgs = {
   where?: Maybe<HomePageFilter>;
   sort?: Maybe<Array<HomePageSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllKeyValuePairArgs = {
+  where?: Maybe<KeyValuePairFilter>;
+  sort?: Maybe<Array<KeyValuePairSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
@@ -323,9 +360,17 @@ export type RootQueryAllPagesArgs = {
 };
 
 
-export type RootQueryAllSectionTestimonialArgs = {
-  where?: Maybe<SectionTestimonialFilter>;
-  sort?: Maybe<Array<SectionTestimonialSorting>>;
+export type RootQueryAllRowArgs = {
+  where?: Maybe<RowFilter>;
+  sort?: Maybe<Array<RowSorting>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+};
+
+
+export type RootQueryAllServiceArgs = {
+  where?: Maybe<ServiceFilter>;
+  sort?: Maybe<Array<ServiceSorting>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
 };
@@ -453,6 +498,41 @@ export type LinkOptions = Document & {
   size?: Maybe<Scalars['String']>;
   weight?: Maybe<Scalars['String']>;
   decorator?: Maybe<Scalars['String']>;
+};
+
+export type DescriptionListSection = Document & {
+  __typename?: 'DescriptionListSection';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  keyValuePairs?: Maybe<Array<Maybe<KeyValuePair>>>;
+  callToAction?: Maybe<Link>;
+};
+
+export type KeyValuePair = Document & {
+  __typename?: 'KeyValuePair';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  key?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 export type Button = Document & {
@@ -627,8 +707,10 @@ export type HomePage = Document & {
   _key?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
-  sections?: Maybe<Array<Maybe<LayoutSplit>>>;
+  sections?: Maybe<Array<Maybe<DescriptionListSectionOrLayoutSplitOrRow>>>;
 };
+
+export type DescriptionListSectionOrLayoutSplitOrRow = DescriptionListSection | LayoutSplit | Row;
 
 export type LayoutSplit = Document & {
   __typename?: 'LayoutSplit';
@@ -665,6 +747,59 @@ export type LayoutSplitFields = Document & {
 };
 
 export type LayoutSplitContentOrMainImage = LayoutSplitContent | MainImage;
+
+export type Row = Document & {
+  __typename?: 'Row';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  cards?: Maybe<Array<Maybe<ServiceOrTestimonial>>>;
+};
+
+export type ServiceOrTestimonial = Service | Testimonial;
+
+export type Service = Document & {
+  __typename?: 'Service';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  preview?: Maybe<Scalars['String']>;
+};
+
+export type Testimonial = Document & {
+  __typename?: 'Testimonial';
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  _key?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  preview?: Maybe<Scalars['String']>;
+};
 
 export type Links = Document & {
   __typename?: 'Links';
@@ -823,40 +958,6 @@ export type Pages = Document & {
 };
 
 export type ContactFormOrHeroOrPageHeading = ContactForm | Hero | PageHeading;
-
-export type SectionTestimonial = Document & {
-  __typename?: 'SectionTestimonial';
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>;
-  _key?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  testimonials?: Maybe<Array<Maybe<Testimonial>>>;
-};
-
-export type Testimonial = Document & {
-  __typename?: 'Testimonial';
-  /** Document ID */
-  _id?: Maybe<Scalars['ID']>;
-  /** Document type */
-  _type?: Maybe<Scalars['String']>;
-  /** Date the document was created */
-  _createdAt?: Maybe<Scalars['DateTime']>;
-  /** Date the document was last modified */
-  _updatedAt?: Maybe<Scalars['DateTime']>;
-  /** Current document revision */
-  _rev?: Maybe<Scalars['String']>;
-  _key?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  text?: Maybe<Scalars['String']>;
-};
 
 export type Settings = Document & {
   __typename?: 'Settings';
@@ -1050,6 +1151,30 @@ export type LinkOptionsSorting = {
   size?: Maybe<SortOrder>;
   weight?: Maybe<SortOrder>;
   decorator?: Maybe<SortOrder>;
+};
+
+export type DescriptionListSectionFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+  callToAction?: Maybe<LinkFilter>;
+};
+
+export type DescriptionListSectionSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+  callToAction?: Maybe<LinkSorting>;
 };
 
 export type ButtonFilter = {
@@ -1275,6 +1400,30 @@ export type HomePageSorting = {
   _key?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
   description?: Maybe<SortOrder>;
+};
+
+export type KeyValuePairFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  key?: Maybe<StringFilter>;
+  value?: Maybe<StringFilter>;
+};
+
+export type KeyValuePairSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  key?: Maybe<SortOrder>;
+  value?: Maybe<SortOrder>;
 };
 
 export type LayoutSplitFieldsFilter = {
@@ -1529,7 +1678,7 @@ export type PagesSorting = {
   route?: Maybe<SortOrder>;
 };
 
-export type SectionTestimonialFilter = {
+export type RowFilter = {
   /** Apply filters on document level */
   _?: Maybe<Sanity_DocumentFilter>;
   _id?: Maybe<IdFilter>;
@@ -1541,7 +1690,7 @@ export type SectionTestimonialFilter = {
   title?: Maybe<StringFilter>;
 };
 
-export type SectionTestimonialSorting = {
+export type RowSorting = {
   _id?: Maybe<SortOrder>;
   _type?: Maybe<SortOrder>;
   _createdAt?: Maybe<SortOrder>;
@@ -1549,6 +1698,30 @@ export type SectionTestimonialSorting = {
   _rev?: Maybe<SortOrder>;
   _key?: Maybe<SortOrder>;
   title?: Maybe<SortOrder>;
+};
+
+export type ServiceFilter = {
+  /** Apply filters on document level */
+  _?: Maybe<Sanity_DocumentFilter>;
+  _id?: Maybe<IdFilter>;
+  _type?: Maybe<StringFilter>;
+  _createdAt?: Maybe<DatetimeFilter>;
+  _updatedAt?: Maybe<DatetimeFilter>;
+  _rev?: Maybe<StringFilter>;
+  _key?: Maybe<StringFilter>;
+  title?: Maybe<StringFilter>;
+  preview?: Maybe<StringFilter>;
+};
+
+export type ServiceSorting = {
+  _id?: Maybe<SortOrder>;
+  _type?: Maybe<SortOrder>;
+  _createdAt?: Maybe<SortOrder>;
+  _updatedAt?: Maybe<SortOrder>;
+  _rev?: Maybe<SortOrder>;
+  _key?: Maybe<SortOrder>;
+  title?: Maybe<SortOrder>;
+  preview?: Maybe<SortOrder>;
 };
 
 export type SettingsFilter = {
@@ -1583,7 +1756,7 @@ export type TestimonialFilter = {
   _rev?: Maybe<StringFilter>;
   _key?: Maybe<StringFilter>;
   name?: Maybe<StringFilter>;
-  text?: Maybe<StringFilter>;
+  preview?: Maybe<StringFilter>;
 };
 
 export type TestimonialSorting = {
@@ -1594,7 +1767,7 @@ export type TestimonialSorting = {
   _rev?: Maybe<SortOrder>;
   _key?: Maybe<SortOrder>;
   name?: Maybe<SortOrder>;
-  text?: Maybe<SortOrder>;
+  preview?: Maybe<SortOrder>;
 };
 
 export type SanityImageAssetSorting = {
@@ -1959,6 +2132,32 @@ export type LayoutSplitContentFragmentFragment = (
   )> }
 );
 
+export type LayoutSplitFragmentFragment = (
+  { __typename: 'LayoutSplit' }
+  & Pick<LayoutSplit, '_key'>
+  & { left?: Maybe<(
+    { __typename?: 'LayoutSplitFields' }
+    & Pick<LayoutSplitFields, 'mobile'>
+    & { display?: Maybe<Array<Maybe<(
+      { __typename?: 'LayoutSplitContent' }
+      & LayoutSplitContentFragmentFragment
+    ) | (
+      { __typename?: 'MainImage' }
+      & MainImageFragmentFragment
+    )>>> }
+  )>, right?: Maybe<(
+    { __typename?: 'LayoutSplitFields' }
+    & Pick<LayoutSplitFields, 'mobile'>
+    & { display?: Maybe<Array<Maybe<(
+      { __typename?: 'LayoutSplitContent' }
+      & LayoutSplitContentFragmentFragment
+    ) | (
+      { __typename?: 'MainImage' }
+      & MainImageFragmentFragment
+    )>>> }
+  )> }
+);
+
 export type HomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1968,29 +2167,28 @@ export type HomePageQuery = (
     { __typename?: 'HomePage' }
     & Pick<HomePage, 'title' | 'description'>
     & { sections?: Maybe<Array<Maybe<(
-      { __typename: 'LayoutSplit' }
-      & Pick<LayoutSplit, '_key'>
-      & { left?: Maybe<(
-        { __typename?: 'LayoutSplitFields' }
-        & Pick<LayoutSplitFields, 'mobile'>
-        & { display?: Maybe<Array<Maybe<(
-          { __typename?: 'LayoutSplitContent' }
-          & LayoutSplitContentFragmentFragment
-        ) | (
-          { __typename?: 'MainImage' }
-          & MainImageFragmentFragment
-        )>>> }
-      )>, right?: Maybe<(
-        { __typename?: 'LayoutSplitFields' }
-        & Pick<LayoutSplitFields, 'mobile'>
-        & { display?: Maybe<Array<Maybe<(
-          { __typename?: 'LayoutSplitContent' }
-          & LayoutSplitContentFragmentFragment
-        ) | (
-          { __typename?: 'MainImage' }
-          & MainImageFragmentFragment
-        )>>> }
+      { __typename: 'DescriptionListSection' }
+      & Pick<DescriptionListSection, '_key' | 'title'>
+      & { keyValuePairs?: Maybe<Array<Maybe<(
+        { __typename?: 'KeyValuePair' }
+        & Pick<KeyValuePair, '_key' | 'key' | 'value'>
+      )>>>, callToAction?: Maybe<(
+        { __typename?: 'Link' }
+        & Pick<Link, 'route' | 'text'>
       )> }
+    ) | (
+      { __typename?: 'LayoutSplit' }
+      & LayoutSplitFragmentFragment
+    ) | (
+      { __typename: 'Row' }
+      & Pick<Row, '_key' | 'title'>
+      & { cards?: Maybe<Array<Maybe<(
+        { __typename: 'Service' }
+        & Pick<Service, 'title' | 'preview'>
+      ) | (
+        { __typename: 'Testimonial' }
+        & Pick<Testimonial, 'name' | 'preview'>
+      )>>> }
     )>>> }
   )> }
 );
@@ -2053,6 +2251,16 @@ export type SettingsQuery = (
   )> }
 );
 
+export const LayoutSplitContentFragmentFragmentDoc = gql`
+    fragment LayoutSplitContentFragment on LayoutSplitContent {
+  heading
+  subheading
+  link {
+    text
+    route
+  }
+}
+    `;
 export const MainImageFragmentFragmentDoc = gql`
     fragment MainImageFragment on MainImage {
   alt
@@ -2071,16 +2279,35 @@ export const MainImageFragmentFragmentDoc = gql`
   }
 }
     `;
-export const LayoutSplitContentFragmentFragmentDoc = gql`
-    fragment LayoutSplitContentFragment on LayoutSplitContent {
-  heading
-  subheading
-  link {
-    text
-    route
+export const LayoutSplitFragmentFragmentDoc = gql`
+    fragment LayoutSplitFragment on LayoutSplit {
+  __typename
+  _key
+  left {
+    display {
+      ... on LayoutSplitContent {
+        ...LayoutSplitContentFragment
+      }
+      ... on MainImage {
+        ...MainImageFragment
+      }
+    }
+    mobile
+  }
+  right {
+    display {
+      ... on LayoutSplitContent {
+        ...LayoutSplitContentFragment
+      }
+      ... on MainImage {
+        ...MainImageFragment
+      }
+    }
+    mobile
   }
 }
-    `;
+    ${LayoutSplitContentFragmentFragmentDoc}
+${MainImageFragmentFragmentDoc}`;
 export const BlogPageDocument = gql`
     query blogPage {
   allPageBlog {
@@ -2321,35 +2548,43 @@ export const HomePageDocument = gql`
     title
     description
     sections {
-      __typename
-      _key
-      left {
-        display {
-          ... on LayoutSplitContent {
-            ...LayoutSplitContentFragment
+      ... on Row {
+        __typename
+        _key
+        title
+        cards {
+          __typename
+          ... on Service {
+            title
+            preview
           }
-          ... on MainImage {
-            ...MainImageFragment
+          ... on Testimonial {
+            name
+            preview
           }
         }
-        mobile
       }
-      right {
-        display {
-          ... on LayoutSplitContent {
-            ...LayoutSplitContentFragment
-          }
-          ... on MainImage {
-            ...MainImageFragment
-          }
+      ... on DescriptionListSection {
+        __typename
+        _key
+        title
+        keyValuePairs {
+          _key
+          key
+          value
         }
-        mobile
+        callToAction {
+          route
+          text
+        }
+      }
+      ... on LayoutSplit {
+        ...LayoutSplitFragment
       }
     }
   }
 }
-    ${LayoutSplitContentFragmentFragmentDoc}
-${MainImageFragmentFragmentDoc}`;
+    ${LayoutSplitFragmentFragmentDoc}`;
 
 /**
  * __useHomePageQuery__

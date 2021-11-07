@@ -24,34 +24,70 @@ fragment LayoutSplitContentFragment on LayoutSplitContent {
   }
 }
 
+fragment LayoutSplitFragment on LayoutSplit {
+  __typename
+  _key
+  left {
+    display {
+      ... on LayoutSplitContent {
+        ...LayoutSplitContentFragment
+      }
+      ... on MainImage {
+        ...MainImageFragment
+      }
+    }
+    mobile
+  }
+  right {
+    display {
+      ... on LayoutSplitContent {
+        ...LayoutSplitContentFragment
+      }
+      ... on MainImage {
+        ...MainImageFragment
+      }
+    }
+    mobile
+  }
+}
+
 query HomePage {
   allHomePage(limit: 1) {
     title
     description
     sections {
-      __typename
-      _key
-      left {
-        display {
-          ... on LayoutSplitContent {
-            ...LayoutSplitContentFragment
+      ... on Row {
+        __typename
+        _key
+        title
+        cards {
+          __typename
+          ... on Service {
+            title
+            preview
           }
-          ... on MainImage {
-            ...MainImageFragment
+          ... on Testimonial {
+            name
+            preview
           }
         }
-        mobile
       }
-      right {
-        display {
-          ... on LayoutSplitContent {
-            ...LayoutSplitContentFragment
-          }
-          ... on MainImage {
-            ...MainImageFragment
-          }
+      ... on DescriptionListSection {
+        __typename
+        _key
+        title
+        keyValuePairs {
+          _key
+          key
+          value
         }
-        mobile
+        callToAction {
+          route
+          text
+        }
+      }
+      ... on LayoutSplit {
+        ...LayoutSplitFragment
       }
     }
   }
